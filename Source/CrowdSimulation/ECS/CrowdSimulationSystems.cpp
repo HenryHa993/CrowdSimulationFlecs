@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "CrowdSimulation/Public/ECS/CrowdSimulationSystems.h"
+#include "CrowdSimulationSystems.h"
 
-#include "CrowdSimulation/Public/ECS/CrowdSimulationComponents.h"
+#include "CrowdSimulationComponents.h"
 
 void UCrowdSimulationSystems::Initialize(flecs::world& ECSWorld)
 {

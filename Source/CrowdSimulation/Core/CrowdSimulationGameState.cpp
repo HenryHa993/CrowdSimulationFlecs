@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Core/CrowdSimulationGameState.h"
+#include "CrowdSimulationGameState.h"
 
 void ACrowdSimulationGameState::BeginPlay()
 {
