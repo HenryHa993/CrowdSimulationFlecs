@@ -23,12 +23,15 @@ void UISMCrowdSimulationSystems::Initialize(flecs::world& ECSWorld)
 		if(controller != nullptr)
 		{
 			int32 ismIndex = controller->AddInstance();
+			
 			it.world().entity()
 				.is_a(cAdd.Prefab)
 				.set<ISM_ControllerRef>({ controller })
 				.set<ISM_Index>( { ismIndex })
 				.set<ISM_Hash>({ cAdd.Hash })
 				.set<Transform>({ cAdd.Transform });
+			
+			controller->CreateOrExpandTransformArray();
 		}
 		it.entity(index).destruct();
 	});
@@ -42,6 +45,8 @@ void UISMCrowdSimulationSystems::Initialize(flecs::world& ECSWorld)
 	});
 
 	ECSWorld.system<const ISM_Map>("System Batch Update Transforms")
+	.term_at(1)
+	.singleton()
 	.each([](const ISM_Map& cMap)
 	{
 		for(auto& mapping : cMap.ISMs)
