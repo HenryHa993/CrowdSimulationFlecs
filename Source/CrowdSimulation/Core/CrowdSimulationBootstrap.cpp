@@ -3,6 +3,8 @@
 
 #include "CrowdSimulationBootstrap.h"
 
+#include "UnitConfigSet.h"
+
 
 // Sets default values
 ACrowdSimulationBootstrap::ACrowdSimulationBootstrap()
@@ -29,6 +31,14 @@ void ACrowdSimulationBootstrap::Bootstrap(flecs::world& ECSWorld)
 	for(auto moduleType : FlecsModules)
 	{
 		auto module = NewObject<UFlecsModuleBase>(this, moduleType);
+		
+		bool bImplementUnitSet = module->Implements<UUnitConfigSet>();
+		if(bImplementUnitSet)
+		{
+			IUnitConfigSet* unitSet = Cast<IUnitConfigSet>(module);
+			unitSet->SetUnit(UnitConfig);
+		}
+		
 		module->Initialize(ECSWorld);
 	}
 }

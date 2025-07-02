@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "FlecsBootstrap.h"
 #include "FlecsModuleBase.h"
+#include "UnitConfig.h"
 #include "CrowdSimulationBootstrap.generated.h"
 
 UCLASS()
@@ -25,6 +26,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 public:
+	UPROPERTY(EditAnywhere)
+	UUnitConfig* UnitConfig;
+	
 	UPROPERTY(EditAnywhere)
 	TArray<TSubclassOf<UFlecsModuleBase>> FlecsModules;
 

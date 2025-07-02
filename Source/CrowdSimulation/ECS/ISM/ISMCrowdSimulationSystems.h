@@ -4,13 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "FlecsModuleBase.h"
-#include "CrowdSimulationSystems.generated.h"
+#include "ISMCrowdSimulationSystems.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class CROWDSIMULATION_API UCrowdSimulationSystems : public UFlecsModuleBase
+class CROWDSIMULATION_API UISMCrowdSimulationSystems : public UFlecsModuleBase
 {
 	GENERATED_BODY()
 
