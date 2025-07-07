@@ -18,12 +18,29 @@ void UISMCrowdSimulationInitialisation::Initialize(flecs::world& ECSWorld)
 	ISM_Map ismMap{TMap<uint32, AISMController*>()};
 
 	// Create an ISMController for the unit we will spawn
+	// Do this for each UnitConfig we would like
 	int32 unitHash = CreateISMController(GetWorld(), UnitConfig->StaticMesh, UnitConfig->Material, ismMap);
 
-	flecs::entity unitPrefab = ECSWorld.entity("Unit");
+	flecs::entity unitPrefab = ECSWorld.entity("Unit")
+									.set<Velocity>({ FVector{100,100,0} });
 
-	ECSWorld.entity()
-		.set<ISM_AddInstance>({unitHash, unitPrefab, FTransform::Identity});
+	int x = 60;
+	int y = 60;
+	int gridX = 100;
+	int gridY = 100;
+
+	for(double i = 0; i < x * gridX; i += gridX)
+	{
+		for(double j = 0; j < y * gridY; j += gridY)
+		{
+			FTransform unitTransform{FVector{i, j, 0}};
+			ECSWorld.entity()
+				.set<ISM_AddInstance>({unitHash, unitPrefab, unitTransform});
+		}
+	}
+
+	/*ECSWorld.entity()
+		.set<ISM_AddInstance>({unitHash, unitPrefab, FTransform::Identity});*/
 
 	// ISM map is a singleton
 	ECSWorld.set<ISM_Map>({ ismMap });

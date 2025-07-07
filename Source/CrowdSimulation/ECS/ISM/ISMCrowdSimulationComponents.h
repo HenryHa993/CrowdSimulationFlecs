@@ -12,9 +12,15 @@
 	int a;
 };*/
 
+// Basic Components
 struct Transform
 {
 	FTransform Value;
+};
+
+struct Velocity
+{
+	FVector Value;
 };
 
 // ISM
@@ -43,6 +49,13 @@ struct ISM_AddInstance
 	int32 Hash;
 	flecs::entity Prefab;
 	FTransform Transform;
+};
+
+// Test State Machine
+enum class UnitStateMachine
+{
+	Wander,
+	Wait
 };
 /**
  * 

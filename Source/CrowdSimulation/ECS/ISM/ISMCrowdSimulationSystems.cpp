@@ -36,6 +36,12 @@ void UISMCrowdSimulationSystems::Initialize(flecs::world& ECSWorld)
 		it.entity(index).destruct();
 	});
 
+	ECSWorld.system<Transform, const Velocity>("System Velocity")
+	.each([](flecs::iter& it, size_t index, Transform& cTransform, const Velocity& cVelocity)
+	{
+		cTransform.Value.SetLocation(cTransform.Value.GetLocation() + cVelocity.Value * it.delta_time());
+	});
+
 	// Copy entity transform to ISM instance
 	ECSWorld.system<const Transform, const ISM_Index, const ISM_ControllerRef>("System Copy Instance Transforms")
 	.each([](const Transform& cTransform, const ISM_Index& cISMIndex, const ISM_ControllerRef& cISMControllerRef)
