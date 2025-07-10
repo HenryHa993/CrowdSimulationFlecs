@@ -17,5 +17,9 @@ void UISMCrowdSimulationComponents::Initialize(flecs::world& ECSWorld)
 	ECSWorld.component<ISM_Index>();
 	ECSWorld.component<ISM_AddInstance>();
 
-	ECSWorld.component<UnitStateMachine>();
+	ECSWorld.component<FSM_State>();
+	ECSWorld.component<FSM_Status>();
+	
+	ECSWorld.component<WanderStateData>();
+	ECSWorld.component<WaitStateData>();
 }

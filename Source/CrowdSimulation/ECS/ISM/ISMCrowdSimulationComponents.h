@@ -7,11 +7,6 @@
 #include "CrowdSimulation/ISM/ISMController.h"
 #include "ISMCrowdSimulationComponents.generated.h"
 
-/*struct test
-{
-	int a;
-};*/
-
 // Basic Components
 struct Transform
 {
@@ -52,11 +47,31 @@ struct ISM_AddInstance
 };
 
 // Test State Machine
-enum class UnitStateMachine
+enum class FSM_State
 {
 	Wander,
 	Wait
 };
+
+enum class FSM_Status
+{
+	Enter,
+	Running,
+	Exit
+};
+
+struct WanderStateData
+{
+	float WanderDuration;
+	float CurrentWanderDuration;
+};
+
+struct WaitStateData
+{
+	float WaitDuration;
+	float CurrentWaitDuration;
+};
+
 /**
  * 
  */

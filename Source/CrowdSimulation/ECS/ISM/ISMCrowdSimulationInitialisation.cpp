@@ -5,42 +5,36 @@
 
 void UISMCrowdSimulationInitialisation::Initialize(flecs::world& ECSWorld)
 {
-	/*
-	ECSWorld.entity().set<test>({1});
-*/
-	// So now that I have the config, I can initialise entities depending on the bootstrap and go ham
-
-	// How do I make an ECS Spawning system?
-
-	// This should be where spawning occurs right?
-
 	// Initialise map
 	ISM_Map ismMap{TMap<uint32, AISMController*>()};
 
-	// Create an ISMController for the unit we will spawn
-	// Do this for each UnitConfig we would like
+	// For each config, we initialise an ISMController
 	int32 unitHash = CreateISMController(GetWorld(), UnitConfig->StaticMesh, UnitConfig->Material, ismMap);
-
-	flecs::entity unitPrefab = ECSWorld.entity("Unit")
-									.set<Velocity>({ FVector{100,100,0} });
-
-	int x = 60;
-	int y = 60;
-	int gridX = 100;
-	int gridY = 100;
-
-	for(double i = 0; i < x * gridX; i += gridX)
+	
+	// Temporary mass spawning system
 	{
-		for(double j = 0; j < y * gridY; j += gridY)
+		flecs::entity unitPrefab = ECSWorld.entity("Unit")
+		.set<Velocity>({ FVector{0,0,0} })
+		.set<WanderStateData>({2,2})
+		.set<WaitStateData>({2,2})
+		.add(FSM_State::Wander)
+		.add(FSM_Status::Enter);
+
+		int x = 60;
+		int y = 60;
+		int gridX = 100;
+		int gridY = 100;
+
+		for(double i = 0; i < x * gridX; i += gridX)
 		{
-			FTransform unitTransform{FVector{i, j, 0}};
-			ECSWorld.entity()
-				.set<ISM_AddInstance>({unitHash, unitPrefab, unitTransform});
+			for(double j = 0; j < y * gridY; j += gridY)
+			{
+				FTransform unitTransform{FVector{i, j, 0}};
+				ECSWorld.entity()
+					.set<ISM_AddInstance>({unitHash, unitPrefab, unitTransform});
+			}
 		}
 	}
-
-	/*ECSWorld.entity()
-		.set<ISM_AddInstance>({unitHash, unitPrefab, FTransform::Identity});*/
 
 	// ISM map is a singleton
 	ECSWorld.set<ISM_Map>({ ismMap });
