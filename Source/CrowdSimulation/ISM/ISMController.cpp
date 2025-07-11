@@ -20,6 +20,9 @@ void AISMController::Initialize(UStaticMesh* StaticMesh, UMaterialInterface* Mat
 {
 	InstancedStaticMeshComponent->SetStaticMesh(StaticMesh);
 	InstancedStaticMeshComponent->SetMaterial(0, Material);
+
+	// Todo: Testing some settings
+	InstancedStaticMeshComponent->SetCastShadow(false);
 }
 
 void AISMController::CreateOrExpandTransformArray()
