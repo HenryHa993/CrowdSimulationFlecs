@@ -20,8 +20,8 @@ void UISMCrowdSimulationInitialisation::Initialize(flecs::world& ECSWorld)
 		.add(FSM_State::Wander)
 		.add(FSM_Status::Enter);
 
-		int x = 10;
-		int y = 10;
+		int x = 5;
+		int y = 5;
 		int gridX = 100;
 		int gridY = 100;
 
