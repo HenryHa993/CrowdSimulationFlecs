@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "FlecsModuleBase.h"
+#include "TurboSequence_MinimalData_Lf.h"
 #include "CrowdSimulation/ISM/ISMController.h"
 #include "ISMCrowdSimulationComponents.generated.h"
 
@@ -39,11 +40,49 @@ struct ISM_Index
 	int Value;
 };
 
+// Event struct, destroyed once instance is spawned
 struct ISM_AddInstance
 {
 	int32 Hash;
 	flecs::entity Prefab;
 	FTransform Transform;
+};
+
+struct WorldRef
+{
+	UWorld* Value;
+};
+
+// TurboSequence Components
+
+// Controller should update instances
+struct TS_MeshUpdateContext
+{
+	FTurboSequence_UpdateContext_Lf Value;
+};
+
+struct TS_AddInstance
+{
+	UWorld* World;
+	
+	FTurboSequence_MeshSpawnData_Lf SpawnData;
+	FTurboSequence_UpdateContext_Lf MeshUpdateContext;
+	
+	flecs::entity Prefab;
+	FTransform Transform;
+};
+
+struct TS_Mesh
+{
+	FTurboSequence_MinimalMeshData_Lf Value;
+	//FTurboSequence_AnimMinimalCollection_Lf AnimationID;
+	//FTurboSequence_AnimPlaySettings_Lf AnimationPlaySettings;
+};
+
+struct TS_Animation
+{
+	FTurboSequence_AnimMinimalCollection_Lf AnimationID;
+	FTurboSequence_AnimPlaySettings_Lf AnimationPlaySettings;
 };
 
 // Test State Machine

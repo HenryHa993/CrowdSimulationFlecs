@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "TurboSequence_MinimalData_Lf.h"
 #include "Engine/DataAsset.h"
 #include "UnitConfig.generated.h"
 
@@ -20,4 +21,8 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	UMaterialInterface* Material;
+
+	// TURBOSEQUENCE
+	UPROPERTY(EditAnywhere)
+	FTurboSequence_MeshSpawnData_Lf SpawnData;
 };

@@ -5,7 +5,7 @@
 
 void UISMCrowdSimulationInitialisation::Initialize(flecs::world& ECSWorld)
 {
-	// Initialise map
+	/*// Initialise map
 	ISM_Map ismMap{TMap<uint32, AISMController*>()};
 
 	// For each config, we initialise an ISMController
@@ -37,7 +37,35 @@ void UISMCrowdSimulationInitialisation::Initialize(flecs::world& ECSWorld)
 	}
 
 	// ISM map is a singleton
-	ECSWorld.set<ISM_Map>({ ismMap });
+	ECSWorld.set<ISM_Map>({ ismMap });*/
+
+	// Temporary mass spawning system -- TS
+	{
+		// Spawn data needs to be injected
+		FTurboSequence_UpdateContext_Lf updateContext = FTurboSequence_UpdateContext_Lf();
+		updateContext.GroupIndex = 0;
+
+		ECSWorld.entity("Mesh Solver")
+			.set<TS_MeshUpdateContext>({updateContext})
+			.set<WorldRef>({GetWorld()});
+		
+		flecs::entity unitPrefab = ECSWorld.entity("Unit");
+
+		int x = 5;
+		int y = 5;
+		int gridX = 100;
+		int gridY = 100;
+
+		for(double i = 0; i < x * gridX; i += gridX)
+		{
+			for(double j = 0; j < y * gridY; j += gridY)
+			{
+				FTransform unitTransform{FVector{i, j, 0}};
+				ECSWorld.entity()
+					.set<TS_AddInstance>({GetWorld(), UnitConfig->SpawnData, updateContext, unitPrefab, unitTransform});
+			}
+		}
+	}
 }
 
 uint32 UISMCrowdSimulationInitialisation::CreateISMController(UWorld* World, UStaticMesh* StaticMesh,

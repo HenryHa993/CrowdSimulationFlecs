@@ -22,4 +22,8 @@ void UISMCrowdSimulationComponents::Initialize(flecs::world& ECSWorld)
 	
 	ECSWorld.component<WanderStateData>();
 	ECSWorld.component<WaitStateData>();
+
+	ECSWorld.component<TS_MeshUpdateContext>();
+	ECSWorld.component<TS_AddInstance>();
+	ECSWorld.component<TS_Mesh>();
 }

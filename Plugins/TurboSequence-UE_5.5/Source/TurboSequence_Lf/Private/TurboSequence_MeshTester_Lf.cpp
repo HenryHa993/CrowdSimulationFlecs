@@ -61,9 +61,11 @@ void ATurboSequence_MeshTester_Lf::TestMesh(float DeltaTime)
 			{
 				UE_LOG(LogTemp, Warning, TEXT("Instance added valid -- play animation"));
 
+				// Should be done by the TS_AddInstance event structure
 				ATurboSequence_Manager_Lf::AddInstanceToUpdateGroup_Concurrent(
 					MeshUpdateContext.GroupIndex, CurrentMeshID);
 
+				// Should be done via changes in the state machine
 				CurrentAnimationID = ATurboSequence_Manager_Lf::PlayAnimation_Concurrent(
 					CurrentMeshID, MeshAnimation, MeshAnimationSettings);
 			}
@@ -83,5 +85,6 @@ void ATurboSequence_MeshTester_Lf::TestMesh(float DeltaTime)
 		TestFlag = false;
 	}
 
+	// Should be resolved by 
 	ATurboSequence_Manager_Lf::SolveMeshes_GameThread(DeltaTime, GetWorld(), MeshUpdateContext);
 }
