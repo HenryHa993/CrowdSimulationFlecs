@@ -1,0 +1,39 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+
+#include "TSCrowdSimulationInitialisation.h"
+
+#include "TSCrowdSimulationComponents.h"
+#include "TurboSequence_MinimalData_Lf.h"
+#include "CrowdSimulation/ECS/Core/Core_Components.h"
+
+void UTSCrowdSimulationInitialisation::Initialize(flecs::world& ECSWorld)
+{
+	// Temporary mass spawning system -- TS
+	{
+		// Spawn data needs to be injected
+		FTurboSequence_UpdateContext_Lf updateContext = FTurboSequence_UpdateContext_Lf();
+		updateContext.GroupIndex = 0;
+
+		ECSWorld.entity("Mesh Solver")
+			.set<TS_MeshUpdateContext>({updateContext})
+			.set<WorldRef>({GetWorld()});
+		
+		flecs::entity unitPrefab = ECSWorld.entity("Unit");
+
+		int x = 5;
+		int y = 5;
+		int gridX = 100;
+		int gridY = 100;
+
+		for(double i = 0; i < x * gridX; i += gridX)
+		{
+			for(double j = 0; j < y * gridY; j += gridY)
+			{
+				FTransform unitTransform{FVector{i, j, 0}};
+				ECSWorld.entity()
+					.set<TS_AddInstance>({GetWorld(), UnitConfig->SpawnData, updateContext, unitPrefab, unitTransform});
+			}
+		}
+	}
+}
