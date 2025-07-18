@@ -29,24 +29,38 @@ void ATurboSequence_MeshTester_Lf::Tick(float DeltaTime)
 
 void ATurboSequence_MeshTester_Lf::TestMesh(float DeltaTime)
 {
+	// Hash comparison to detect spawn changes
 	if (SpawnData.GetHash() != LastSpawnData.GetHash())
 	{
+		UE_LOG(LogTemp, Warning, TEXT("Spawn data not matched -- refresh mesh"));
+
 		LastSpawnData = SpawnData;
 
+		// Persistent mesh update context
+		// CurrentMeshID maintained and monitored
 		if (CurrentMeshID.IsMeshDataValid())
 		{
+			UE_LOG(LogTemp, Warning, TEXT("Mesh valid -- removing instance"));
+			
 			ATurboSequence_Manager_Lf::RemoveInstanceFromUpdateGroup_Concurrent(
 				MeshUpdateContext.GroupIndex, CurrentMeshID);
 
 			ATurboSequence_Manager_Lf::RemoveSkinnedMeshInstance_GameThread(CurrentMeshID, GetWorld());
 		}
 
+		// Check spawn data valid
 		if (SpawnData.IsSpawnDataValid())
 		{
+			UE_LOG(LogTemp, Warning, TEXT("Spawn data valid -- adding instance"));
+
+			// Add new instance
 			CurrentMeshID = ATurboSequence_Manager_Lf::AddSkinnedMeshInstance_GameThread(
 				SpawnData, GetActorTransform(), GetWorld());
+			// If instance valid, re-add to update group
 			if (CurrentMeshID.IsMeshDataValid())
 			{
+				UE_LOG(LogTemp, Warning, TEXT("Instance added valid -- play animation"));
+
 				ATurboSequence_Manager_Lf::AddInstanceToUpdateGroup_Concurrent(
 					MeshUpdateContext.GroupIndex, CurrentMeshID);
 
@@ -54,6 +68,19 @@ void ATurboSequence_MeshTester_Lf::TestMesh(float DeltaTime)
 					CurrentMeshID, MeshAnimation, MeshAnimationSettings);
 			}
 		}
+	}
+
+	if(TestFlag)
+	{
+		TestTimer -= DeltaTime;		
+	}
+
+	if(TestTimer < 0 && TestFlag)
+	{
+		CurrentAnimationID = ATurboSequence_Manager_Lf::PlayAnimation_Concurrent(
+					CurrentMeshID, SecondMeshAnimation, MeshAnimationSettings);
+
+		TestFlag = false;
 	}
 
 	ATurboSequence_Manager_Lf::SolveMeshes_GameThread(DeltaTime, GetWorld(), MeshUpdateContext);

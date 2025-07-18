@@ -282,15 +282,20 @@ void ATurboSequence_FeaturesDemo_Lf::Tick(float DeltaTime)
 
 	FCriticalSection CriticalSection;
 
+	// Valid for blending
 	if (SimpleBlendingDemo.bEnable && SimpleBlendingDemo.MeshData.Num() && SimpleBlendingDemo.Spawns[0].RootMotionMesh.
 		Mesh->AnimationLibrary->Animations.Num() > 1)
 	{
+		// Reduce timer
 		SimpleBlendingDemo.RandomTimer -= DeltaTime;
+		// If timer is finished
 		if (SimpleBlendingDemo.RandomTimer < 0)
 		{
+			// Reset timer
 			SimpleBlendingDemo.RandomTimer = FMath::RandRange(3.0f, 4.0f);
 
 			int32 RandomAnimation = 0;
+			// Randomise random animation until it does not match the highest priority animation on the mesh
 			while (SimpleBlendingDemo.Spawns[0].RootMotionMesh.Mesh->AnimationLibrary->Animations[RandomAnimation].
 				Animation ==
 				ATurboSequence_Manager_Lf::GetHighestPriorityPlayingAnimation_Concurrent(
@@ -300,6 +305,8 @@ void ATurboSequence_FeaturesDemo_Lf::Tick(float DeltaTime)
 					0, SimpleBlendingDemo.Spawns[0].RootMotionMesh.Mesh->AnimationLibrary->Animations.Num() - 1);
 			}
 
+			// Set up animation play settings
+			// Play animation
 			FTurboSequence_AnimPlaySettings_Lf AnimationPlaySettings = FTurboSequence_AnimPlaySettings_Lf();
 			//AnimationPlaySettings.Animation = SimpleBlendingDemo.Spawns[0].RootMotionMesh.Mesh->AnimationLibrary->Animations[RandomAnimation];
 			ATurboSequence_Manager_Lf::PlayAnimation_Concurrent(SimpleBlendingDemo.MeshData[0],
@@ -525,6 +532,7 @@ void ATurboSequence_FeaturesDemo_Lf::Tick(float DeltaTime)
 		CurrentUpdateGroupIndex = CurrentUpdateGroupIndex % (UpdateGroupsDemo.MeshData.Num() + 1);
 	}
 
+	// Solve meshes at the end
 	if (bUpdateManager)
 	{
 		FTurboSequence_UpdateContext_Lf UpdateContext = FTurboSequence_UpdateContext_Lf();

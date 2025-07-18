@@ -47,4 +47,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere, Category="Mesh Tester")
 	FTurboSequence_AnimMinimalCollection_Lf CurrentAnimationID;
+
+	// My testing code
+	float TestTimer = 5.0f;
+
+	bool TestFlag = true;
+
+	UPROPERTY(EditAnywhere, Category="MY EDITS")
+	TObjectPtr<UAnimSequence> SecondMeshAnimation;
 };

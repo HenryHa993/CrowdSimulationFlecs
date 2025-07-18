@@ -9,6 +9,7 @@
 #include "GameFramework/Actor.h"
 #include "TurboSequence_Demo_Lf.generated.h"
 
+// Mesh wrapper contains basic mesh data, and animation details.
 struct FDemoMeshWrapper_Lf
 {
 	FTurboSequence_MinimalMeshData_Lf MeshData;
@@ -33,6 +34,7 @@ struct FDemoMeshWrapper_Lf
 	float CustomDataTimer;
 };
 
+// Contains materials
 USTRUCT()
 struct TURBOSEQUENCE_LF_API FDemoMaterialData_Lf
 {
@@ -42,6 +44,7 @@ struct TURBOSEQUENCE_LF_API FDemoMaterialData_Lf
 	TArray<TObjectPtr<UMaterialInterface>> Materials;
 };
 
+// Spawn data
 USTRUCT()
 struct TURBOSEQUENCE_LF_API FDemoMeshSpawnData_Lf
 {
@@ -60,6 +63,7 @@ struct TURBOSEQUENCE_LF_API FDemoMeshSpawnData_Lf
 	TMap<FName, FDemoMaterialData_Lf> Materials;
 };
 
+// Not really sure what is going on here
 USTRUCT()
 struct TURBOSEQUENCE_LF_API FDemoCustomizationContainer_Lf
 {

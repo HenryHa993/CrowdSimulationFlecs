@@ -25,6 +25,7 @@ void ATurboSequence_Demo_Lf::BeginPlay()
 		DemoComponentHeight = GetActorTransform().GetLocation().Z;
 
 		AssetDataRuntime.Empty();
+
 		for (FDemoAssetData_Lf& Asset : AssetData)
 		{
 			Asset.CategorizedRootData.CategorizedData.Empty();
