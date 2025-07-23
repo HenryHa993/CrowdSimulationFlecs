@@ -26,6 +26,7 @@ void UTS_Systems::Initialize(flecs::world& ECSWorld)
 			it.world().entity()
 				.is_a(cAdd.Prefab)
 				.set<TS_Mesh>({meshID})
+				.set<TS_Animation>({FTurboSequence_AnimPlaySettings_Lf()})
 				.set<Transform>({cAdd.Transform});
 		}
 			
@@ -35,12 +36,30 @@ void UTS_Systems::Initialize(flecs::world& ECSWorld)
 
 	// Animation component
 	// todo: Should I have it play the animation whilst running or at the beginning
-	ECSWorld.system<TS_Mesh, TS_Animation, const TS_Animations>("System Set Animation")
+	ECSWorld.system<TS_Mesh, TS_Animation, TS_Animations>("System Set Animation")
+	.term_at(2).singleton()
 	.with<FSM_State>(flecs::Wildcard)
-	.each([](flecs::iter& it, size_t index, TS_Mesh& cMesh, TS_Animation& cAnimation, const TS_Animations& cAnimations)
+	.each([](flecs::iter& it, size_t index, TS_Mesh& cMesh, TS_Animation& cAnimation, TS_Animations& cAnimations)
 	{
+		if(cMesh.Value.IsMeshDataValid())
+		{
+			// Check if animation is already playing
+			// Break it down
+			const FSM_State* state = it.entity(index).get<FSM_State>();
+					
+			/*if(ATurboSequence_Manager_Lf::GetHighestPriorityPlayingAnimation_Concurrent(cMesh.Value) == cAnimations.Value[state])
+			{
+				return;
+			}*/
+
+			// If not, play animation
+			// Split this out
+			ATurboSequence_Manager_Lf::PlayAnimation_Concurrent(cMesh.Value, cAnimations.Value[*state], cAnimation.AnimationPlaySettings);
+		}
+		/*
 		// Check if animation is already playing
 		FSM_State state = it.entity(index).to_constant<FSM_State>();
+		
 		if(ATurboSequence_Manager_Lf::GetHighestPriorityPlayingAnimation_Concurrent(cMesh.Value) == cAnimations.Value[state])
 		{
 			return;
@@ -48,6 +67,7 @@ void UTS_Systems::Initialize(flecs::world& ECSWorld)
 
 		// If not, play animation
 		ATurboSequence_Manager_Lf::PlayAnimation_Concurrent(cMesh.Value, cAnimations.Value[state], cAnimation.AnimationPlaySettings);
+	*/
 	});
 
 	// Copy transforms

@@ -26,8 +26,8 @@ public:
 	FTurboSequence_MeshSpawnData_Lf SpawnData;
 
 	UPROPERTY(EditAnywhere, Category="TS Config")
-	TObjectPtr<UAnimSequence> IdleAnim;
+	UAnimSequence* IdleAnim;
 
 	UPROPERTY(EditAnywhere, Category="TS Config")
-	TObjectPtr<UAnimSequence> WalkingAnim;
+	UAnimSequence* WalkingAnim;
 };

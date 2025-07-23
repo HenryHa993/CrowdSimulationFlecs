@@ -11,6 +11,12 @@ void UTS_Init::Initialize(flecs::world& ECSWorld)
 {
 	// Temporary mass spawning system -- TS
 	{
+		TS_Animations animationsMap {TMap<FSM_State, UAnimSequence*>()};
+		animationsMap.Value.Add(FSM_State::Wait, UnitConfig->IdleAnim);
+		animationsMap.Value.Add(FSM_State::Wander, UnitConfig->WalkingAnim);
+		/*animationsMap.Value[FSM_State::Wait] = UnitConfig->IdleAnim;
+		animationsMap.Value[FSM_State::Wander] = UnitConfig->WalkingAnim;*/
+		
 		// Spawn data needs to be injected
 		FTurboSequence_UpdateContext_Lf updateContext = FTurboSequence_UpdateContext_Lf();
 		updateContext.GroupIndex = 0;
@@ -40,5 +46,8 @@ void UTS_Init::Initialize(flecs::world& ECSWorld)
 					.set<TS_AddInstance>({GetWorld(), UnitConfig->SpawnData, updateContext, unitPrefab, unitTransform});
 			}
 		}
+
+		// Singleton animator
+		ECSWorld.set<TS_Animations>({animationsMap});
 	}
 }

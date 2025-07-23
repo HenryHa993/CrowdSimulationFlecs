@@ -31,13 +31,13 @@ struct TS_Mesh
 
 struct TS_Animation
 {
-	FTurboSequence_AnimMinimalCollection_Lf AnimationID;
+	//FTurboSequence_AnimMinimalCollection_Lf AnimationID;
 	FTurboSequence_AnimPlaySettings_Lf AnimationPlaySettings;
 };
 
 struct TS_Animations
 {
-	TMap<FSM_State, TObjectPtr<UAnimSequence>> Value;
+	TMap<FSM_State, UAnimSequence*> Value;
 };
 
 /**
