@@ -4,16 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "FlecsModuleBase.h"
-#include "ISMCrowdSimulationSystems.generated.h"
+#include "TS_Systems.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class CROWDSIMULATION_API UISMCrowdSimulationSystems : public UFlecsModuleBase
+class CROWDSIMULATION_API UTS_Systems : public UFlecsModuleBase
 {
 	GENERATED_BODY()
 
-public:
 	virtual void Initialize(flecs::world& ECSWorld) override;
 };

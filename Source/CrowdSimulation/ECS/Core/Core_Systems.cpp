@@ -14,6 +14,13 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 	.each([](flecs::iter& it, size_t index, Transform& cTransform, const Velocity& cVelocity)
 	{
 		cTransform.Value.SetLocation(cTransform.Value.GetLocation() + cVelocity.Value * it.delta_time());
+
+		if(cVelocity.Value.Length() > 0)
+		{
+			// Todo: Do I want velocity to determine the direction the mesh is facing? If I get round to blendspaces, this is a good consideration
+			FQuat correctionQuat = FQuat(FVector::UpVector, FMath::DegreesToRadians(-90.0f));
+			cTransform.Value.SetRotation(FQuat::FastLerp(cTransform.Value.GetRotation(), cVelocity.Value.ToOrientationQuat() * correctionQuat, it.delta_time()));	
+		}
 	});
 
 	/*

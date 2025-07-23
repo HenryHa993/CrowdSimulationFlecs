@@ -5,7 +5,8 @@
 #include "CoreMinimal.h"
 #include "FlecsModuleBase.h"
 #include "TurboSequence_MinimalData_Lf.h"
-#include "TSCrowdSimulationComponents.generated.h"
+#include "CrowdSimulation/ECS/Core/Core_Components.h"
+#include "TS_Components.generated.h"
 
 struct TS_MeshUpdateContext
 {
@@ -34,11 +35,16 @@ struct TS_Animation
 	FTurboSequence_AnimPlaySettings_Lf AnimationPlaySettings;
 };
 
+struct TS_Animations
+{
+	TMap<FSM_State, TObjectPtr<UAnimSequence>> Value;
+};
+
 /**
  * 
  */
 UCLASS()
-class CROWDSIMULATION_API UTSCrowdSimulationComponents : public UFlecsModuleBase
+class CROWDSIMULATION_API UTS_Components : public UFlecsModuleBase
 {
 	GENERATED_BODY()
 

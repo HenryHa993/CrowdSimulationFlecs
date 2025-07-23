@@ -1,13 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "TSCrowdSimulationInitialisation.h"
+#include "TS_Init.h"
 
-#include "TSCrowdSimulationComponents.h"
+#include "TS_Components.h"
 #include "TurboSequence_MinimalData_Lf.h"
 #include "CrowdSimulation/ECS/Core/Core_Components.h"
 
-void UTSCrowdSimulationInitialisation::Initialize(flecs::world& ECSWorld)
+void UTS_Init::Initialize(flecs::world& ECSWorld)
 {
 	// Temporary mass spawning system -- TS
 	{
@@ -19,7 +19,12 @@ void UTSCrowdSimulationInitialisation::Initialize(flecs::world& ECSWorld)
 			.set<TS_MeshUpdateContext>({updateContext})
 			.set<WorldRef>({GetWorld()});
 		
-		flecs::entity unitPrefab = ECSWorld.entity("Unit");
+		flecs::entity unitPrefab = ECSWorld.entity("Unit")
+		.set<Velocity>({ FVector{0,0,0} })
+		.set<WanderStateData>({2,2})
+		.set<WaitStateData>({2,2})
+		.add(FSM_State::Wander)
+		.add(FSM_Status::Enter);
 
 		int x = 5;
 		int y = 5;

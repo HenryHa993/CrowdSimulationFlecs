@@ -1,9 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ISMCrowdSimulationComponents.h"
+#include "ISM_Components.h"
 
-void UISMCrowdSimulationComponents::Initialize(flecs::world& ECSWorld)
+void UISM_Components::Initialize(flecs::world& ECSWorld)
 {
 	ECSWorld.component<ISM_Map>();
 	ECSWorld.component<ISM_ControllerRef>();

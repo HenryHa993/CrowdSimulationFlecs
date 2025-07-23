@@ -6,7 +6,7 @@
 #include "FlecsModuleBase.h"
 #include "TurboSequence_MinimalData_Lf.h"
 #include "CrowdSimulation/ISM/ISMController.h"
-#include "ISMCrowdSimulationComponents.generated.h"
+#include "ISM_Components.generated.h"
 
 // ISM
 struct ISM_Map
@@ -41,7 +41,7 @@ struct ISM_AddInstance
  * 
  */
 UCLASS()
-class CROWDSIMULATION_API UISMCrowdSimulationComponents : public UFlecsModuleBase
+class CROWDSIMULATION_API UISM_Components : public UFlecsModuleBase
 {
 	GENERATED_BODY()
 

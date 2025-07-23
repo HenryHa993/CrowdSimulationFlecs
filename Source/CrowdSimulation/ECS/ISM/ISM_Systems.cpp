@@ -1,13 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ISMCrowdSimulationSystems.h"
+#include "ISM_Systems.h"
 
-#include "ISMCrowdSimulationComponents.h"
+#include "ISM_Components.h"
 #include "TurboSequence_Manager_Lf.h"
 #include "CrowdSimulation/ECS/Core/Core_Components.h"
 
-void UISMCrowdSimulationSystems::Initialize(flecs::world& ECSWorld)
+void UISM_Systems::Initialize(flecs::world& ECSWorld)
 {
 	// Event system which initialises an ISM instance and entity
 	ECSWorld.system<ISM_AddInstance, ISM_Map>("System Add ISM Instance")

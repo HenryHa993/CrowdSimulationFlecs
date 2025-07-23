@@ -16,13 +16,18 @@ class CROWDSIMULATION_API UUnitConfig : public UDataAsset
 	GENERATED_BODY()
 
 public:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category="ISM Config")
 	UStaticMesh* StaticMesh;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category="ISM Config")
 	UMaterialInterface* Material;
 
-	// TURBOSEQUENCE
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category="TS Config")
 	FTurboSequence_MeshSpawnData_Lf SpawnData;
+
+	UPROPERTY(EditAnywhere, Category="TS Config")
+	TObjectPtr<UAnimSequence> IdleAnim;
+
+	UPROPERTY(EditAnywhere, Category="TS Config")
+	TObjectPtr<UAnimSequence> WalkingAnim;
 };

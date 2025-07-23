@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ISMCrowdSimulationInitialisation.h"
+#include "ISM_Init.h"
 
 #include "CrowdSimulation/ECS/Core/Core_Components.h"
 
-void UISMCrowdSimulationInitialisation::Initialize(flecs::world& ECSWorld)
+void UISM_Init::Initialize(flecs::world& ECSWorld)
 {
 	// Initialise map
 	ISM_Map ismMap{TMap<uint32, AISMController*>()};
@@ -42,7 +42,7 @@ void UISMCrowdSimulationInitialisation::Initialize(flecs::world& ECSWorld)
 	ECSWorld.set<ISM_Map>({ ismMap });
 }
 
-uint32 UISMCrowdSimulationInitialisation::CreateISMController(UWorld* World, UStaticMesh* StaticMesh,
+uint32 UISM_Init::CreateISMController(UWorld* World, UStaticMesh* StaticMesh,
 	UMaterialInterface* Material, ISM_Map& Map)
 {
 	uint32 hash = HashCombine(GetTypeHash(Material), GetTypeHash(StaticMesh));

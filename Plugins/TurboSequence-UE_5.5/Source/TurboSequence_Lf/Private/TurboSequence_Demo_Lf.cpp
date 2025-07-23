@@ -19,6 +19,8 @@ void ATurboSequence_Demo_Lf::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// FDemoAssetData_Lf defines a bunch of animation properties which build up an archetype
+	// So as long as some archetypes populate the array, it will run
 	if (AssetData.Num())
 	{
 		UpdateGroupIndex = QualityGroupIndex + 1;
@@ -26,34 +28,46 @@ void ATurboSequence_Demo_Lf::BeginPlay()
 
 		AssetDataRuntime.Empty();
 
+		// For each archetype -- Which is a collection of animation spawn data, and animation data
 		for (FDemoAssetData_Lf& Asset : AssetData)
 		{
+			// CategorizedRootData contains an array of TS Mesh - material combinations
 			Asset.CategorizedRootData.CategorizedData.Empty();
+			// Iterate through collection of TS Meshes and stuff for spawning -- Spawn data
 			for (const FDemoMeshSpawnData_Lf& RootAsset : Asset.RootAssets)
 			{
 				if (IsValid(RootAsset.Asset))
 				{
+					// So I guess some of the archetypes can be excluded?
 					if (!Asset.bExcludeFromSystem && !RootAsset.bExclude)
 					{
+						// Add it to that categorised spawn data array
 						Asset.CategorizedRootData.CategorizedData.Add(RootAsset);
 					}
 				}
 			}
+			// Empty customisable data array
 			Asset.CategorizeCustomizableData.Empty();
+			// Lol this also contains spawn TS Mesh stuff
 			for (const FDemoMeshSpawnData_Lf& CustomizableAsset : Asset.CustomizableAssets)
 			{
+				// Check if TS Mesh is fine
 				if (IsValid(CustomizableAsset.Asset))
 				{
+					// And then whether or not to exclude asset
 					if (!Asset.bExcludeFromSystem && !CustomizableAsset.bExclude)
 					{
+						// If there is NOT a category for the archetype
 						if (!Asset.CategorizeCustomizableData.Contains(CustomizableAsset.CategoryName))
 						{
+							// Create the category
 							FDemoCustomizationContainer_Lf Data;
 							Data.CategorizedData.Add(CustomizableAsset);
 							Asset.CategorizeCustomizableData.Add(CustomizableAsset.CategoryName, Data);
 						}
 						else
 						{
+							// Otherwise add it to the map of categorised data
 							Asset.CategorizeCustomizableData[CustomizableAsset.CategoryName].CategorizedData.Add(
 								CustomizableAsset);
 						}
@@ -61,16 +75,20 @@ void ATurboSequence_Demo_Lf::BeginPlay()
 				}
 			}
 
+			// Add asset to runtime array
 			if (!Asset.bExcludeFromSystem)
 			{
 				AssetDataRuntime.Add(&Asset);
 			}
 		}
+
+		// All assets are excluded, do not continue
 		if (!AssetDataRuntime.Num())
 		{
 			return;
 		}
 
+		// Round meshes to spawn (I think they are spawning in batches)
 		int32 AmountMeshSqrt = FMath::RoundToInt(FMath::Sqrt(static_cast<float>(AmountOfMeshesToSpawn)));
 		if (AmountOfMeshesToSpawn == 1)
 		{
@@ -92,6 +110,7 @@ void ATurboSequence_Demo_Lf::BeginPlay()
 				                                 TEXT("Spawning -> %d Characters, in %d Frames"),
 				                                 CurrentMeshCount_Internal, SpawnFrameDelay + AmountMeshSqrt));
 
+			// Set timer to spawn a bunch of meshes
 			GetWorld()->GetTimerManager().SetTimerForNextTick(this, &ATurboSequence_Demo_Lf::SpawnCharactersDelayed);
 		}
 	}
@@ -101,7 +120,7 @@ void ATurboSequence_Demo_Lf::BeginPlay()
 void ATurboSequence_Demo_Lf::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	
 	if (AssetDataRuntime.Num())
 	{
 		if (!ATurboSequence_Manager_Lf::GlobalLibrary.UpdateGroups.IsValidIndex(UpdateGroupIndex))
@@ -109,13 +128,16 @@ void ATurboSequence_Demo_Lf::Tick(float DeltaTime)
 			return;
 		}
 
+		// Resize array to match number of update groups
 		UpdateGroupDeltaTimes.SetNum(ATurboSequence_Manager_Lf::GlobalLibrary.UpdateGroups.Num());
 
+		// todo Why does each update group maintain their own delta time?
 		for (float& Delta : UpdateGroupDeltaTimes)
 		{
 			Delta += DeltaTime;
 		}
 
+		// Get camera location and rotation
 		FVector CameraLocation = FVector::ZeroVector;
 		FRotator CameraRotation = FRotator::ZeroRotator;
 		if (IsValid(UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)))
@@ -124,14 +146,15 @@ void ATurboSequence_Demo_Lf::Tick(float DeltaTime)
 			CameraRotation = UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)->GetCameraRotation();
 		}
 
+		// Determines which mesh instances are within the quality update group
 		TMap<FTurboSequence_MinimalMeshData_Lf, bool> SwitchingGroups;
 
-
+		// Generate a new update context
 		FTurboSequence_UpdateContext_Lf UpdateContext = FTurboSequence_UpdateContext_Lf();
 		UpdateContext.GroupIndex = UpdateGroupIndex;
 		//UpdateContext.bCollectGarbageThisFrame = bCollectGarbageThisFrame;
 
-		// Background Groups
+		// Determines how the instances of an update group move, rotate and are animated
 		SolveGroup(UpdateGroupIndex, UpdateGroupDeltaTimes[UpdateGroupIndex], CameraRotation,
 		           CameraLocation, SwitchingGroups);
 
@@ -141,22 +164,26 @@ void ATurboSequence_Demo_Lf::Tick(float DeltaTime)
 			ATurboSequence_Manager_Lf::SolveMeshes_GameThread(UpdateGroupDeltaTimes[UpdateGroupIndex], GetWorld(),
 			                                                  UpdateContext);
 
-
 			// Foreground Group
 			SolveGroup(QualityGroupIndex, DeltaTime, CameraRotation, CameraLocation, SwitchingGroups);
 
-
+			// With the switching groups configured
+			// Adjust which meshes you want to move and remove from the quality update group
 			for (const TTuple<FTurboSequence_MinimalMeshData_Lf, bool>& Group : SwitchingGroups)
 			{
 				FDemoMeshWrapper_Lf& Mesh = Meshes[Group.Key];
+				// If true
 				if (Group.Value)
 				{
+					// Remove instance from update group and put it into quality update group
+					// So switch group represents that meshes instances you want to move into the quality update group
 					ATurboSequence_Manager_Lf::RemoveInstanceFromUpdateGroup_Concurrent(
 						Mesh.CurrentUpdateGroupIndex, Mesh.MeshData);
 					Mesh.CurrentUpdateGroupIndex = QualityGroupIndex;
 					ATurboSequence_Manager_Lf::AddInstanceToUpdateGroup_Concurrent(
 						Mesh.CurrentUpdateGroupIndex, Mesh.MeshData);
 				}
+				// Otherwise put it into a default update group
 				else
 				{
 					ATurboSequence_Manager_Lf::RemoveInstanceFromUpdateGroup_Concurrent(
@@ -168,8 +195,10 @@ void ATurboSequence_Demo_Lf::Tick(float DeltaTime)
 			}
 
 			// High Quality Solving
+			// If any are in the high quality solving group
 			if (ATurboSequence_Manager_Lf::GlobalLibrary.UpdateGroups[QualityGroupIndex].RawIDs.Num())
 			{
+				// Solve them on the gamethread
 				UpdateContext.GroupIndex = QualityGroupIndex;
 
 				ATurboSequence_Manager_Lf::SolveMeshes_GameThread(DeltaTime, GetWorld(), UpdateContext);
@@ -192,6 +221,7 @@ void ATurboSequence_Demo_Lf::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void ATurboSequence_Demo_Lf::SpawnCharactersDelayed()
 {
+	// If remaining frames to spawn, setup timer to spawn next tick
 	if (SpawnFrameDelay_Internal)
 	{
 		SpawnFrameDelay_Internal--;
@@ -199,13 +229,17 @@ void ATurboSequence_Demo_Lf::SpawnCharactersDelayed()
 		return;
 	}
 
+	
 	const FVector& SpawnerLocation = GetActorLocation();
 	//FCriticalSection CriticalSection;
 
+	// If current mesh count larger than 0
 	if (CurrentMeshCount_Internal > 0)
 	{
+		// Offset last spawn location
 		LastSpawnLocation_Internal += FVector(-DistanceBetweenMeshes, 0, 0);
 
+		// Square root the amount of meshes to spawn
 		int32 AmountCharactersSqrt = FMath::RoundToInt(FMath::Sqrt(static_cast<float>(AmountOfMeshesToSpawn)));
 		if (AmountOfMeshesToSpawn == 1)
 		{
@@ -213,50 +247,64 @@ void ATurboSequence_Demo_Lf::SpawnCharactersDelayed()
 		}
 		//const int32 MaxNumMeshes = AmountCharactersSqrt * AmountCharactersSqrt;
 
+		// Add a unique mesh-material instance into the world
 		for (int32 Y = 0; Y < AmountCharactersSqrt; ++Y)
 		{
+			// Generate an offset
 			FVector Location = FVector(LastSpawnLocation_Internal.X,
 			                           Y * -DistanceBetweenMeshes + LastSpawnLocation_Internal.Y, 0) + SpawnerLocation;
+			// Reduce mesh count (I assume this represents the number of different meshes being spawned?)
 			CurrentMeshCount_Internal--;
 
 			FTransform Transform = FTransform(Location);
 
 			FTurboSequence_MeshSpawnData_Lf SpawnData;
+
+			// Get a random asset (IK details, settings and collection of TS Meshes)
 			int32 AssetIndex = FMath::RandRange(0, AssetDataRuntime.Num() - 1);
 
 			FDemoAssetData_Lf* Asset = AssetDataRuntime[AssetIndex];
 
+			// Populate SpawnData with a random mesh-material combination
 			GetRandomMeshSpawnData(SpawnData, Asset->CategorizedRootData, Asset->CategorizeCustomizableData,
 			                       Asset->FootprintAsset);
 
-
+			// Add instance of SpawnData and check if valid
 			if (const FTurboSequence_MinimalMeshData_Lf& MeshData =
 					ATurboSequence_Manager_Lf::AddSkinnedMeshInstance_GameThread(SpawnData, Transform, GetWorld());
 				MeshData.IsMeshDataValid()) // Very Important to check here if it's valid
 			{
+				// Populate Mesh, which is a wrapper around spawning data
 				FDemoMeshWrapper_Lf Mesh = FDemoMeshWrapper_Lf();
 				Mesh.MeshData = MeshData;
 				Mesh.RandomRotationTimer = GET1_NUMBER;
 				Mesh.AssetDataIndex = AssetIndex;
 
+				// Get group index
 				const int32 GroupIndex = ATurboSequence_Manager_Lf::GetNumOfAllMeshes_Concurrent() /
 					NumInstancesPerUpdateGroup + QualityGroupIndex + 1;
 
 				Mesh.DefaultUpdateGroupIndex = GroupIndex;
 				Mesh.CurrentUpdateGroupIndex = GroupIndex;
 
+				// Add instance to a specific update group
 				ATurboSequence_Manager_Lf::AddInstanceToUpdateGroup_Concurrent(GroupIndex, MeshData);
+
+				// Add to map the mesh instance and the demo mesh wrapper
 				Meshes.Add(MeshData, Mesh);
 
+				// Calculate a world transform offset
+				// todo: This is pretty useful for getting transform
 				const FTransform& WorldTransformIncludingOffset = Asset->SpawnOffsetTransform *
-					ATurboSequence_Manager_Lf::GetMeshWorldSpaceTransform_Concurrent(Mesh.MeshData);
+					ATurboSequence_Manager_Lf::GetMeshWorldSpaceTransform_Concurrent(Mesh.MeshData); // Use mesh instance to access it's transform
 				ATurboSequence_Manager_Lf::SetMeshWorldSpaceTransform_Concurrent(
-					Mesh.MeshData, WorldTransformIncludingOffset);
+					Mesh.MeshData, WorldTransformIncludingOffset); // Then set it's transform to the calculated offset
 			}
 		}
 
 		GetWorld()->GetTimerManager().SetTimerForNextTick(this, &ATurboSequence_Demo_Lf::SpawnCharactersDelayed);
 	}
+	// If internal mesh count is 0, print debug message
 	else
 	{
 		uint32 NumMeshes = ATurboSequence_Manager_Lf::GetNumOfAllMeshes_Concurrent();
@@ -300,46 +348,69 @@ void ATurboSequence_Demo_Lf::SpawnCharactersDelayed()
 // 	UE_LOG(LogTemp, Warning, TEXT("Pressed"));
 // }
 
+/*
+ * Appears to be where multithreading occurs in order to
+ */
 void ATurboSequence_Demo_Lf::SolveGroup(int32 GroupIndex,
                                         float DeltaTime, const FRotator& CameraRotation,
                                         const FVector& CameraLocation,
                                         TMap<FTurboSequence_MinimalMeshData_Lf, bool>& SwitchingGroups)
 {
+	// Retrieve number of mesh data from given group index
 	const int32 NumMeshes = ATurboSequence_Manager_Lf::GetNumMeshDataInUpdateGroup_Concurrent(GroupIndex);
 	if (!NumMeshes)
 	{
 		return;
 	}
+
+	// For multithreading
 	FCriticalSection CriticalSection;
 
+	// Get number of CPU threads - 1 (I assume this will be later used for iteration)
 	int16 NumThreads = FTurboSequence_Helper_Lf::NumCPUThreads() - GET1_NUMBER;
+
+	// Calculate the number of meshes per thread to be updated(?)
 	int32 NumMeshesPerThread = FMath::CeilToInt(
 		static_cast<float>(NumMeshes) / static_cast<float>(NumThreads));
+
+	// The work each thread is doing
+	// todo what work is it doing?
+	// THIS SEEMS TO BE A MASSIVE EXAMPLE OF MULTITHREADING -- SHOULD REFERENCE THIS WHEN TRYING TO IMPLEMENT IT FOR ECS
+	// This appears to be capturing everything within the current scope
 	ParallelFor(NumThreads, [&](int32 ThreadsIndex)
 	{
+		// Finding the ranges of which to operate on the meshes
 		const int32 MeshBaseIndex = ThreadsIndex * NumMeshesPerThread;
 		const int32 MeshBaseNum = MeshBaseIndex + NumMeshesPerThread;
 
+		// Iterate through the mesh ranges
 		for (int32 Index = MeshBaseIndex; Index < MeshBaseNum; ++Index)
 		{
+			// If meshes are larger than the total number of meshes, exit
 			if (Index >= NumMeshes)
 			{
 				break;
 			}
 
+			// Index represents the numbered mesh instance. Using the update group index, and the mesh instance index we
+			// can get the mesh instance itself
 			const FTurboSequence_MinimalMeshData_Lf& MeshData =
 				ATurboSequence_Manager_Lf::GetMeshDataInUpdateGroupFromIndex_Concurrent(GroupIndex, Index);
 
+			// Validation checks before operating on the mesh data
 			if (!MeshData.IsMeshDataValid() || (MeshData.IsMeshDataValid() && !Meshes.Contains(MeshData)))
 			{
 				continue;
 			}
 
+			// Get the wrapper from the map
 			FDemoMeshWrapper_Lf& Mesh = Meshes[MeshData];
 			//
 			// SolveMesh(Mesh, CriticalSection, CameraRotation, CameraLocation, SwitchingGroups, DeltaTime);
 
+			// Get demo asset data
 			const FDemoAssetData_Lf* AssetCustomData = AssetDataRuntime[Mesh.AssetDataIndex];
+			// Get ts mesh from raw ID
 			const TObjectPtr<UTurboSequence_MeshAsset_Lf> MeshAsset =
 				ATurboSequence_Manager_Lf::GetMeshAsset_RawID_Concurrent(
 					Mesh.MeshData.RootMotionMeshID);
@@ -353,40 +424,51 @@ void ATurboSequence_Demo_Lf::SolveGroup(int32 GroupIndex,
 				                             ? CameraDistance / 250000 * MeshAsset->DistanceUpdatingRatio
 				                             : 0;
 
+			// If we get over distance ration, we update the mesh
+			// todo: this whole thing culls mesh updates depending on some sort of camera distance-time calculation
 			Mesh.DeltaTimeAccumulator += DeltaTime;
 			if (Mesh.DeltaTimeAccumulator > DistanceRatioSeconds)
 			{
+				// Moving mesh with root motion
 				if (AssetCustomData->bUseRootMotion)
 				{
 					ATurboSequence_Manager_Lf::MoveMeshWithRootMotion_Concurrent(
 						Mesh.MeshData, Mesh.DeltaTimeAccumulator, true, false);
 				}
+				// Using programmable speed meaning that animations have a certain associated speed
 				else if (AssetCustomData->bUseProgrammableSpeed)
 				{
+					// Get animation sequence
 					const TObjectPtr<UAnimSequence> AnimSequence =
 						ATurboSequence_Manager_Lf::GetHighestPriorityPlayingAnimation_Concurrent(Mesh.MeshData);
 
+					// If animation library is valid
 					if (IsValid(MeshAsset->AnimationLibrary))
 					{
+						// Searches the animation library for the current animation speed
 						FVector Speed = FVector::ZeroVector;
 						for (FAnimationLibraryItem_Lf& AnimationLibraryItem : MeshAsset->AnimationLibrary->Animations)
 						{
+							// if the animation matches the current animation sequence, 
 							if (AnimationLibraryItem.Animation == AnimSequence)
 							{
-								Speed = AnimationLibraryItem.AnimationSeed_CM_Per_Second;
+								Speed = AnimationLibraryItem.AnimationSeed_CM_Per_Second; // Apparently how fast the animation represents
 								break;
 							}
 						}
 
+						// Get mesh transform from the instance
 						FTransform MeshTransform = ATurboSequence_Manager_Lf::GetMeshWorldSpaceTransform_Concurrent(
 							Mesh.MeshData);
 
+						// Set location of transform
 						MeshTransform.SetLocation(
 							MeshTransform.GetLocation() + MeshTransform.GetRotation().RotateVector(Speed * DeltaTime));
-
+						
 						ATurboSequence_Manager_Lf::SetMeshWorldSpaceTransform_Concurrent(Mesh.MeshData, MeshTransform);
 					}
 				}
+				// Fix transform to a certain height
 				if (bKeepHeightOnSpawnLevel)
 				{
 					FTransform MeshTransform = ATurboSequence_Manager_Lf::GetMeshWorldSpaceTransform_Concurrent(
@@ -398,10 +480,13 @@ void ATurboSequence_Demo_Lf::SolveGroup(int32 GroupIndex,
 
 					ATurboSequence_Manager_Lf::SetMeshWorldSpaceTransform_Concurrent(Mesh.MeshData, MeshTransform);
 				}
-
+				// Randomise rotation of mesh
 				if (AssetCustomData->bUseRandomRotation)
 				{
+					// Reduce timer
 					Mesh.RandomRotationTimer -= Mesh.DeltaTimeAccumulator;
+
+					// If timer is up, rotate mesh yaw
 					if (Mesh.RandomRotationTimer < 0)
 					{
 						Mesh.RandomRotationTimer = FMath::RandRange(2.0f, 7.0f);
@@ -414,39 +499,50 @@ void ATurboSequence_Demo_Lf::SolveGroup(int32 GroupIndex,
 						Mesh.MeshData);
 					FRotator Rotation = MeshTransform.Rotator();
 
+					// Lerp yaw
 					Rotation.Yaw = FRotator::NormalizeAxis(
 						FMath::Lerp(Rotation.Yaw, static_cast<double>(Mesh.RandomRotationYaw),
 						            static_cast<double>(Mesh.DeltaTimeAccumulator)));
 
+					// Setting rotation
 					//MeshTransform.SetRotation(Rotation.Quaternion());
 					ATurboSequence_Manager_Lf::SetMeshWorldSpaceLocationRotationScale_Concurrent(
 						Mesh.MeshData, MeshTransform.GetLocation(), Rotation.Quaternion(), FVector::OneVector);
 				}
-
+				// 
 				if (AssetCustomData->bUseRandomAnimation)
 				{
+					// A lot of things have timers on them lol
 					Mesh.RandomAnimationTimer -= Mesh.DeltaTimeAccumulator;
+					
+					// Check timer, check validation
 					if (Mesh.RandomAnimationTimer < 0)
 					{
 						if (IsValid(MeshAsset->AnimationLibrary)) // TODO: Remove
 						{
+							// If mesh is using blendspaces and is within camera view distance
 							if (AssetCustomData->bUseBlendSpaces && CameraDistance < 15000)
 							{
+								// Check if there are blendspaces
 								if (int32 NumBlendSpaces = MeshAsset->AnimationLibrary->BlendSpaces.Num())
 								{
 									int32 RandomBlendSpace = FMath::RandRange(0, NumBlendSpaces - 1);
 									FTurboSequence_AnimPlaySettings_Lf PlaySettings =
 										FTurboSequence_AnimPlaySettings_Lf();
 
+									// If current blendspace is not valid, or current blendspace does not match random
 									if (!Mesh.CurrentBlendSpace.IsAnimCollectionValid() || Mesh.CurrentBlendSpace.
 										RootMotionMesh.BlendSpace != MeshAsset->AnimationLibrary->BlendSpaces[
 											RandomBlendSpace])
 									{
+										// Play random blenspace 
 										Mesh.CurrentBlendSpace = ATurboSequence_Manager_Lf::PlayBlendSpace_Concurrent(
 											Mesh.MeshData, MeshAsset->AnimationLibrary->BlendSpaces[RandomBlendSpace],
 											PlaySettings);
 									}
 
+									// Calculate and set blendspace position
+									// todo not sure how randomising the blendspace position affects the animation
 									Mesh.RandomBlendSpacePosition = FVector3f(
 										FMath::RandRange(-200.0, 200.0), FMath::RandRange(-200.0, 200.0), 0);
 									if (FVector3f::Distance(Mesh.RandomBlendSpacePosition, FVector3f::ZeroVector) < 100)
@@ -458,14 +554,18 @@ void ATurboSequence_Demo_Lf::SolveGroup(int32 GroupIndex,
 										Mesh.RandomBlendSpacePosition = Mesh.RandomBlendSpacePosition.GetUnsafeNormal() * 200;
 									}
 
+									// todo: THIS TWEAK BLENDSPACE FUNCTION LOOKS USEFUL
 									ATurboSequence_Manager_Lf::TweakBlendSpace_Concurrent(
 										Mesh.CurrentBlendSpace, Mesh.RandomBlendSpacePosition);
 								}
 							}
+							// If not using blendspaces OR not within camera distance
 							else
 							{
+								// If there are animations
 								if (int32 NumAnimations = MeshAsset->AnimationLibrary->Animations.Num())
 								{
+									// Randomly pick one
 									int32 RandomAnimation = FMath::RandRange(0, NumAnimations - 1);
 									if (NumAnimations > 1)
 									{
@@ -477,6 +577,7 @@ void ATurboSequence_Demo_Lf::SolveGroup(int32 GroupIndex,
 											RandomAnimation = FMath::RandRange(0, NumAnimations - 1);
 										}
 									}
+									// Then play the next animation
 									FTurboSequence_AnimPlaySettings_Lf PlaySettings =
 										FTurboSequence_AnimPlaySettings_Lf();
 									Mesh.CurrentAnimation_0 = ATurboSequence_Manager_Lf::PlayAnimation_Concurrent(
@@ -484,8 +585,10 @@ void ATurboSequence_Demo_Lf::SolveGroup(int32 GroupIndex,
 										MeshAsset->AnimationLibrary->Animations[RandomAnimation].Animation,
 										PlaySettings);
 
+									// If using layered animations
 									if (AssetCustomData->bUseLayer)
 									{
+										// Get random animation
 										int32 RandomAnimation2 = FMath::RandRange(0, NumAnimations - 1);
 										if (NumAnimations > 1)
 										{
@@ -497,6 +600,9 @@ void ATurboSequence_Demo_Lf::SolveGroup(int32 GroupIndex,
 												RandomAnimation2 = FMath::RandRange(0, NumAnimations - 1);
 											}
 										}
+										// Customise play settings to do layered animations
+										// todo: SEE THIS FOR ANIMATION BLENDING
+										// THen play
 										PlaySettings.AnimationPlayTimeInSeconds = FMath::RandRange(0.0f, 0.5f);
 										PlaySettings.BoneLayerMasks = AssetCustomData->BoneLayers;
 										//PlaySettings.Animation = MeshAsset->AnimationLibrary->Animations[RandomAnimation2];
@@ -509,11 +615,13 @@ void ATurboSequence_Demo_Lf::SolveGroup(int32 GroupIndex,
 							}
 						}
 
+						// Randomise a bunch of timers
 						Mesh.RandomAnimationTimer = FMath::RandRange(2.0f, 7.0f);
 						Mesh.RandomAnimationData_0 = FMath::RandRange(0.9f, 1.75f);
 						Mesh.RandomAnimationData_1 = FMath::RandRange(0.9f, 1.75f);
 					}
 
+					// No clue what is happening here
 					if (AssetCustomData->bUseCustomData)
 					{
 						Mesh.CustomDataTimer -= Mesh.DeltaTimeAccumulator;
@@ -536,6 +644,7 @@ void ATurboSequence_Demo_Lf::SolveGroup(int32 GroupIndex,
 
 				// IK is expensive on the CPU, we only do IK for 100 Meters Radius around the camera
 				// and only if the mesh is visible by the Camera Frustum
+				// todo: CAMERA FRUSTRUM FUNCTION CAN HELP WITH ANIMATING
 				if (AssetCustomData->bUseIK && CameraDistance < 10000 &&
 					ATurboSequence_Manager_Lf::GetIsMeshVisibleInCameraFrustum_Concurrent(Mesh.MeshData, false))
 				{
@@ -573,6 +682,9 @@ void ATurboSequence_Demo_Lf::SolveGroup(int32 GroupIndex,
 					                  OffsetTransform);
 				}
 
+				// todo: Multithreading stuff. Need to look up multithreading
+				// Ah so switching groups are locked, editted and then unlocked
+				// Seems to be two different tiers of solving, determined by switch groups
 				if (CameraDistance < RadiusOfHighQualitySolving)
 				{
 					if (Mesh.CurrentUpdateGroupIndex == Mesh.DefaultUpdateGroupIndex)
@@ -582,6 +694,7 @@ void ATurboSequence_Demo_Lf::SolveGroup(int32 GroupIndex,
 						CriticalSection.Unlock();
 					}
 				}
+				// 
 				else
 				{
 					if (Mesh.CurrentUpdateGroupIndex == QualityGroupIndex)
@@ -598,6 +711,9 @@ void ATurboSequence_Demo_Lf::SolveGroup(int32 GroupIndex,
 	}, EParallelForFlags::BackgroundPriority);
 }
 
+/*
+ * Get a random mesh and material combination, and store it into a FTurboSequence_MeshSpawnData_Lf
+ */
 void ATurboSequence_Demo_Lf::GetRandomMeshSpawnData(FTurboSequence_MeshSpawnData_Lf& Data,
                                                     const FDemoCustomizationContainer_Lf& CategorizedRootData,
                                                     const TMap<FName, FDemoCustomizationContainer_Lf>&
@@ -605,12 +721,14 @@ void ATurboSequence_Demo_Lf::GetRandomMeshSpawnData(FTurboSequence_MeshSpawnData
                                                     const TObjectPtr<UTurboSequence_FootprintAsset_Lf> FootprintAsset)
 {
 	Data = FTurboSequence_MeshSpawnData_Lf();
-
+	// Find valid random root mesh
 	if (int32 RandomRootMesh = FMath::RandRange(0, CategorizedRootData.CategorizedData.Num() - 1);
 		CategorizedRootData.CategorizedData.IsValidIndex(RandomRootMesh))
 	{
+		// Set spawn data
 		Data.RootMotionMesh.Mesh = CategorizedRootData.CategorizedData[RandomRootMesh].Asset;
 		Data.RootMotionMesh.FootprintAsset = FootprintAsset;
+		// If there is any materials, set those too
 		if (CategorizedRootData.CategorizedData[RandomRootMesh].Materials.Num())
 		{
 			TArray<FName> Names;
@@ -621,23 +739,37 @@ void ATurboSequence_Demo_Lf::GetRandomMeshSpawnData(FTurboSequence_MeshSpawnData
 				Names[RandomRootMaterial]].Materials;
 		}
 	}
+	// For each customisable data (spawn data)
 	for (const TTuple<FName, FDemoCustomizationContainer_Lf>& Customizable : CategorizeCustomizableData)
 	{
+		// If spawn data exists
 		if (Customizable.Value.CategorizedData.Num())
 		{
+			// Get a random spawn data
 			int32 RandomMesh = FMath::RandRange(0, Customizable.Value.CategorizedData.Num() - 1);
+
+			// Create mesh data
 			FTurboSequence_MeshMetaData_Lf MeshData = FTurboSequence_MeshMetaData_Lf();
+
+			// Populate MeshData with the turbo squid mesh
 			MeshData.Mesh = Customizable.Value.CategorizedData[RandomMesh].Asset;
-			MeshData.FootprintAsset = FootprintAsset;
+			MeshData.FootprintAsset = FootprintAsset; // todo: Still not too sure what a footprint asset is?
+
+			// If spawn data has a material
 			if (Customizable.Value.CategorizedData[RandomMesh].Materials.Num())
 			{
+				// Populate Names with keys
 				TArray<FName> Names;
 				Customizable.Value.CategorizedData[RandomMesh].Materials.GetKeys(Names);
+
+				// Randomise the overriding material using the collection stored in spawn data materials
 				int32 RandomMaterial = FMath::RandRange(
 					0, Customizable.Value.CategorizedData[RandomMesh].Materials.Num() - 1);
 				MeshData.OverrideMaterials = Customizable.Value.CategorizedData[RandomMesh].Materials[Names[
 					RandomMaterial]].Materials;
 			}
+
+			// Add MeshData to CustomizableMeshes
 			Data.CustomizableMeshes.Add(MeshData);
 		}
 	}
