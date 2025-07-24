@@ -10,7 +10,10 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 	/*
 	 * Basic Systems
 	 */
+	// Velocity system
+	// Runs on-update, should be before transform copies
 	ECSWorld.system<Transform, const Velocity>("System Velocity")
+	.kind(flecs::OnUpdate)
 	.each([](flecs::iter& it, size_t index, Transform& cTransform, const Velocity& cVelocity)
 	{
 		cTransform.Value.SetLocation(cTransform.Value.GetLocation() + cVelocity.Value * it.delta_time());
@@ -26,7 +29,15 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 	/*
 	 * State Machine Systems
 	 */
+	// Enter Wander state
+	// For now it handles the movement logic and transition to another state
+	// Not sure whether it makes more sense to split the transition logic and movement logic
+	// This approach seems to sacrifice runtime speed for code readability
+	// So what is the line here?
+
+	// Uses OnValidate
 	ECSWorld.system<Velocity>("System Enter Wander State")
+	.kind(flecs::PostUpdate)
 	.with<FSM_State>(flecs::Wildcard)
 	.with(FSM_State::Wander)
 	.with<FSM_Status>(flecs::Wildcard)
@@ -38,6 +49,7 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 	});
 
 	ECSWorld.system<WanderStateData>("System Running Wander State")
+	.kind(flecs::PostUpdate)
 	.with<FSM_State>(flecs::Wildcard)
 	.with(FSM_State::Wander)
 	.with<FSM_Status>(flecs::Wildcard)
@@ -47,6 +59,7 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 		cWanderStateData.CurrentWanderDuration -= it.delta_time();
 		if(cWanderStateData.CurrentWanderDuration < 0)
 		{
+			// This is not used until it reaches bellow zero -- unused cache. Hence
 			cWanderStateData.CurrentWanderDuration = cWanderStateData.WanderDuration;
 			it.entity(index).add(FSM_State::Wait);
 			it.entity(index).add(FSM_Status::Enter);
@@ -54,6 +67,7 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 	});
 
 	ECSWorld.system<Velocity>("System Enter Wait State")
+	.kind(flecs::PostUpdate)
 	.with<FSM_State>(flecs::Wildcard)
 	.with(FSM_State::Wait)
 	.with<FSM_Status>(flecs::Wildcard)
@@ -65,6 +79,7 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 	});
 
 	ECSWorld.system<WaitStateData>("System Running Wait State")
+	.kind(flecs::PostUpdate)
 	.with<FSM_State>(flecs::Wildcard)
 	.with(FSM_State::Wait)
 	.with<FSM_Status>(flecs::Wildcard)

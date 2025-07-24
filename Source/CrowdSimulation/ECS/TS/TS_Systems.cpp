@@ -10,6 +10,7 @@
 void UTS_Systems::Initialize(flecs::world& ECSWorld)
 {
 	ECSWorld.system<TS_AddInstance>("System Add TS Instance")
+	.kind(flecs::OnLoad)
 	.each([](flecs::iter& it, size_t index, TS_AddInstance& cAdd)
 	{
 		// Add Instance to update group
@@ -36,49 +37,36 @@ void UTS_Systems::Initialize(flecs::world& ECSWorld)
 
 	// Animation component
 	// todo: Should I have it play the animation whilst running or at the beginning
-	ECSWorld.system<TS_Mesh, TS_Animation, TS_Animations>("System Set Animation")
-	.term_at(2).singleton()
+	ECSWorld.system<TS_Animations, TS_Mesh, TS_Animation>("System Set Animation")
+	.kind(flecs::OnUpdate)
+	.term_at(0).singleton()
 	.with<FSM_State>(flecs::Wildcard)
-	.each([](flecs::iter& it, size_t index, TS_Mesh& cMesh, TS_Animation& cAnimation, TS_Animations& cAnimations)
+	.with<FSM_Status>(flecs::Wildcard)
+	.with(FSM_Status::Enter)
+	.each([](flecs::iter& it, size_t index, TS_Animations& cAnimations,TS_Mesh& cMesh, TS_Animation& cAnimation)
 	{
 		if(cMesh.Value.IsMeshDataValid())
 		{
-			// Check if animation is already playing
-			// Break it down
 			const FSM_State* state = it.entity(index).get<FSM_State>();
-					
-			/*if(ATurboSequence_Manager_Lf::GetHighestPriorityPlayingAnimation_Concurrent(cMesh.Value) == cAnimations.Value[state])
-			{
-				return;
-			}*/
-
-			// If not, play animation
-			// Split this out
 			ATurboSequence_Manager_Lf::PlayAnimation_Concurrent(cMesh.Value, cAnimations.Value[*state], cAnimation.AnimationPlaySettings);
 		}
-		/*
-		// Check if animation is already playing
-		FSM_State state = it.entity(index).to_constant<FSM_State>();
-		
-		if(ATurboSequence_Manager_Lf::GetHighestPriorityPlayingAnimation_Concurrent(cMesh.Value) == cAnimations.Value[state])
-		{
-			return;
-		}
-
-		// If not, play animation
-		ATurboSequence_Manager_Lf::PlayAnimation_Concurrent(cMesh.Value, cAnimations.Value[state], cAnimation.AnimationPlaySettings);
-	*/
 	});
 
 	// Copy transforms
 	ECSWorld.system<TS_Mesh, const Transform>("System Copy TS Instance Transform")
+	.kind(flecs::PreStore)
 	.each([](TS_Mesh& cMesh, const Transform& cTransform)
 	{
 		//ATurboSequence_Manager_Lf::SetMeshWorldSpaceTransform_Concurrent(cMesh.Value, cTransform.Value);
-		ATurboSequence_Manager_Lf::SetMeshWorldSpaceLocationRotationScale_Concurrent(cMesh.Value, cTransform.Value.GetLocation(), cTransform.Value.GetRotation(), cTransform.Value.GetScale3D());
+		if(cMesh.Value.IsMeshDataValid())
+		{
+			ATurboSequence_Manager_Lf::SetMeshWorldSpaceLocationRotationScale_Concurrent(cMesh.Value, cTransform.Value.GetLocation(), cTransform.Value.GetRotation(), cTransform.Value.GetScale3D());
+		}
 	});
 
+	// Solve mesh instances
 	ECSWorld.system<TS_MeshUpdateContext, WorldRef>("System Solve TS Instances")
+	.kind(flecs::OnStore)
 	.each([](flecs::iter& it, size_t index, TS_MeshUpdateContext& cUpdateContext, WorldRef& cWorld)
 	{
 		ATurboSequence_Manager_Lf::SolveMeshes_GameThread(it.delta_time(), cWorld.Value, cUpdateContext.Value);
