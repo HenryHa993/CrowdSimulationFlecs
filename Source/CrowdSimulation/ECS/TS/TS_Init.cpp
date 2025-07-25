@@ -27,8 +27,8 @@ void UTS_Init::Initialize(flecs::world& ECSWorld)
 		
 		flecs::entity unitPrefab = ECSWorld.entity("Unit")
 		.set<Velocity>({ FVector{0,0,0} })
-		.set<WanderStateData>({2,2})
-		.set<WaitStateData>({2,2})
+		.set<WanderStateData>({2.0f})
+		.set<WaitStateData>({2.0f})
 		.add(FSM_State::Wander)
 		.add(FSM_Status::Enter);
 

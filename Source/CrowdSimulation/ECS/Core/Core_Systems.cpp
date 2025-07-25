@@ -60,7 +60,7 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 		if(cWanderStateData.CurrentWanderDuration < 0)
 		{
 			// This is not used until it reaches bellow zero -- unused cache. Hence
-			cWanderStateData.CurrentWanderDuration = cWanderStateData.WanderDuration;
+			cWanderStateData.CurrentWanderDuration = FMath::RandRange(0.5f, 2.0f);
 			it.entity(index).add(FSM_State::Wait);
 			it.entity(index).add(FSM_Status::Enter);
 		}
@@ -89,7 +89,7 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 		cWaitStateData.CurrentWaitDuration -= it.delta_time();
 		if(cWaitStateData.CurrentWaitDuration < 0)
 		{
-			cWaitStateData.CurrentWaitDuration = cWaitStateData.WaitDuration;
+			cWaitStateData.CurrentWaitDuration = FMath::RandRange(1.0f, 5.0f);
 			it.entity(index).add(FSM_State::Wander);
 			it.entity(index).add(FSM_Status::Enter);
 		}

@@ -38,13 +38,11 @@ enum class FSM_Status
 
 struct WanderStateData
 {
-	float WanderDuration;
 	float CurrentWanderDuration;
 };
 
 struct WaitStateData
 {
-	float WaitDuration;
 	float CurrentWaitDuration;
 };
 
