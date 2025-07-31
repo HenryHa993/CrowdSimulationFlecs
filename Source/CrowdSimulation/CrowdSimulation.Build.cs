@@ -13,7 +13,8 @@ public class CrowdSimulation : ModuleRules
 		PublicDependencyModuleNames.AddRange(new[] {
 			"FlecsLibrary",
 			"UnrealFlecs",
-			"TurboSequence_Lf"
+			"TurboSequence_Lf",
+			"ImGui"
 		});
 	}
 }
