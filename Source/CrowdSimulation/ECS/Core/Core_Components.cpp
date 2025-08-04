@@ -13,4 +13,6 @@ void UCore_Components::Initialize(flecs::world& ECSWorld)
 	
 	ECSWorld.component<WanderStateData>();
 	ECSWorld.component<WaitStateData>();
+
+	ECSWorld.component<UnitConfigRef>();
 }

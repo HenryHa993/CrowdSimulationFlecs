@@ -9,9 +9,19 @@
 
 void UTS_Init::Initialize(flecs::world& ECSWorld)
 {
+	// Spawn parameters
+	UnitConfigRef unitConfigRef {UnitConfig};
+
+	// Singleton Unit Config
+	ECSWorld.set<UnitConfigRef>(unitConfigRef);
+	
+	// Animations map
 	TS_Animations animationsMap {TMap<FSM_State, UAnimSequence*>()};
 	animationsMap.Value.Add(FSM_State::Wait, UnitConfig->IdleAnim);
 	animationsMap.Value.Add(FSM_State::Wander, UnitConfig->WalkingAnim);
+	
+	// Singleton animator
+	ECSWorld.set<TS_Animations>({animationsMap});
 
 	// Spawn data needs to be injected
 	FTurboSequence_UpdateContext_Lf updateContext = FTurboSequence_UpdateContext_Lf();
@@ -20,8 +30,9 @@ void UTS_Init::Initialize(flecs::world& ECSWorld)
 	ECSWorld.entity("Mesh Solver")
 		.set<TS_MeshUpdateContext>({updateContext})
 		.set<WorldRef>({GetWorld()});
-		
-	flecs::entity unitPrefab = ECSWorld.entity("TS Unit")
+
+	// Either store TS spawn parameters globally or within the prefab itself
+	flecs::entity unitPrefab = ECSWorld.entity("TS Prefab")
 	.set<Velocity>({ FVector{0,0,0} })
 	.set<WanderStateData>({2.0f})
 	.set<WaitStateData>({2.0f})
@@ -29,9 +40,9 @@ void UTS_Init::Initialize(flecs::world& ECSWorld)
 	.add(FSM_Status::Enter);
 	
 	// Temporary mass spawning system -- TS
-	{
+	/*{
 		/*animationsMap.Value[FSM_State::Wait] = UnitConfig->IdleAnim;
-		animationsMap.Value[FSM_State::Wander] = UnitConfig->WalkingAnim;*/
+		animationsMap.Value[FSM_State::Wander] = UnitConfig->WalkingAnim;#1#
 
 		int x = 5;
 		int y = 5;
@@ -44,11 +55,13 @@ void UTS_Init::Initialize(flecs::world& ECSWorld)
 			{
 				FTransform unitTransform{FVector{i, j, 0}};
 				ECSWorld.entity()
-					.set<TS_AddInstance>({GetWorld(), UnitConfig->SpawnData, updateContext, unitPrefab, unitTransform});
+					.set<TS_AddInstance>({GetWorld(), unitPrefab, unitTransform});
+					// Trying to reduce it to this
+					// .set<TS_AddInstance>({GetWorld(), unitPrefab, unitTransform});
+					// Because I can access the unit prefab, generate a unit transform and getworld
+
+					// But the issue is that I need to get the spawn data from somewhere.
 			}
 		}
-	}
-
-	// Singleton animator
-	ECSWorld.set<TS_Animations>({animationsMap});
+	}*/
 }

@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "FlecsModuleBase.h"
+#include "CrowdSimulation/Core/UnitConfig.h"
 #include "Core_Components.generated.h"
 
 // Basic Components
@@ -44,6 +45,11 @@ struct WanderStateData
 struct WaitStateData
 {
 	float CurrentWaitDuration;
+};
+
+struct UnitConfigRef
+{
+	UUnitConfig* Value;
 };
 
 /**

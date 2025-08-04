@@ -9,7 +9,7 @@
 
 void UTS_Systems::Initialize(flecs::world& ECSWorld)
 {
-	ECSWorld.system<TS_AddInstance>("System Add TS Instance")
+	/*ECSWorld.system<TS_AddInstance>("System Add TS Instance")
 	.kind(flecs::OnLoad)
 	.each([](flecs::iter& it, size_t index, TS_AddInstance& cAdd)
 	{
@@ -33,20 +33,22 @@ void UTS_Systems::Initialize(flecs::world& ECSWorld)
 			
 		// Destroy entity
 		it.entity(index).destruct();
-	});
+	});*/
 
 	// todo: testing
-	ECSWorld.system<TS_AddInstance>("System Add TS Instance")
+	ECSWorld.system<UnitConfigRef, TS_AddInstance>("System Add TS Instance")
 	.kind(flecs::OnLoad)
-	.each([](flecs::iter& it, size_t index, TS_AddInstance& cAdd)
+	.term_at(0).singleton()
+	.each([](flecs::iter& it, size_t index, UnitConfigRef& cUnitConfig, TS_AddInstance& cAdd)
 	{
 		// Add Instance to update group
-		FTurboSequence_MinimalMeshData_Lf meshID = ATurboSequence_Manager_Lf::AddSkinnedMeshInstance_GameThread(cAdd.SpawnData, cAdd.Transform, cAdd.World);
+		FTurboSequence_MinimalMeshData_Lf meshID = ATurboSequence_Manager_Lf::AddSkinnedMeshInstance_GameThread(cUnitConfig.Value->SpawnData, cAdd.Transform, cAdd.World);
 				
 		if(meshID.IsMeshDataValid())
 		{
 			// Add instance to update group
-			ATurboSequence_Manager_Lf::AddInstanceToUpdateGroup_Concurrent(cAdd.MeshUpdateContext.GroupIndex, meshID);
+			// todo: Update mesh context
+			ATurboSequence_Manager_Lf::AddInstanceToUpdateGroup_Concurrent(0, meshID);
 
 			// Play default animation -- or maybe not?
 					

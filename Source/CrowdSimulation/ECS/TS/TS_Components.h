@@ -17,9 +17,6 @@ struct TS_AddInstance
 {
 	UWorld* World;
 	
-	FTurboSequence_MeshSpawnData_Lf SpawnData;
-	FTurboSequence_UpdateContext_Lf MeshUpdateContext;
-	
 	flecs::entity Prefab;
 	FTransform Transform;
 };

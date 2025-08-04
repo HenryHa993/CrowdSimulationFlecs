@@ -274,31 +274,39 @@ void UDevGuiSubsystem::Stats(bool& bShow)
 	ImGui::End();
 }
 
+// todo: Spawning system currently only works for flecs system
 void UDevGuiSubsystem::SpawnUnits()
 {
 	// Get world
-	//flecs::world* ecs = GetWorld()->GetSubsystem<UUnrealFlecsSubsystem>()->GetECSWorld();
+	flecs::world* ecs = GetGameInstance()->GetSubsystem<UUnrealFlecsSubsystem>()->GetECSWorld();
 	// Get the prefab entity
 	// Should I store everything I need in the prefab?
+	flecs::entity unitPrefab = ecs->lookup("TS Prefab");
 	
 	// Square root
-	//int sqrtNumUnits = FMath::RoundToInt(FMath::Sqrt(static_cast<float>(NumUnits)));
+	int sqrtNumUnits = FMath::RoundToInt(FMath::Sqrt(static_cast<float>(NumUnits)));
 
 	// Spawn
-	/*for(float x = 0; x < sqrtNumUnits * DistanceBetweenUnits; x += DistanceBetweenUnits)
+	for(float x = 0; x < sqrtNumUnits * DistanceBetweenUnits; x += DistanceBetweenUnits)
 	{
 		for(float y = 0; y < sqrtNumUnits * DistanceBetweenUnits; y += DistanceBetweenUnits)
 		{
 			FTransform unitTransform{FVector{x, y, 0}};
 			ecs->entity()
-				.set<TS_AddInstance>({GetWorld(), UnitConfig->SpawnData, updateContext, unitPrefab, unitTransform});
+				.set<TS_AddInstance>({GetWorld(), unitPrefab, unitTransform});
 		}
-	}*/
+	}
 }
 
 void UDevGuiSubsystem::DespawnUnits()
 {
-	
+	// I would have to generate a query and then add the delete component onto all entities I think?
+
+	// Is a TS_Prefab
+
+	// Or go through each and every entity, check if it is a prefab and delete.
+
+	// Or turn enable a system
 }
 
 void UDevGuiSubsystem::Tick(float DeltaTime)
