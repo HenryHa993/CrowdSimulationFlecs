@@ -307,6 +307,14 @@ void UDevGuiSubsystem::DespawnUnits()
 	// Or go through each and every entity, check if it is a prefab and delete.
 
 	// Or turn enable a system
+	flecs::world* ecs = GetGameInstance()->GetSubsystem<UUnrealFlecsSubsystem>()->GetECSWorld();
+
+	flecs::entity despawnPipeline = ecs->pipeline()
+	.with(flecs::System)
+	.with<Despawn>()
+	.build();
+
+	ecs->run_pipeline(despawnPipeline);
 }
 
 void UDevGuiSubsystem::Tick(float DeltaTime)

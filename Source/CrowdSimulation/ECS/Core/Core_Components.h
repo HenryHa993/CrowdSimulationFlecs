@@ -47,10 +47,14 @@ struct WaitStateData
 	float CurrentWaitDuration;
 };
 
+// 
 struct UnitConfigRef
 {
 	UUnitConfig* Value;
 };
+
+// Phase tag
+struct Despawn{};
 
 /**
  * 

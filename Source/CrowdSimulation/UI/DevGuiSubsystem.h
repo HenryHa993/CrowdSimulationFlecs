@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "flecs.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "DevGuiSubsystem.generated.h"
 

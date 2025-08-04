@@ -100,4 +100,13 @@ void UTS_Systems::Initialize(flecs::world& ECSWorld)
 	{
 		ATurboSequence_Manager_Lf::SolveMeshes_GameThread(it.delta_time(), cWorld.Value, cUpdateContext.Value);
 	});
+
+	// Pipeline to despawn meshes
+	ECSWorld.system<TS_Mesh>("Despawn TS Instances")
+	.kind<Despawn>()
+	.each([](flecs::iter& it, size_t index, TS_Mesh& cMesh)
+	{
+		it.entity(index).destruct();
+	});
+
 }
