@@ -21,8 +21,28 @@ public:
 	virtual ETickableTickType GetTickableTickType() const override { return IsTemplate() ? ETickableTickType::Never : ETickableTickType::Always; }
 	virtual bool IsTickableWhenPaused() const override { return true; }
 
-	// UI
+	// UI Examples
 	bool TickFinal();
 	void ActorDebugger(bool& bActorDebuggerOpened);
 	void HelloWorldTick();
+	
+	void MainMenu();
+	void SpawnMenu(bool& bShow);
+	void RenderMenu(bool& bShow);
+	void AIMenu(bool& bShow);
+	void Stats(bool& bShow);
+
+	void SpawnUnits();
+	void DespawnUnits();
+
+public:
+	// Main menu parameters
+	bool bShowSpawnMenu = false;
+	bool bShowRenderMenu = false;
+	bool bShowAIMenu = false;
+	bool bShowStats = false;
+	
+	// Spawning parameters
+	int NumUnits = 100;
+	float DistanceBetweenUnits = 1000.0f;
 };

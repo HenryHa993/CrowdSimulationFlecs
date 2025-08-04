@@ -5,6 +5,8 @@
 #include <imgui.h>
 
 #include "ImGuiModule.h"
+#include "UnrealFlecsSubsystem.h"
+#include "CrowdSimulation/ECS/TS/TS_Components.h"
 #include "Kismet/GameplayStatics.h"
 
 UE_DISABLE_OPTIMIZATION
@@ -122,7 +124,8 @@ bool UDevGuiSubsystem::TickFinal()
 	{
 		return true;
 	}*/
-	
+
+	// 
 	if(ImGui::BeginMainMenuBar())
 	{
 		ImGui::Text("Website Support");
@@ -183,6 +186,121 @@ void UDevGuiSubsystem::HelloWorldTick()
 	}
 }
 
+void UDevGuiSubsystem::MainMenu()
+{
+	if(ImGui::BeginMainMenuBar())
+	{
+		// Menus for changing parameters
+		if(ImGui::MenuItem("Toggle Spawn Menu"))
+		{
+			bShowSpawnMenu = !bShowSpawnMenu;
+		}
+		if(ImGui::MenuItem("Toggle Rendering Menu"))
+		{
+			bShowRenderMenu = !bShowRenderMenu;
+		}
+		if(ImGui::MenuItem("Toggle AI Menu"))
+		{
+			bShowAIMenu = !bShowAIMenu;
+		}
+		if(ImGui::MenuItem("Toggle Stats"))
+		{
+			bShowAIMenu = !bShowAIMenu;
+		}
+
+		ImGui::EndMainMenuBar();
+	}
+
+	this->SpawnMenu(bShowSpawnMenu);
+	this->RenderMenu(bShowRenderMenu);
+	this->AIMenu(bShowAIMenu);
+	this->Stats(bShowStats);
+
+	ImGui::ShowDemoWindow();
+}
+
+void UDevGuiSubsystem::SpawnMenu(bool& bShow)
+{
+	if(!bShow)
+	{
+		return;
+	}
+
+	ImGui::Begin("Spawn Menu");
+	ImGui::SliderInt("Number of Units", &NumUnits, 1, 10000);
+	ImGui::SliderFloat("Distance between Units", &DistanceBetweenUnits, 0, 10000);
+
+	if(ImGui::Button("Spawn Units"))
+	{
+		this->SpawnUnits();
+	}
+	if(ImGui::Button("Despawn Units"))
+	{
+		this->DespawnUnits();
+	}
+	ImGui::End();
+}
+
+void UDevGuiSubsystem::RenderMenu(bool& bShow)
+{
+	if(!bShow)
+	{
+		return;
+	}
+	
+	ImGui::Begin("Render Menu");
+	ImGui::End();
+}
+
+void UDevGuiSubsystem::AIMenu(bool& bShow)
+{
+	if(!bShow)
+	{
+		return;
+	}
+
+	ImGui::Begin("AI Menu");
+	ImGui::End();
+}
+
+void UDevGuiSubsystem::Stats(bool& bShow)
+{
+	if(!bShow)
+	{
+		return;
+	}
+
+	ImGui::Begin("Stats");
+	ImGui::End();
+}
+
+void UDevGuiSubsystem::SpawnUnits()
+{
+	// Get world
+	//flecs::world* ecs = GetWorld()->GetSubsystem<UUnrealFlecsSubsystem>()->GetECSWorld();
+	// Get the prefab entity
+	// Should I store everything I need in the prefab?
+	
+	// Square root
+	//int sqrtNumUnits = FMath::RoundToInt(FMath::Sqrt(static_cast<float>(NumUnits)));
+
+	// Spawn
+	/*for(float x = 0; x < sqrtNumUnits * DistanceBetweenUnits; x += DistanceBetweenUnits)
+	{
+		for(float y = 0; y < sqrtNumUnits * DistanceBetweenUnits; y += DistanceBetweenUnits)
+		{
+			FTransform unitTransform{FVector{x, y, 0}};
+			ecs->entity()
+				.set<TS_AddInstance>({GetWorld(), UnitConfig->SpawnData, updateContext, unitPrefab, unitTransform});
+		}
+	}*/
+}
+
+void UDevGuiSubsystem::DespawnUnits()
+{
+	
+}
+
 void UDevGuiSubsystem::Tick(float DeltaTime)
 {
 	const ImGui::FScopedContext ScopedContext;
@@ -190,6 +308,7 @@ void UDevGuiSubsystem::Tick(float DeltaTime)
 	{
 		/*this->TickFinal();
 		this->HelloWorldTick();*/
+		MainMenu();
 	}
 }
 
