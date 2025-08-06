@@ -94,18 +94,30 @@ void UTS_Systems::Initialize(flecs::world& ECSWorld)
 	});
 
 	// Solve mesh instances
-	ECSWorld.system<TS_MeshUpdateContext, WorldRef>("System Solve TS Instances")
+	ECSWorld.system<WorldRef, TS_MeshUpdateContext>("System Solve TS Instances")
 	.kind(flecs::OnStore)
-	.each([](flecs::iter& it, size_t index, TS_MeshUpdateContext& cUpdateContext, WorldRef& cWorld)
+	.term_at(0).singleton()
+	.each([](flecs::iter& it, size_t index, WorldRef& cWorld, TS_MeshUpdateContext& cUpdateContext)
 	{
 		ATurboSequence_Manager_Lf::SolveMeshes_GameThread(it.delta_time(), cWorld.Value, cUpdateContext.Value);
 	});
 
 	// Pipeline to despawn meshes
-	ECSWorld.system<TS_Mesh>("Despawn TS Instances")
+	ECSWorld.system<TS_Mesh>("System Initiate TS Instance Removal")
 	.kind<Despawn>()
 	.each([](flecs::iter& it, size_t index, TS_Mesh& cMesh)
 	{
+		ATurboSequence_Manager_Lf::RemoveInstanceFromUpdateGroup_Concurrent(0, cMesh.Value);
+		it.entity(index).add<TS_RemoveInstance>();
+	});
+
+	ECSWorld.system<WorldRef, TS_Mesh>("System Remove TS Instance")
+	.kind(flecs::OnStore)
+	.term_at(0).singleton()
+	.with<TS_RemoveInstance>()
+	.each([](flecs::iter& it, size_t index, WorldRef& cWorld, TS_Mesh& cMesh)
+	{
+		ATurboSequence_Manager_Lf::RemoveSkinnedMeshInstance_GameThread(cMesh.Value, cWorld.Value);
 		it.entity(index).destruct();
 	});
 

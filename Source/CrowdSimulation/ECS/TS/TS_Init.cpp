@@ -9,18 +9,17 @@
 
 void UTS_Init::Initialize(flecs::world& ECSWorld)
 {
+	WorldRef worldRef {GetWorld()};
+	ECSWorld.set<WorldRef>(worldRef);
+	
 	// Spawn parameters
 	UnitConfigRef unitConfigRef {UnitConfig};
-
-	// Singleton Unit Config
 	ECSWorld.set<UnitConfigRef>(unitConfigRef);
 	
 	// Animations map
 	TS_Animations animationsMap {TMap<FSM_State, UAnimSequence*>()};
 	animationsMap.Value.Add(FSM_State::Wait, UnitConfig->IdleAnim);
 	animationsMap.Value.Add(FSM_State::Wander, UnitConfig->WalkingAnim);
-	
-	// Singleton animator
 	ECSWorld.set<TS_Animations>({animationsMap});
 
 	// Spawn data needs to be injected
@@ -28,8 +27,7 @@ void UTS_Init::Initialize(flecs::world& ECSWorld)
 	updateContext.GroupIndex = 0;
 
 	ECSWorld.entity("Mesh Solver")
-		.set<TS_MeshUpdateContext>({updateContext})
-		.set<WorldRef>({GetWorld()});
+		.set<TS_MeshUpdateContext>({updateContext});
 
 	// Either store TS spawn parameters globally or within the prefab itself
 	flecs::entity unitPrefab = ECSWorld.entity("TS Prefab")

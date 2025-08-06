@@ -37,6 +37,8 @@ struct TS_Animations
 	TMap<FSM_State, UAnimSequence*> Value;
 };
 
+struct TS_RemoveInstance{};
+
 /**
  * 
  */
