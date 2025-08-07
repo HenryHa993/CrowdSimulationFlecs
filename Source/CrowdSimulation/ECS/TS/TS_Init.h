@@ -11,7 +11,7 @@
  * 
  */
 UCLASS()
-class CROWDSIMULATION_API UTS_Init : public UFlecsModuleBase, public IUnitConfigSet
+class CROWDSIMULATION_API UTS_Init : public UFlecsModuleBase
 {
 	GENERATED_BODY()
 

@@ -15,8 +15,6 @@ struct TS_MeshUpdateContext
 
 struct TS_AddInstance
 {
-	UWorld* World;
-	
 	flecs::entity Prefab;
 	FTransform Transform;
 };

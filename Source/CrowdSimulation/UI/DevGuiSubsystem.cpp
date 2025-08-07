@@ -281,7 +281,7 @@ void UDevGuiSubsystem::SpawnUnits()
 	flecs::world* ecs = GetGameInstance()->GetSubsystem<UUnrealFlecsSubsystem>()->GetECSWorld();
 	// Get the prefab entity
 	// Should I store everything I need in the prefab?
-	flecs::entity unitPrefab = ecs->lookup("TS Prefab");
+	flecs::entity unitPrefab = ecs->lookup("Unit Prefab");
 	
 	// Square root
 	int sqrtNumUnits = FMath::RoundToInt(FMath::Sqrt(static_cast<float>(NumUnits)));
@@ -293,7 +293,7 @@ void UDevGuiSubsystem::SpawnUnits()
 		{
 			FTransform unitTransform{FVector{x, y, 0}};
 			ecs->entity()
-				.set<TS_AddInstance>({GetWorld(), unitPrefab, unitTransform});
+				.set<TS_AddInstance>({unitPrefab, unitTransform});
 		}
 	}
 }

@@ -4,13 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "FlecsModuleBase.h"
+#include "CrowdSimulation/Core/UnitConfigSet.h"
 #include "Core_Init.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class CROWDSIMULATION_API UCore_Init : public UFlecsModuleBase
+class CROWDSIMULATION_API UCore_Init : public UFlecsModuleBase, public IUnitConfigSet
 {
 	GENERATED_BODY()
+
+	virtual void Initialize(flecs::world& ECSWorld) override;
 };
