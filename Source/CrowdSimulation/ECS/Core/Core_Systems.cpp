@@ -22,7 +22,7 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 		{
 			// Todo: Do I want velocity to determine the direction the mesh is facing? If I get round to blendspaces, this is a good consideration
 			FQuat correctionQuat = FQuat(FVector::UpVector, FMath::DegreesToRadians(-90.0f));
-			cTransform.Value.SetRotation(FQuat::FastLerp(cTransform.Value.GetRotation(), cVelocity.Value.ToOrientationQuat() * correctionQuat, it.delta_time()));	
+			cTransform.Value.SetRotation(FQuat::FastLerp(cTransform.Value.GetRotation(), cVelocity.Value.ToOrientationQuat() * correctionQuat, it.delta_time()).GetNormalized());	
 		}
 	});
 

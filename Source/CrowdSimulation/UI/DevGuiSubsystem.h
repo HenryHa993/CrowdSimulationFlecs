@@ -15,17 +15,14 @@ class UDevGuiSubsystem : public UGameInstanceSubsystem, public FTickableGameObje
 {
 	GENERATED_BODY()
 
+	UDevGuiSubsystem();
+
 public:
 	virtual UWorld* GetTickableGameObjectWorld() const override { return GetWorld(); }
 	virtual void Tick(float DeltaTime) override;
 	virtual TStatId GetStatId() const override;
 	virtual ETickableTickType GetTickableTickType() const override { return IsTemplate() ? ETickableTickType::Never : ETickableTickType::Always; }
 	virtual bool IsTickableWhenPaused() const override { return true; }
-
-	// UI Examples
-	bool TickFinal();
-	void ActorDebugger(bool& bActorDebuggerOpened);
-	void HelloWorldTick();
 	
 	void MainMenu();
 	void SpawnMenu(bool& bShow);
@@ -46,4 +43,8 @@ public:
 	// Spawning parameters
 	int NumUnits = 100;
 	float DistanceBetweenUnits = 1000.0f;
+
+	// Rendering parameters
+	const char* RenderingItems[3];
+	int SelectedRenderingItem;
 };

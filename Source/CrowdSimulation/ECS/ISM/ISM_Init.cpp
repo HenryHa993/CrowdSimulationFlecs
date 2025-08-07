@@ -7,7 +7,8 @@
 
 void UISM_Init::Initialize(flecs::world& ECSWorld)
 {
-	// Initialise map
+	/*// Initialise map
+	// todo: Remind me why we need a map?
 	ISM_Map ismMap{TMap<uint32, AISMController*>()};
 
 	// For each config, we initialise an ISMController
@@ -32,6 +33,7 @@ void UISM_Init::Initialize(flecs::world& ECSWorld)
 			for(double j = 0; j < y * gridY; j += gridY)
 			{
 				FTransform unitTransform{FVector{i, j, 0}};
+				// Each unit has it's hash to the ISM Controller
 				ECSWorld.entity()
 					.set<ISM_AddInstance>({unitHash, unitPrefab, unitTransform});
 			}
@@ -39,7 +41,21 @@ void UISM_Init::Initialize(flecs::world& ECSWorld)
 	}
 
 	// ISM map is a singleton
-	ECSWorld.set<ISM_Map>({ ismMap });
+	ECSWorld.set<ISM_Map>({ ismMap });*/
+
+	// Set up ISM Manager entity with unit config
+	UUnitConfig* unitConfig = ECSWorld.get<UnitConfigRef>()->Value;
+
+	AISMController* controller = Cast<AISMController>(GetWorld()->SpawnActor(AISMController::StaticClass()));
+	controller->Initialize(unitConfig->StaticMesh, unitConfig->Material);
+	ISM_ControllerRef controllerRef {controller};
+
+	// This entity can be looked up in order to spawn ISM instances
+	ECSWorld.entity("ISM Manager")
+		.set<ISM_ControllerRef>({controllerRef})
+		.add<ISM_Manager>();
+
+	
 }
 
 uint32 UISM_Init::CreateISMController(UWorld* World, UStaticMesh* StaticMesh,

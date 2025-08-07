@@ -15,7 +15,8 @@ void UCore_Init::Initialize(flecs::world& ECSWorld)
 	UnitConfigRef unitConfigRef {UnitConfig};
 	ECSWorld.set<UnitConfigRef>(unitConfigRef);
 
-	flecs::entity unitPrefab = ECSWorld.entity("Unit Prefab")
+	// Prefabs are not matched by queries, so they do not impact game logic
+	flecs::entity unitPrefab = ECSWorld.prefab("Unit Prefab")
 	.set<Velocity>({ FVector{0,0,0} })
 	.set<WanderStateData>({2.0f})
 	.set<WaitStateData>({2.0f})

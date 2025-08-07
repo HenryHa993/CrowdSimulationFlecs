@@ -32,10 +32,13 @@ struct ISM_Index
 // Event struct, destroyed once instance is spawned
 struct ISM_AddInstance
 {
-	int32 Hash;
+	AISMController* ControllerRef;
 	flecs::entity Prefab;
 	FTransform Transform;
 };
+
+// Tag to differentiate entities that own a reference to a controller vs. entities that are managing it
+struct ISM_Manager{};
 
 /**
  * 
