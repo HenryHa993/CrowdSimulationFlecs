@@ -9,32 +9,6 @@
 
 void UTS_Systems::Initialize(flecs::world& ECSWorld)
 {
-	/*ECSWorld.system<TS_AddInstance>("System Add TS Instance")
-	.kind(flecs::OnLoad)
-	.each([](flecs::iter& it, size_t index, TS_AddInstance& cAdd)
-	{
-		// Add Instance to update group
-		FTurboSequence_MinimalMeshData_Lf meshID = ATurboSequence_Manager_Lf::AddSkinnedMeshInstance_GameThread(cAdd.SpawnData, cAdd.Transform, cAdd.World);
-			
-		if(meshID.IsMeshDataValid())
-		{
-			// Add instance to update group
-			ATurboSequence_Manager_Lf::AddInstanceToUpdateGroup_Concurrent(cAdd.MeshUpdateContext.GroupIndex, meshID);
-
-			// Play default animation -- or maybe not?
-				
-			// Create entity with prefab
-			it.world().entity()
-				.is_a(cAdd.Prefab)
-				.set<TS_Mesh>({meshID})
-				.set<TS_Animation>({FTurboSequence_AnimPlaySettings_Lf()})
-				.set<Transform>({cAdd.Transform});
-		}
-			
-		// Destroy entity
-		it.entity(index).destruct();
-	});*/
-
 	// todo: testing
 	ECSWorld.system<UnitConfigRef, TS_AddInstance>("System Add TS Instance")
 	.kind(flecs::OnLoad)
@@ -104,7 +78,7 @@ void UTS_Systems::Initialize(flecs::world& ECSWorld)
 
 	// Pipeline to despawn meshes
 	ECSWorld.system<TS_Mesh>("System Initiate TS Instance Removal")
-	.kind<Despawn>()
+	.kind<OnDespawn>()
 	.each([](flecs::iter& it, size_t index, TS_Mesh& cMesh)
 	{
 		ATurboSequence_Manager_Lf::RemoveInstanceFromUpdateGroup_Concurrent(0, cMesh.Value);

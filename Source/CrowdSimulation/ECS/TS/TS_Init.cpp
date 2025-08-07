@@ -36,31 +36,5 @@ void UTS_Init::Initialize(flecs::world& ECSWorld)
 	.set<WaitStateData>({2.0f})
 	.add(FSM_State::Wander)
 	.add(FSM_Status::Enter);
-	
-	// Temporary mass spawning system -- TS
-	/*{
-		/*animationsMap.Value[FSM_State::Wait] = UnitConfig->IdleAnim;
-		animationsMap.Value[FSM_State::Wander] = UnitConfig->WalkingAnim;#1#
-
-		int x = 5;
-		int y = 5;
-		int gridX = 100;
-		int gridY = 100;
-
-		for(double i = 0; i < x * gridX; i += gridX)
-		{
-			for(double j = 0; j < y * gridY; j += gridY)
-			{
-				FTransform unitTransform{FVector{i, j, 0}};
-				ECSWorld.entity()
-					.set<TS_AddInstance>({GetWorld(), unitPrefab, unitTransform});
-					// Trying to reduce it to this
-					// .set<TS_AddInstance>({GetWorld(), unitPrefab, unitTransform});
-					// Because I can access the unit prefab, generate a unit transform and getworld
-
-					// But the issue is that I need to get the spawn data from somewhere.
-			}
-		}
-	}*/
 
 }

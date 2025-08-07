@@ -309,9 +309,10 @@ void UDevGuiSubsystem::DespawnUnits()
 	// Or turn enable a system
 	flecs::world* ecs = GetGameInstance()->GetSubsystem<UUnrealFlecsSubsystem>()->GetECSWorld();
 
+	// I think this is fine for now
 	flecs::entity despawnPipeline = ecs->pipeline()
 	.with(flecs::System)
-	.with<Despawn>()
+	.with<OnDespawn>()
 	.build();
 
 	ecs->run_pipeline(despawnPipeline);

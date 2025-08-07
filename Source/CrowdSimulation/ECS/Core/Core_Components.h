@@ -53,8 +53,8 @@ struct UnitConfigRef
 	UUnitConfig* Value;
 };
 
-// Phase tag
-struct Despawn{};
+// Phase
+struct OnDespawn{};
 
 /**
  * 
