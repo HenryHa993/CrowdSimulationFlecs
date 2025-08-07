@@ -77,3 +77,10 @@ void AISMController::BatchUpdateTransforms()
 	}
 }
 
+// Used to despawn all instances in GUI
+void AISMController::ClearInstances()
+{
+	InstancedStaticMeshComponent->ClearInstances();
+	Transforms.Empty();
+}
+

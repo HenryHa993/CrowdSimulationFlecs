@@ -78,4 +78,22 @@ void UISM_Systems::Initialize(flecs::world& ECSWorld)
 	{
 		cController.Value->BatchUpdateTransforms();
 	});
+
+	// Clear ISM Instances from the Manager side
+	ECSWorld.system<const ISM_ControllerRef>("System Clear All ISM Instances")
+	.kind<OnDespawn>()
+	.with<ISM_Manager>()
+	.each([](const ISM_ControllerRef& cController)
+	{
+		cController.Value->ClearInstances();
+	});
+
+	// Clear entities with an ISM instance
+	ECSWorld.system("System Destruct ISM Entities")
+	.kind<OnDespawn>()
+	.with<ISM_Index>()
+	.each([](flecs::iter& it, size_t index)
+	{
+		it.entity(index).destruct();
+	});
 }

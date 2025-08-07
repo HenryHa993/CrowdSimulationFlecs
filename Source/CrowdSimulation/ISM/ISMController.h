@@ -31,6 +31,8 @@ public:
 
 	void BatchUpdateTransforms();
 
+	void ClearInstances();
+
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UInstancedStaticMeshComponent* InstancedStaticMeshComponent;
