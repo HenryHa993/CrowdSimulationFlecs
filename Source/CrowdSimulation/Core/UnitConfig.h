@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "TurboSequence_MinimalData_Lf.h"
+#include "CrowdSimulation/SKM/SKM_Pawn.h"
 #include "Engine/DataAsset.h"
 #include "UnitConfig.generated.h"
 
@@ -16,6 +17,9 @@ class CROWDSIMULATION_API UUnitConfig : public UDataAsset
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(EditAnywhere, Category="SKM Config")
+	TSubclassOf<AActor> Actor;
+	
 	UPROPERTY(EditAnywhere, Category="ISM Config")
 	UStaticMesh* StaticMesh;
 

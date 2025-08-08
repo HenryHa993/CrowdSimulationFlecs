@@ -7,6 +7,7 @@
 #include "ImGuiModule.h"
 #include "UnrealFlecsSubsystem.h"
 #include "CrowdSimulation/ECS/ISM/ISM_Components.h"
+#include "CrowdSimulation/ECS/SKM/SKM_Components.h"
 #include "CrowdSimulation/ECS/TS/TS_Components.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -139,6 +140,8 @@ void UDevGuiSubsystem::SpawnUnits()
 				// Skeletal Mesh
 				case 2:
 					{
+						ecs->entity()
+						.set<SKM_AddInstance>({unitPrefab, unitTransform});
 						break;
 					}
 			}
