@@ -32,7 +32,7 @@ void UDevGuiSubsystem::MainMenu()
 		}
 		if(ImGui::MenuItem("Toggle Stats"))
 		{
-			bShowAIMenu = !bShowAIMenu;
+			bShowStats = !bShowStats;
 		}
 
 		ImGui::EndMainMenuBar();
@@ -99,6 +99,44 @@ void UDevGuiSubsystem::Stats(bool& bShow)
 	}
 
 	ImGui::Begin("Stats");
+	if(ImGui::CollapsingHeader("Frame Timings"))
+	{
+		ImGui::Text("Frame Time: %.3f ms", FrameTime * 1000);
+		
+		// Frame time line plot
+		FrameTimes[FrameTimesOffset] = FrameTime * 1000.0f;
+		FrameTimesOffset = (FrameTimesOffset + 1) % IM_ARRAYSIZE(FrameTimes);
+
+		// ImGui::PlotLines("Frame Time (ms)", FrameTimes, IM_ARRAYSIZE(FrameTimes), FrameTimesOffset, nullptr, 0.0f, 50.0f, ImVec2(0,80));
+		ImGui::PlotHistogram(
+			"Frame Time (ms)",
+			FrameTimes,
+			IM_ARRAYSIZE(FrameTimes),
+			FrameTimesOffset,            
+			nullptr,                     
+			0.0f,                        
+			50.0f,
+			ImVec2(0, 80)
+		);
+		ImGui::Text("FPS: %.1f", FramesPerSecond);
+		FPSs[FPSsOffset] = FramesPerSecond;
+		FPSsOffset = (FPSsOffset + 1) % IM_ARRAYSIZE(FPSs);
+		ImGui::PlotLines("FPS", FPSs, IM_ARRAYSIZE(FPSs), FPSsOffset, nullptr, 0.0f, 50.0f, ImVec2(0,80));
+		
+	}
+	// This can be on hold for now
+	if(ImGui::CollapsingHeader("CPU & GPU Timings"))
+	{
+		
+	}
+	if(ImGui::CollapsingHeader("Memory Usage"))
+	{
+		
+	}
+	if(ImGui::CollapsingHeader("Draw Calls & Primitives"))
+	{
+		
+	}
 	ImGui::End();
 }
 
@@ -169,6 +207,12 @@ void UDevGuiSubsystem::DespawnUnits()
 	ecs->run_pipeline(despawnPipeline);
 }
 
+void UDevGuiSubsystem::UpdateStats(float deltaTime)
+{
+	FrameTime = deltaTime;
+	FramesPerSecond = 1.0f / deltaTime;
+}
+
 UDevGuiSubsystem::UDevGuiSubsystem()
 {
 	RenderingItems[0] = "GPU Instancing w/ Niagara (TurboSequence)";
@@ -181,8 +225,7 @@ void UDevGuiSubsystem::Tick(float DeltaTime)
 	const ImGui::FScopedContext ScopedContext;
 	if (ScopedContext)
 	{
-		/*this->TickFinal();
-		this->HelloWorldTick();*/
+		UpdateStats(DeltaTime);
 		MainMenu();
 	}
 }

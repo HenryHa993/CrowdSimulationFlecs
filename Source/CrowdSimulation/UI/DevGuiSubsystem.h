@@ -33,6 +33,8 @@ public:
 	void SpawnUnits();
 	void DespawnUnits();
 
+	void UpdateStats(float deltaTime);
+
 public:
 	// Main menu parameters
 	bool bShowSpawnMenu = false;
@@ -47,4 +49,12 @@ public:
 	// Rendering parameters
 	const char* RenderingItems[3];
 	int SelectedRenderingItem;
+
+	// Performance stats
+	float FrameTime;
+	float FramesPerSecond;
+	float FrameTimes[120];
+	int FrameTimesOffset = 0;
+	float FPSs[120];
+	int FPSsOffset = 0;
 };
