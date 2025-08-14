@@ -46,16 +46,24 @@ void UISM_Init::Initialize(flecs::world& ECSWorld)
 	// Set up ISM Manager entity with unit config
 	UUnitConfig* unitConfig = ECSWorld.get<UnitConfigRef>()->Value;
 
+	// Set up global ISM controller
 	AISMController* controller = Cast<AISMController>(GetWorld()->SpawnActor(AISMController::StaticClass()));
 	controller->Initialize(unitConfig->StaticMesh, unitConfig->Material);
+	
 	ISM_ControllerRef controllerRef {controller};
+
+	ECSWorld.set<ISM_ControllerRef>(controllerRef);
 
 	// This entity can be looked up in order to spawn ISM instances
 	ECSWorld.entity("ISM Manager")
-		.set<ISM_ControllerRef>({controllerRef})
 		.add<ISM_Manager>();
-
 	
+	// Animation singleton
+	ISM_AnimationMap animationMap { TMap<FSM_State, std::pair<float, float>>() };
+	animationMap.Value.Add(FSM_State::Wait, std::make_pair(0.f, 120.f));
+	animationMap.Value.Add(FSM_State::Wander, std::make_pair(121.f, 145.f));
+
+	ECSWorld.set<ISM_AnimationMap>({animationMap});
 }
 
 uint32 UISM_Init::CreateISMController(UWorld* World, UStaticMesh* StaticMesh,

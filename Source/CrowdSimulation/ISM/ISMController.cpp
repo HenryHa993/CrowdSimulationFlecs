@@ -21,8 +21,9 @@ void AISMController::Initialize(UStaticMesh* StaticMesh, UMaterialInterface* Mat
 	InstancedStaticMeshComponent->SetStaticMesh(StaticMesh);
 	InstancedStaticMeshComponent->SetMaterial(0, Material);
 
+	InstancedStaticMeshComponent->NumCustomDataFloats = 2;
 	// Todo: Testing some settings
-	InstancedStaticMeshComponent->SetCastShadow(false);
+	// InstancedStaticMeshComponent->SetCastShadow(false);
 }
 
 void AISMController::CreateOrExpandTransformArray()
@@ -82,5 +83,13 @@ void AISMController::ClearInstances()
 {
 	InstancedStaticMeshComponent->ClearInstances();
 	Transforms.Empty();
+}
+
+// Since custom data indexes 2 and 3 are reserved for BeginFrame and EndFrame, we could simply change it on each instance to animate them
+void AISMController::SetAnimation(int32 InstanceIndex, float StartFrame, float EndFrame)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Switching animation!"));
+	InstancedStaticMeshComponent->SetCustomDataValue(InstanceIndex, 0, StartFrame, true);
+	InstancedStaticMeshComponent->SetCustomDataValue(InstanceIndex, 1, EndFrame, true);
 }
 

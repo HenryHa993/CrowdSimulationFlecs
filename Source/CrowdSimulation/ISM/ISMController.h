@@ -33,6 +33,8 @@ public:
 
 	void ClearInstances();
 
+	void SetAnimation(int32 InstanceIndex, float StartFrame, float EndFrame);
+
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UInstancedStaticMeshComponent* InstancedStaticMeshComponent;

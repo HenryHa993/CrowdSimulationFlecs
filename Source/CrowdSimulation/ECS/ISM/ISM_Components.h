@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "FlecsModuleBase.h"
 #include "TurboSequence_MinimalData_Lf.h"
+#include "CrowdSimulation/ECS/Core/Core_Components.h"
 #include "CrowdSimulation/ISM/ISMController.h"
 #include "ISM_Components.generated.h"
 
@@ -32,9 +33,13 @@ struct ISM_Index
 // Event struct, destroyed once instance is spawned
 struct ISM_AddInstance
 {
-	AISMController* ControllerRef;
 	flecs::entity Prefab;
 	FTransform Transform;
+};
+
+struct ISM_AnimationMap
+{
+	TMap<FSM_State, std::pair<float, float>> Value;
 };
 
 // Tag to differentiate entities that own a reference to a controller vs. entities that are managing it

@@ -10,4 +10,5 @@ void UISM_Components::Initialize(flecs::world& ECSWorld)
 	ECSWorld.component<ISM_Hash>();
 	ECSWorld.component<ISM_Index>();
 	ECSWorld.component<ISM_AddInstance>();
+	ECSWorld.component<ISM_AnimationMap>();
 }

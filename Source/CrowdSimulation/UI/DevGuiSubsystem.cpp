@@ -169,10 +169,10 @@ void UDevGuiSubsystem::SpawnUnits()
 				// ISM + Vertex Animations
 				case 1:
 					{
-						AISMController* controller = ecs->lookup("ISM Manager").get<ISM_ControllerRef>()->Value;
+						AISMController* controller = ecs->get<ISM_ControllerRef>()->Value;
 					
 						ecs->entity()
-						.set<ISM_AddInstance>({controller, unitPrefab, unitTransform});
+						.set<ISM_AddInstance>({unitPrefab, unitTransform});
 						break;
 					}
 				// Skeletal Mesh

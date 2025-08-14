@@ -32,27 +32,49 @@ void UISM_Systems::Initialize(flecs::world& ECSWorld)
 		it.entity(index).destruct();
 	});*/
 
-	ECSWorld.system<ISM_AddInstance>("System Add ISM Instance")
-	.each([](flecs::iter& it, size_t index, ISM_AddInstance& cAdd)
+	ECSWorld.system<const ISM_ControllerRef, ISM_AddInstance>("System Add ISM Instance")
+	.term_at(0).singleton()
+	.each([](flecs::iter& it, size_t index, const ISM_ControllerRef& cController, ISM_AddInstance& cAdd)
 	{
-		if(cAdd.ControllerRef != nullptr)
+		if(cController.Value != nullptr)
 		{
-			int32 ismIndex = cAdd.ControllerRef->AddInstance();
+			int32 ismIndex = cController.Value->AddInstance();
 				
 			it.world().entity()
 				.is_a(cAdd.Prefab)
-				.set<ISM_ControllerRef>({ cAdd.ControllerRef })
 				.set<ISM_Index>( { ismIndex })
 				.set<Transform>({ cAdd.Transform });
 				
-			cAdd.ControllerRef->CreateOrExpandTransformArray();
+			cController.Value->CreateOrExpandTransformArray();
 		}
 		it.entity(index).destruct();
 	});
+
+	ECSWorld.system<const ISM_AnimationMap, const ISM_ControllerRef, const ISM_Index>("System Set ISM Animation")
+	.kind(flecs::OnUpdate)
+	.term_at(0).singleton()
+	.term_at(1).singleton()
+	.with<FSM_State>(flecs::Wildcard)
+	.with<FSM_Status>(flecs::Wildcard)
+	.with(FSM_Status::Enter)
+	.each([](flecs::iter& it, size_t index, const ISM_AnimationMap& cAnimationMap,const ISM_ControllerRef& cController, const ISM_Index& cIndex)
+	{
+		const FSM_State* state = it.entity(index).get<FSM_State>();
+
+		if(cAnimationMap.Value.Find(*state))
+		{
+			//UE_LOG(LogTemp, Warning, TEXT("Switching animation!"));
+			std::pair<float, float> animation = cAnimationMap.Value[*state];
+			cController.Value->SetAnimation(cIndex.Value, animation.first, animation.second);	
+		}
+		//cController.Value->SetAnimation(cIndex.Value, 121.f, 145.f);	
+	});
 	
 	// Copy entity transform to ISM instance
-	ECSWorld.system<const Transform, const ISM_Index, const ISM_ControllerRef>("System Copy Instance Transforms")
-	.each([](const Transform& cTransform, const ISM_Index& cISMIndex, const ISM_ControllerRef& cISMControllerRef)
+	// Opportunity to pack the cache line here
+	ECSWorld.system<const ISM_ControllerRef, const Transform, const ISM_Index>("System Copy Instance Transforms")
+	.term_at(0).singleton()
+	.each([](const ISM_ControllerRef& cISMControllerRef, const Transform& cTransform, const ISM_Index& cISMIndex)
 	{
 		int index = cISMIndex.Value;
 		cISMControllerRef.Value->SetTransform(index, cTransform.Value);
@@ -73,6 +95,7 @@ void UISM_Systems::Initialize(flecs::world& ECSWorld)
 
 	// Controller managers batch update their own transforms
 	ECSWorld.system<const ISM_ControllerRef>("System Batch Update Transforms")
+	.term_at(0).singleton()
 	.with<ISM_Manager>()
 	.each([](const ISM_ControllerRef& cController)
 	{
@@ -82,6 +105,7 @@ void UISM_Systems::Initialize(flecs::world& ECSWorld)
 	// Clear ISM Instances from the Manager side
 	ECSWorld.system<const ISM_ControllerRef>("System Clear All ISM Instances")
 	.kind<OnDespawn>()
+	.term_at(0).singleton()
 	.with<ISM_Manager>()
 	.each([](const ISM_ControllerRef& cController)
 	{
