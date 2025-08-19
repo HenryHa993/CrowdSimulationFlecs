@@ -31,6 +31,10 @@
 		{
 			"Name": "AnimToTexture",
 			"Enabled": true
+		},
+		{
+			"Name": "GameplayStateTree",
+			"Enabled": true
 		}
 	]
 }

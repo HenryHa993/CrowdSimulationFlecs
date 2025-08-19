@@ -133,10 +133,6 @@ void UDevGuiSubsystem::Stats(bool& bShow)
 	{
 		
 	}
-	if(ImGui::CollapsingHeader("Draw Calls & Primitives"))
-	{
-		
-	}
 	ImGui::End();
 }
 
