@@ -5,6 +5,7 @@
 
 #include "SKM_Components.h"
 #include "CrowdSimulation/ECS/Core/Core_Components.h"
+#include "CrowdSimulation/ECS/TS/TS_Components.h"
 
 void USKM_Systems::Initialize(flecs::world& ECSWorld)
 {
@@ -23,12 +24,27 @@ void USKM_Systems::Initialize(flecs::world& ECSWorld)
 			.is_a(cAdd.Prefab)
 			.set<SKM_ActorRef>({static_cast<AActor*>(unit)})
 			.set<SKM_SkeletalMeshRef>({unit->SkeletalMeshComponent})
-			.set<Transform>({cAdd.Transform});
+			.set<Transform>({cAdd.Transform})
+			.add<SKM_Animation>();
 
 		it.entity(index).destruct();
 	});
 
 	// Animation system
+	// todo: move animation map to core
+	ECSWorld.system<TS_Animations, SKM_SkeletalMeshRef>("System SKM Set Animation")
+	.kind(flecs::OnUpdate)
+	.term_at(0).singleton()
+	.with<FSM_State>(flecs::Wildcard)
+	.with<FSM_Status>(flecs::Wildcard)
+	.with(FSM_Status::Enter)
+	.with<SKM_Animation>()
+	.each([](flecs::iter& it, size_t index, TS_Animations& cAnimations,const SKM_SkeletalMeshRef& cMesh)
+	{
+		const FSM_State* state = it.entity(index).get<FSM_State>();
+		cMesh.Value->SetAnimation(cAnimations.Value[*state]);
+		cMesh.Value->Play(true);
+	});
 
 	// Copy transforms
 	// This query does not seem to be matching
@@ -40,7 +56,7 @@ void USKM_Systems::Initialize(flecs::world& ECSWorld)
 		cActor.Value->SetActorTransform(cTransform.Value);
 	});
 
-	ECSWorld.system<SKM_ActorRef>("System Copy Transform to SKM Actor")
+	ECSWorld.system<SKM_ActorRef>("System Despawn SKM Actor")
 	.kind<OnDespawn>()
 	.each([](flecs::iter& it, size_t index, SKM_ActorRef& cActor)
 	{

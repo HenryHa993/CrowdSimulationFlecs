@@ -4,32 +4,24 @@
 
 #include "CoreMinimal.h"
 #include "FlecsModuleBase.h"
-#include "CrowdSimulation/SKM/SKM_Pawn.h"
-#include "SKM_Components.generated.h"
+#include "ST_Components.generated.h"
 
-struct SKM_AddInstance
+struct ST_AddInstance
 {
-	flecs::entity Prefab;
+	int Index;
 	FTransform Transform;
 };
 
-struct SKM_ActorRef
+struct ST_ActorRef
 {
 	AActor* Value;
 };
-
-struct SKM_SkeletalMeshRef
-{
-	USkeletalMeshComponent* Value;
-};
-
-struct SKM_Animation{};
 
 /**
  * 
  */
 UCLASS()
-class CROWDSIMULATION_API USKM_Components : public UFlecsModuleBase
+class CROWDSIMULATION_API UST_Components : public UFlecsModuleBase
 {
 	GENERATED_BODY()
 

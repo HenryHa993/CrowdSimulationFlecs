@@ -46,6 +46,10 @@ public:
 	int NumUnits = 100;
 	float DistanceBetweenUnits = 1000.0f;
 
+	// Framework selection
+	const char* FrameworkItems[2];
+	int SelectedFrameworkItem;
+
 	// Rendering parameters
 	const char* RenderingItems[3];
 	int SelectedRenderingItem;

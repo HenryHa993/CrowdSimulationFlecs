@@ -41,7 +41,7 @@ void UTS_Systems::Initialize(flecs::world& ECSWorld)
 
 	// Animation component
 	// todo: Should I have it play the animation whilst running or at the beginning
-	ECSWorld.system<TS_Animations, TS_Mesh, TS_Animation>("System Set Animation")
+	ECSWorld.system<TS_Animations, TS_Mesh, TS_Animation>("System TS Set Animation")
 	.kind(flecs::OnUpdate)
 	.term_at(0).singleton()
 	.with<FSM_State>(flecs::Wildcard)

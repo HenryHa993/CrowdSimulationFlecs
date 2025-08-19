@@ -8,6 +8,7 @@
 #include "UnrealFlecsSubsystem.h"
 #include "CrowdSimulation/ECS/ISM/ISM_Components.h"
 #include "CrowdSimulation/ECS/SKM/SKM_Components.h"
+#include "CrowdSimulation/ECS/ST/ST_Components.h"
 #include "CrowdSimulation/ECS/TS/TS_Components.h"
 #include "Kismet/GameplayStatics.h"
 
@@ -39,8 +40,8 @@ void UDevGuiSubsystem::MainMenu()
 	}
 
 	this->SpawnMenu(bShowSpawnMenu);
-	this->RenderMenu(bShowRenderMenu);
-	this->AIMenu(bShowAIMenu);
+	//this->RenderMenu(bShowRenderMenu);
+	//this->AIMenu(bShowAIMenu);
 	this->Stats(bShowStats);
 
 	ImGui::ShowDemoWindow();
@@ -54,6 +55,8 @@ void UDevGuiSubsystem::SpawnMenu(bool& bShow)
 	}
 
 	ImGui::Begin("Spawn Menu");
+	ImGui::Combo("Framework", &SelectedFrameworkItem, FrameworkItems, IM_ARRAYSIZE(FrameworkItems));
+	ImGui::Combo("Rendering", &SelectedRenderingItem, RenderingItems, IM_ARRAYSIZE(RenderingItems));
 	ImGui::SliderInt("Number of Units", &NumUnits, 1, 10000);
 	ImGui::SliderFloat("Distance between Units", &DistanceBetweenUnits, 0, 10000);
 
@@ -153,31 +156,65 @@ void UDevGuiSubsystem::SpawnUnits()
 
 			// todo: Separate these out into functions
 			// Separate logic based on different modes of rendering
-			switch (SelectedRenderingItem)
+			switch (SelectedFrameworkItem)
 			{
-				// TurboSequence
+			case 0:
+				switch (SelectedRenderingItem)
+				{
+						// TurboSequence
+				case 0:
+					{
+						ecs->entity()
+					   .set<ST_AddInstance>({SelectedRenderingItem, unitTransform});
+						break;
+					}
+						// ISM + Vertex Animations
+				case 1:
+					{
+						AISMController* controller = ecs->get<ISM_ControllerRef>()->Value;
+								
+						ecs->entity()
+						.set<ST_AddInstance>({SelectedRenderingItem, unitTransform});
+						break;
+					}
+						// Skeletal Mesh
+				case 2:
+					{
+						ecs->entity()
+						.set<ST_AddInstance>({SelectedRenderingItem, unitTransform});
+						break;
+					}
+				}
+				break;
+
+			case 1:
+				switch (SelectedRenderingItem)
+				{
+						// TurboSequence
 				case 0:
 					{
 						ecs->entity()
 					   .set<TS_AddInstance>({unitPrefab, unitTransform});
 						break;
 					}
-				// ISM + Vertex Animations
+						// ISM + Vertex Animations
 				case 1:
 					{
 						AISMController* controller = ecs->get<ISM_ControllerRef>()->Value;
-					
+							
 						ecs->entity()
 						.set<ISM_AddInstance>({unitPrefab, unitTransform});
 						break;
 					}
-				// Skeletal Mesh
+						// Skeletal Mesh
 				case 2:
 					{
 						ecs->entity()
 						.set<SKM_AddInstance>({unitPrefab, unitTransform});
 						break;
 					}
+				}
+				break;
 			}
 		}
 	}
@@ -211,9 +248,12 @@ void UDevGuiSubsystem::UpdateStats(float deltaTime)
 
 UDevGuiSubsystem::UDevGuiSubsystem()
 {
-	RenderingItems[0] = "GPU Instancing w/ Niagara (TurboSequence)";
+	RenderingItems[0] = "Niagara GPU Instancing (TurboSequence)";
 	RenderingItems[1] = "Instanced Static Mesh + Vertex Animations";
 	RenderingItems[2] = "Skeletal Mesh";
+
+	FrameworkItems[0] = "Unreal Engine + State Trees";
+	FrameworkItems[1] = "FLECS";
 }
 
 void UDevGuiSubsystem::Tick(float DeltaTime)

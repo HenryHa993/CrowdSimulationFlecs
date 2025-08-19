@@ -17,6 +17,9 @@ class CROWDSIMULATION_API UUnitConfig : public UDataAsset
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(EditAnywhere, Category="ST Config")
+	TArray<TSubclassOf<AActor>> STActors;
+	
 	UPROPERTY(EditAnywhere, Category="SKM Config")
 	TSubclassOf<AActor> Actor;
 	
