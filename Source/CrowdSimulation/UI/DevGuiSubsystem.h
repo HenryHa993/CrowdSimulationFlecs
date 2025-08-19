@@ -33,7 +33,7 @@ public:
 	void SpawnUnits();
 	void DespawnUnits();
 
-	void UpdateStats(float deltaTime);
+	void UpdateStats(float DeltaTime);
 
 public:
 	// Main menu parameters

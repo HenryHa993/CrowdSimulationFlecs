@@ -23,14 +23,14 @@ void UDevGuiSubsystem::MainMenu()
 		{
 			bShowSpawnMenu = !bShowSpawnMenu;
 		}
-		if(ImGui::MenuItem("Toggle Rendering Menu"))
+		/*if(ImGui::MenuItem("Toggle Rendering Menu"))
 		{
 			bShowRenderMenu = !bShowRenderMenu;
 		}
 		if(ImGui::MenuItem("Toggle AI Menu"))
 		{
 			bShowAIMenu = !bShowAIMenu;
-		}
+		}*/
 		if(ImGui::MenuItem("Toggle Stats"))
 		{
 			bShowStats = !bShowStats;
@@ -158,10 +158,11 @@ void UDevGuiSubsystem::SpawnUnits()
 			// Separate logic based on different modes of rendering
 			switch (SelectedFrameworkItem)
 			{
+			// Index 0 represents Unreal Engine framework
 			case 0:
 				switch (SelectedRenderingItem)
 				{
-						// TurboSequence
+						// Skeletal Mesh
 				case 0:
 					{
 						ecs->entity()
@@ -177,7 +178,7 @@ void UDevGuiSubsystem::SpawnUnits()
 						.set<ST_AddInstance>({SelectedRenderingItem, unitTransform});
 						break;
 					}
-						// Skeletal Mesh
+						// Turbosequence
 				case 2:
 					{
 						ecs->entity()
@@ -187,30 +188,31 @@ void UDevGuiSubsystem::SpawnUnits()
 				}
 				break;
 
+			// Index 1 represents the FLECS framework
 			case 1:
 				switch (SelectedRenderingItem)
 				{
-						// TurboSequence
+						// Skeletal mesh actors
 				case 0:
 					{
 						ecs->entity()
-					   .set<TS_AddInstance>({unitPrefab, unitTransform});
+						.set<SKM_AddInstance>({unitPrefab, unitTransform});
 						break;
 					}
 						// ISM + Vertex Animations
 				case 1:
 					{
-						AISMController* controller = ecs->get<ISM_ControllerRef>()->Value;
+						//AISMController* controller = ecs->get<ISM_ControllerRef>()->Value;
 							
 						ecs->entity()
 						.set<ISM_AddInstance>({unitPrefab, unitTransform});
 						break;
 					}
-						// Skeletal Mesh
+						// Turbosequence actors
 				case 2:
 					{
 						ecs->entity()
-						.set<SKM_AddInstance>({unitPrefab, unitTransform});
+					   .set<TS_AddInstance>({unitPrefab, unitTransform});
 						break;
 					}
 				}
@@ -240,17 +242,17 @@ void UDevGuiSubsystem::DespawnUnits()
 	ecs->run_pipeline(despawnPipeline);
 }
 
-void UDevGuiSubsystem::UpdateStats(float deltaTime)
+void UDevGuiSubsystem::UpdateStats(float DeltaTime)
 {
-	FrameTime = deltaTime;
-	FramesPerSecond = 1.0f / deltaTime;
+	FrameTime = DeltaTime;
+	FramesPerSecond = 1.0f / DeltaTime;
 }
 
 UDevGuiSubsystem::UDevGuiSubsystem()
 {
-	RenderingItems[0] = "Niagara GPU Instancing (TurboSequence)";
+	RenderingItems[0] = "Skeletal Mesh";
 	RenderingItems[1] = "Instanced Static Mesh + Vertex Animations";
-	RenderingItems[2] = "Skeletal Mesh";
+	RenderingItems[2] = "Niagara GPU Instancing (TurboSequence)";
 
 	FrameworkItems[0] = "Unreal Engine + State Trees";
 	FrameworkItems[1] = "FLECS";
