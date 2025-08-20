@@ -172,8 +172,6 @@ void UDevGuiSubsystem::SpawnUnits()
 						// ISM + Vertex Animations
 				case 1:
 					{
-						AISMController* controller = ecs->get<ISM_ControllerRef>()->Value;
-								
 						ecs->entity()
 						.set<ST_AddInstance>({SelectedRenderingItem, unitTransform});
 						break;

@@ -5,6 +5,8 @@
 
 #include "ST_Components.h"
 #include "CrowdSimulation/ECS/Core/Core_Components.h"
+#include "CrowdSimulation/ECS/ISM/ISM_Components.h"
+#include "CrowdSimulation/Pawns/ISMUnit.h"
 
 void UST_Systems::Initialize(flecs::world& ECSWorld)
 {
@@ -14,6 +16,33 @@ void UST_Systems::Initialize(flecs::world& ECSWorld)
 	.each([](flecs::iter& it, size_t index, const WorldRef& cWorld, const UnitConfigRef& cUnitConfig, const ST_AddInstance& cAdd)
 	{
 		APawn* unit = cWorld.Value->SpawnActor<APawn>(cUnitConfig.Value->STActors[cAdd.Index], cAdd.Transform);
+
+		// Initialise based off index
+		// todo: Worth tidying
+		switch (cAdd.Index)
+		{
+		case 0:
+			break;
+
+		case 1:
+			{
+				AISMController* controller = it.world().get<ISM_ControllerRef>()->Value;
+				if(controller)
+				{
+					AISMUnit* ismUnit = Cast<AISMUnit>(unit);
+					int32 instance = controller->AddInstance();
+												
+					ismUnit->ISMController = controller;
+					ismUnit->Index = instance;
+												
+					controller->CreateOrExpandTransformArray();
+				}
+
+				break;
+			}
+		case 2:
+			break;
+		}
 			
 		it.world().entity()
 			.set<ST_ActorRef>({static_cast<AActor*>(unit)});
