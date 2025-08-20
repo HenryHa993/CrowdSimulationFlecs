@@ -61,7 +61,6 @@ void UTS_Systems::Initialize(flecs::world& ECSWorld)
 	.kind(flecs::PreStore)
 	.each([](const TS_Mesh& cMesh, const Transform& cTransform)
 	{
-		//ATurboSequence_Manager_Lf::SetMeshWorldSpaceTransform_Concurrent(cMesh.Value, cTransform.Value);
 		if(cMesh.Value.IsMeshDataValid())
 		{
 			ATurboSequence_Manager_Lf::SetMeshWorldSpaceLocationRotationScale_Concurrent(cMesh.Value, cTransform.Value.GetLocation(), cTransform.Value.GetRotation(), cTransform.Value.GetScale3D());

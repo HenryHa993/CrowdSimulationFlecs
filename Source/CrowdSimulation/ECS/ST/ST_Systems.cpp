@@ -4,9 +4,11 @@
 #include "ST_Systems.h"
 
 #include "ST_Components.h"
+#include "TurboSequence_Manager_Lf.h"
 #include "CrowdSimulation/ECS/Core/Core_Components.h"
 #include "CrowdSimulation/ECS/ISM/ISM_Components.h"
 #include "CrowdSimulation/Pawns/ISMUnit.h"
+#include "CrowdSimulation/Pawns/TSUnit.h"
 
 void UST_Systems::Initialize(flecs::world& ECSWorld)
 {
@@ -41,7 +43,16 @@ void UST_Systems::Initialize(flecs::world& ECSWorld)
 				break;
 			}
 		case 2:
-			break;
+			{
+				ATSUnit* tsUnit = Cast<ATSUnit>(unit);
+				tsUnit->MeshID = ATurboSequence_Manager_Lf::AddSkinnedMeshInstance_GameThread(cUnitConfig.Value->SpawnData, cAdd.Transform, cWorld.Value);
+				tsUnit->AnimPlaySettings = FTurboSequence_AnimPlaySettings_Lf();
+
+				if(tsUnit->MeshID.IsMeshDataValid())
+				{
+					ATurboSequence_Manager_Lf::AddInstanceToUpdateGroup_Concurrent(0, tsUnit->MeshID);
+				}
+			}
 		}
 			
 		it.world().entity()
