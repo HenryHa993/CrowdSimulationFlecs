@@ -19,6 +19,24 @@ void ATSUnit::BeginPlay()
 	Super::BeginPlay();
 }
 
+/*void ATSUnit::BeginDestroy()
+{
+	Super::BeginDestroy();
+	if(MeshID.IsMeshDataValid())
+	{
+		ATurboSequence_Manager_Lf::RemoveInstanceFromUpdateGroup_Concurrent(0, MeshID);
+	}
+}
+
+void ATSUnit::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+	if(MeshID.IsMeshDataValid())
+	{
+		ATurboSequence_Manager_Lf::RemoveSkinnedMeshInstance_GameThread(MeshID, GetWorld());
+	}
+}*/
+
 // Called every frame
 void ATSUnit::Tick(float DeltaTime)
 {

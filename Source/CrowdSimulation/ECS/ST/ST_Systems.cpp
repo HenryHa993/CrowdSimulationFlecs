@@ -7,6 +7,7 @@
 #include "TurboSequence_Manager_Lf.h"
 #include "CrowdSimulation/ECS/Core/Core_Components.h"
 #include "CrowdSimulation/ECS/ISM/ISM_Components.h"
+#include "CrowdSimulation/ECS/TS/TS_Components.h"
 #include "CrowdSimulation/Pawns/ISMUnit.h"
 #include "CrowdSimulation/Pawns/TSUnit.h"
 
@@ -51,6 +52,10 @@ void UST_Systems::Initialize(flecs::world& ECSWorld)
 				if(tsUnit->MeshID.IsMeshDataValid())
 				{
 					ATurboSequence_Manager_Lf::AddInstanceToUpdateGroup_Concurrent(0, tsUnit->MeshID);
+					// Entity helps to manage despawning the mesh to o avoid race-time conditions.
+					// Will unfortunately affect memory usage, but will not affect performance
+					it.world().entity()
+					.set<TS_Mesh>({tsUnit->MeshID});
 				}
 			}
 		}
