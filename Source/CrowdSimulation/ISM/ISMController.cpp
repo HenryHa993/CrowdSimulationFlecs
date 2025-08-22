@@ -22,6 +22,8 @@ void AISMController::Initialize(UStaticMesh* StaticMesh, UMaterialInterface* Mat
 	InstancedStaticMeshComponent->SetMaterial(0, Material);
 
 	InstancedStaticMeshComponent->NumCustomDataFloats = 2;
+	InstancedStaticMeshComponent->bDisableCollision = true;
+	InstancedStaticMeshComponent->bVisibleInRayTracing = false;
 	// Todo: Testing some settings
 	// InstancedStaticMeshComponent->SetCastShadow(false);
 }

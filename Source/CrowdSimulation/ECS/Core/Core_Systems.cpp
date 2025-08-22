@@ -22,7 +22,8 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 		{
 			// Todo: Do I want velocity to determine the direction the mesh is facing? If I get round to blendspaces, this is a good consideration
 			FQuat correctionQuat = FQuat(FVector::UpVector, FMath::DegreesToRadians(-90.0f));
-			cTransform.Value.SetRotation(FQuat::FastLerp(cTransform.Value.GetRotation(), cVelocity.Value.ToOrientationQuat() * correctionQuat, it.delta_time()).GetNormalized());	
+			cTransform.Value.SetRotation(cVelocity.Value.ToOrientationQuat() * correctionQuat);	
+			//cTransform.Value.SetRotation(FQuat::FastLerp(cTransform.Value.GetRotation(), cVelocity.Value.ToOrientationQuat() * correctionQuat, it.delta_time()).GetNormalized());	
 		}
 	});
 
@@ -44,7 +45,9 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 	.with(FSM_Status::Enter)
 	.each([](flecs::iter& it, size_t index, Velocity& cVelocity)
 	{
-		cVelocity.Value = FVector(FMath::RandRange(-100, 100), FMath::RandRange(-100, 100), 0);
+		//cVelocity.Value = FVector(FMath::RandRange(-100, 100), FMath::RandRange(-100, 100), 0);
+		FVector2D randUnitVector = FMath::RandPointInCircle(1);
+		cVelocity.Value = FVector(randUnitVector.X, randUnitVector.Y, 0)  * 400;
 		it.entity(index).add(FSM_Status::Running);
 	});
 

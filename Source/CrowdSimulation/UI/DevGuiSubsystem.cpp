@@ -57,8 +57,16 @@ void UDevGuiSubsystem::SpawnMenu(bool& bShow)
 	ImGui::Begin("Spawn Menu");
 	ImGui::Combo("Framework", &SelectedFrameworkItem, FrameworkItems, IM_ARRAYSIZE(FrameworkItems));
 	ImGui::Combo("Rendering", &SelectedRenderingItem, RenderingItems, IM_ARRAYSIZE(RenderingItems));
-	ImGui::SliderInt("Number of Units", &NumUnits, 1, 10000);
-	ImGui::SliderFloat("Distance between Units", &DistanceBetweenUnits, 0, 10000);
+	ImGui::BeginGroup();
+	ImGui::SliderInt("Number of Units##slider", &NumUnits, 1, 10000);
+	ImGui::SameLine();
+	ImGui::InputInt("Number of Units##input", &NumUnits, 1);
+	ImGui::EndGroup();
+	ImGui::BeginGroup();
+	ImGui::SliderFloat("Distance between Units##slider", &DistanceBetweenUnits, 0, 10000);
+	ImGui::SameLine();
+	ImGui::InputFloat("Distance between Units##value", &DistanceBetweenUnits, .1f);
+	ImGui::EndGroup();
 
 	if(ImGui::Button("Spawn Units"))
 	{
@@ -183,33 +191,56 @@ void UDevGuiSubsystem::Stats(bool& bShow)
 		}	
 	}*/
 	// Basics
-	if(ImGui::Button("Stat FPS"))
+		if(ImGui::CollapsingHeader("Basic Stats"))
 	{
-		APlayerController* controller = GetWorld()->GetFirstPlayerController();
-		controller->ConsoleCommand(TEXT("Stat FPS"));
+			if(ImGui::Button("Stat FPS"))
+			{
+				APlayerController* controller = GetWorld()->GetFirstPlayerController();
+				controller->ConsoleCommand(TEXT("Stat FPS"));
+			}
+			if(ImGui::Button("Stat UNIT"))
+			{
+				APlayerController* controller = GetWorld()->GetFirstPlayerController();
+				controller->ConsoleCommand(TEXT("Stat UNIT"));
+			}
+			if(ImGui::Button("Stat UNITGRAPH"))
+			{
+				APlayerController* controller = GetWorld()->GetFirstPlayerController();
+				controller->ConsoleCommand(TEXT("Stat UNITGRAPH"));
+			}
+			// Tick
+			if(ImGui::Button("Stat GAME"))
+			{
+				APlayerController* controller = GetWorld()->GetFirstPlayerController();
+				controller->ConsoleCommand(TEXT("Stat GAME"));
+			}
+			// Number of draw calls
+			if(ImGui::Button("Stat SCENERENDERING"))
+			{
+				APlayerController* controller = GetWorld()->GetFirstPlayerController();
+				controller->ConsoleCommand(TEXT("Stat SCENERENDERING"));
+			}	
 	}
-	if(ImGui::Button("Stat UNIT"))
+	if(ImGui::CollapsingHeader("Profiling"))
 	{
-		APlayerController* controller = GetWorld()->GetFirstPlayerController();
-		controller->ConsoleCommand(TEXT("Stat UNIT"));
+		if(ImGui::Button("MemReport"))
+		{
+			APlayerController* controller = GetWorld()->GetFirstPlayerController();
+			controller->ConsoleCommand(TEXT("MemReport"));
+		}
+		ImGui::InputFloat("Bookmark Timer", &AutoBookmarkTimer, .1f);
+		if(ImGui::Button("Start Auto Bookmark"))
+		{
+			bAutoBookmarkStarted = true;
+			TRACE_BOOKMARK(TEXT("Auto Bookmark Started"));
+		}
+		if(ImGui::Button("MemReport"))
+		{
+			APlayerController* controller = GetWorld()->GetFirstPlayerController();
+			controller->ConsoleCommand(TEXT("MemReport"));
+		}
 	}
-	if(ImGui::Button("Stat UNITGRAPH"))
-	{
-		APlayerController* controller = GetWorld()->GetFirstPlayerController();
-		controller->ConsoleCommand(TEXT("Stat UNITGRAPH"));
-	}
-	// Tick
-	if(ImGui::Button("Stat GAME"))
-	{
-		APlayerController* controller = GetWorld()->GetFirstPlayerController();
-		controller->ConsoleCommand(TEXT("Stat GAME"));
-	}
-	// Number of draw calls
-	if(ImGui::Button("Stat SCENERENDERING"))
-	{
-		APlayerController* controller = GetWorld()->GetFirstPlayerController();
-		controller->ConsoleCommand(TEXT("Stat SCENERENDERING"));
-	}	
+
 	ImGui::End();
 }
 
@@ -340,6 +371,16 @@ void UDevGuiSubsystem::Tick(float DeltaTime)
 	{
 		//UpdateStats(DeltaTime);
 		MainMenu();
+		if(bAutoBookmarkStarted)
+		{
+			ElapsedAutoBookmarkTime += DeltaTime;
+			if(ElapsedAutoBookmarkTime > AutoBookmarkTimer)
+			{
+				bAutoBookmarkStarted = false;
+				TRACE_BOOKMARK(TEXT("Auto Bookmark Ended"));
+				ElapsedAutoBookmarkTime = 0.f;
+			}
+		}
 	}
 }
 

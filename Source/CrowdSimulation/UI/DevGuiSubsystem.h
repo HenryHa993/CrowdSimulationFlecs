@@ -71,4 +71,9 @@ public:
 	float RenderThreadTime;
 	float RenderThreadTimes[120];
 	int RenderThreadTimesOffset = 0;
+
+	// Auto Bookmarker
+	float AutoBookmarkTimer = 0.f;
+	float ElapsedAutoBookmarkTime = 0.f;
+	bool bAutoBookmarkStarted = false;
 };
