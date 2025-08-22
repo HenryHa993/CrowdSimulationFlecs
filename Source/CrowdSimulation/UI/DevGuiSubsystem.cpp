@@ -228,16 +228,31 @@ void UDevGuiSubsystem::Stats(bool& bShow)
 			APlayerController* controller = GetWorld()->GetFirstPlayerController();
 			controller->ConsoleCommand(TEXT("MemReport"));
 		}
+
+		ImGui::Text("FPS Chart Timer: %.2f ms", AutoFPSTimer - ElapsedAutoFPSTime);
+		ImGui::InputFloat("FPS Chart Timer", &AutoFPSTimer, .1f);
+		if(ImGui::Button("Start Auto FPS Chart"))
+		{
+			bAutoFPSStarted = true;
+			APlayerController* controller = GetWorld()->GetFirstPlayerController();
+			controller->ConsoleCommand(TEXT("StartFPSChart"));
+		}
+		// THIS IS DEPRECATED
+		/*ImGui::Text("Stat Capture Timer: %.2f ms", AutoStatCaptureTimer - ElapsedAutoStatCaptureTime);
+		ImGui::InputFloat("Stat Capture Timer", &AutoStatCaptureTimer, 0.1f);
+		if(ImGui::Button("Start Auto Stat Capture"))
+		{
+			bAutoStatCaptureStarted = true;
+			APlayerController* controller = GetWorld()->GetFirstPlayerController();
+			controller->ConsoleCommand(TEXT("Stat Startfile"));
+		}*/
+
+		ImGui::Text("Bookmark Timer: %.2f ms", AutoBookmarkTimer - ElapsedAutoBookmarkTime);
 		ImGui::InputFloat("Bookmark Timer", &AutoBookmarkTimer, .1f);
 		if(ImGui::Button("Start Auto Bookmark"))
 		{
 			bAutoBookmarkStarted = true;
 			TRACE_BOOKMARK(TEXT("Auto Bookmark Started"));
-		}
-		if(ImGui::Button("MemReport"))
-		{
-			APlayerController* controller = GetWorld()->GetFirstPlayerController();
-			controller->ConsoleCommand(TEXT("MemReport"));
 		}
 	}
 
@@ -371,6 +386,31 @@ void UDevGuiSubsystem::Tick(float DeltaTime)
 	{
 		//UpdateStats(DeltaTime);
 		MainMenu();
+
+		if(bAutoFPSStarted)
+		{
+			ElapsedAutoFPSTime += DeltaTime;
+			if(ElapsedAutoFPSTime > AutoFPSTimer)
+			{
+				bAutoFPSStarted = false;
+				APlayerController* controller = GetWorld()->GetFirstPlayerController();
+				controller->ConsoleCommand(TEXT("StopFPSChart"));
+				ElapsedAutoFPSTime = 0.f;
+			}
+		}
+		
+		if(bAutoStatCaptureStarted)
+		{
+			ElapsedAutoStatCaptureTime += DeltaTime;
+			if(ElapsedAutoStatCaptureTime > AutoStatCaptureTimer)
+			{
+				bAutoStatCaptureStarted = false;
+				APlayerController* controller = GetWorld()->GetFirstPlayerController();
+				controller->ConsoleCommand(TEXT("Stat Stopfile"));
+				ElapsedAutoStatCaptureTime = 0.f;
+			}
+		}
+		
 		if(bAutoBookmarkStarted)
 		{
 			ElapsedAutoBookmarkTime += DeltaTime;

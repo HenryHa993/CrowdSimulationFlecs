@@ -72,6 +72,16 @@ public:
 	float RenderThreadTimes[120];
 	int RenderThreadTimesOffset = 0;
 
+	// Auto FPS Grapher
+	float AutoFPSTimer = 0.f;
+	float ElapsedAutoFPSTime = 0.f;
+	bool bAutoFPSStarted = false;
+
+	// Auto Game Thread Profiler
+	float AutoStatCaptureTimer = 0.f;
+	float ElapsedAutoStatCaptureTime = 0.f;
+	bool bAutoStatCaptureStarted = false;
+
 	// Auto Bookmarker
 	float AutoBookmarkTimer = 0.f;
 	float ElapsedAutoBookmarkTime = 0.f;
