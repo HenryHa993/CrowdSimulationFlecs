@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "flecs.h"
+#include "RenderCore.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "DevGuiSubsystem.generated.h"
 
@@ -56,9 +57,18 @@ public:
 
 	// Performance stats
 	float FrameTime;
-	float FramesPerSecond;
 	float FrameTimes[120];
 	int FrameTimesOffset = 0;
+
+	float FramesPerSecond;
 	float FPSs[120];
 	int FPSsOffset = 0;
+
+	float GameThreadTime;
+	float GameThreadTimes[120];
+	int GameThreadTimesOffset = 0;
+
+	float RenderThreadTime;
+	float RenderThreadTimes[120];
+	int RenderThreadTimesOffset = 0;
 };

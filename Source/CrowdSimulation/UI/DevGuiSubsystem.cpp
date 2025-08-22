@@ -44,7 +44,7 @@ void UDevGuiSubsystem::MainMenu()
 	//this->AIMenu(bShowAIMenu);
 	this->Stats(bShowStats);
 
-	ImGui::ShowDemoWindow();
+	//ImGui::ShowDemoWindow();
 }
 
 void UDevGuiSubsystem::SpawnMenu(bool& bShow)
@@ -102,7 +102,8 @@ void UDevGuiSubsystem::Stats(bool& bShow)
 	}
 
 	ImGui::Begin("Stats");
-	if(ImGui::CollapsingHeader("Frame Timings"))
+	
+	/*if(ImGui::CollapsingHeader("Frame Time & FPS"))
 	{
 		ImGui::Text("Frame Time: %.3f ms", FrameTime * 1000);
 		
@@ -126,16 +127,89 @@ void UDevGuiSubsystem::Stats(bool& bShow)
 		FPSsOffset = (FPSsOffset + 1) % IM_ARRAYSIZE(FPSs);
 		ImGui::PlotLines("FPS", FPSs, IM_ARRAYSIZE(FPSs), FPSsOffset, nullptr, 0.0f, 50.0f, ImVec2(0,80));
 		
-	}
-	// This can be on hold for now
-	if(ImGui::CollapsingHeader("CPU & GPU Timings"))
+	}*/
+
+	/*if(ImGui::CollapsingHeader("Game Thread & Draw Thread"))
+	{
+		ImGui::Text("Game Thread Time: %.2f ms", GameThreadTime);
+		
+		GameThreadTimes[GameThreadTimesOffset] = GameThreadTime;
+		GameThreadTimesOffset = (GameThreadTimesOffset + 1) % IM_ARRAYSIZE(GameThreadTimes);
+
+		// ImGui::PlotLines("Frame Time (ms)", FrameTimes, IM_ARRAYSIZE(FrameTimes), FrameTimesOffset, nullptr, 0.0f, 50.0f, ImVec2(0,80));
+		ImGui::PlotHistogram(
+			"Game Thread Time (ms)",
+			GameThreadTimes,
+			IM_ARRAYSIZE(GameThreadTimes),
+			GameThreadTimesOffset,            
+			nullptr,                     
+			0.0f,                        
+			50.0f,
+			ImVec2(0, 80)
+		);
+		
+		ImGui::Text("Render Thread Time: %.2f ms", RenderThreadTime);
+
+		RenderThreadTimes[RenderThreadTimesOffset] = RenderThreadTime;
+		RenderThreadTimesOffset = (RenderThreadTimesOffset + 1) % IM_ARRAYSIZE(RenderThreadTimes);
+
+		// ImGui::PlotLines("Frame Time (ms)", FrameTimes, IM_ARRAYSIZE(FrameTimes), FrameTimesOffset, nullptr, 0.0f, 50.0f, ImVec2(0,80));
+		ImGui::PlotHistogram(
+			"Render Thread Time (ms)",
+			RenderThreadTimes,
+			IM_ARRAYSIZE(RenderThreadTimes),
+			RenderThreadTimesOffset,
+			nullptr,
+			0.0f,
+			50.0f,
+			ImVec2(0, 80)
+		);
+	}*/
+	/*if(ImGui::CollapsingHeader("Memory Usage"))
 	{
 		
-	}
-	if(ImGui::CollapsingHeader("Memory Usage"))
+	}*/
+	/*if(ImGui::CollapsingHeader("Console Commands"))
 	{
-		
+		if(ImGui::Button("Stat UNIT"))
+		{
+			APlayerController* controller = GetWorld()->GetFirstPlayerController();
+			controller->ConsoleCommand(TEXT("Stat UNIT"));
+		}
+		if(ImGui::Button("Stat GAME"))
+		{
+			APlayerController* controller = GetWorld()->GetFirstPlayerController();
+			controller->ConsoleCommand(TEXT("Stat GAME"));
+		}	
+	}*/
+	// Basics
+	if(ImGui::Button("Stat FPS"))
+	{
+		APlayerController* controller = GetWorld()->GetFirstPlayerController();
+		controller->ConsoleCommand(TEXT("Stat FPS"));
 	}
+	if(ImGui::Button("Stat UNIT"))
+	{
+		APlayerController* controller = GetWorld()->GetFirstPlayerController();
+		controller->ConsoleCommand(TEXT("Stat UNIT"));
+	}
+	if(ImGui::Button("Stat UNITGRAPH"))
+	{
+		APlayerController* controller = GetWorld()->GetFirstPlayerController();
+		controller->ConsoleCommand(TEXT("Stat UNITGRAPH"));
+	}
+	// Tick
+	if(ImGui::Button("Stat GAME"))
+	{
+		APlayerController* controller = GetWorld()->GetFirstPlayerController();
+		controller->ConsoleCommand(TEXT("Stat GAME"));
+	}
+	// Number of draw calls
+	if(ImGui::Button("Stat SCENERENDERING"))
+	{
+		APlayerController* controller = GetWorld()->GetFirstPlayerController();
+		controller->ConsoleCommand(TEXT("Stat SCENERENDERING"));
+	}	
 	ImGui::End();
 }
 
@@ -244,6 +318,9 @@ void UDevGuiSubsystem::UpdateStats(float DeltaTime)
 {
 	FrameTime = DeltaTime;
 	FramesPerSecond = 1.0f / DeltaTime;
+
+	GameThreadTime = FPlatformTime::ToMilliseconds(GGameThreadTime);
+	RenderThreadTime = FPlatformTime::ToMilliseconds(GRenderThreadTime);
 }
 
 UDevGuiSubsystem::UDevGuiSubsystem()
@@ -261,7 +338,7 @@ void UDevGuiSubsystem::Tick(float DeltaTime)
 	const ImGui::FScopedContext ScopedContext;
 	if (ScopedContext)
 	{
-		UpdateStats(DeltaTime);
+		//UpdateStats(DeltaTime);
 		MainMenu();
 	}
 }
