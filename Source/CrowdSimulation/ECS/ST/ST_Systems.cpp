@@ -24,9 +24,8 @@ void UST_Systems::Initialize(flecs::world& ECSWorld)
 		// todo: Worth tidying
 		switch (cAdd.Index)
 		{
-		case 0:
+		default:
 			break;
-
 		case 1:
 			{
 				AISMController* controller = it.world().get<ISM_ControllerRef>()->Value;

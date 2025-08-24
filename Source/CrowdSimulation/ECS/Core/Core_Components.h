@@ -23,6 +23,15 @@ struct Velocity
 	FVector Value;
 };
 
+// Renderless Instance
+struct AddInstance
+{
+	flecs::entity Prefab;
+	FTransform Transform;
+};
+
+struct NoRender{};
+
 // AI State Machine
 enum class FSM_State
 {

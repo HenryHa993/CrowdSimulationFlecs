@@ -7,6 +7,9 @@ void UCore_Components::Initialize(flecs::world& ECSWorld)
 {
 	ECSWorld.component<Transform>();
 	ECSWorld.component<Velocity>();
+
+	ECSWorld.component<AddInstance>();
+	ECSWorld.component<NoRender>();
 	
 	ECSWorld.component<FSM_State>();
 	ECSWorld.component<FSM_Status>();

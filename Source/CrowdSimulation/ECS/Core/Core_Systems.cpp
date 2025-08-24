@@ -27,6 +27,20 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 		}
 	});
 
+	ECSWorld.system<AddInstance>("System Add No Render Instance")
+	.each([](flecs::iter& it, size_t index, AddInstance& cAdd)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Despawning renderless"));
+
+		it.world().entity()
+			.is_a(cAdd.Prefab)
+			.set<Transform>({cAdd.Transform})
+			.add<NoRender>();
+		
+		it.entity(index).destruct();
+	});
+
+
 	/*
 	 * State Machine Systems
 	 */
@@ -45,6 +59,8 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 	.with(FSM_Status::Enter)
 	.each([](flecs::iter& it, size_t index, Velocity& cVelocity)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("Wandering renderless"));
+
 		//cVelocity.Value = FVector(FMath::RandRange(-100, 100), FMath::RandRange(-100, 100), 0);
 		FVector2D randUnitVector = FMath::RandPointInCircle(1);
 		cVelocity.Value = FVector(randUnitVector.X, randUnitVector.Y, 0)  * 100;
@@ -77,6 +93,8 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 	.with(FSM_Status::Enter)
 	.each([](flecs::iter& it, size_t index, Velocity& cVelocity)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("Waiting renderless"));
+
 		cVelocity.Value = FVector::ZeroVector;
 		it.entity(index).add(FSM_Status::Running);
 	});
@@ -96,5 +114,14 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 			it.entity(index).add(FSM_State::Wander);
 			it.entity(index).add(FSM_Status::Enter);
 		}
+	});
+
+	ECSWorld.system("System Despawn No Render Actor")
+	.kind<OnDespawn>()
+	.with<NoRender>()
+	.each([](flecs::iter& it, size_t index)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Despawning renderless"));
+		it.entity(index).destruct();
 	});
 }

@@ -334,6 +334,13 @@ void UDevGuiSubsystem::SpawnUnits()
 						.set<ST_AddInstance>({SelectedRenderingItem, unitTransform});
 						break;
 					}
+					// No Rendering
+				case 3:
+					{
+						ecs->entity()
+						.set<ST_AddInstance>({SelectedRenderingItem, unitTransform});
+						break;
+					}
 				}
 				break;
 
@@ -362,6 +369,13 @@ void UDevGuiSubsystem::SpawnUnits()
 					{
 						ecs->entity()
 					   .set<TS_AddInstance>({unitPrefab, unitTransform});
+						break;
+					}
+					// No Rendering
+				case 3:
+					{
+						ecs->entity()
+						.set<AddInstance>({unitPrefab, unitTransform});
 						break;
 					}
 				}
@@ -406,6 +420,7 @@ UDevGuiSubsystem::UDevGuiSubsystem()
 	RenderingItems[0] = "Skeletal Mesh";
 	RenderingItems[1] = "Instanced Static Mesh + Vertex Animations";
 	RenderingItems[2] = "Niagara GPU Instancing (TurboSequence)";
+	RenderingItems[3] = "No Rendering";
 
 	FrameworkItems[0] = "Unreal Engine + State Trees";
 	FrameworkItems[1] = "FLECS";

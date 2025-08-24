@@ -60,7 +60,7 @@ public:
 	int SelectedFrameworkItem;
 
 	// Rendering parameters
-	const char* RenderingItems[3];
+	const char* RenderingItems[4];
 	int SelectedRenderingItem;
 
 	// Performance stats
