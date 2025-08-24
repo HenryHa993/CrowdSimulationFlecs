@@ -55,18 +55,38 @@ void UDevGuiSubsystem::SpawnMenu(bool& bShow)
 	}
 
 	ImGui::Begin("Spawn Menu");
+	ImGui::Text("Entity Count: %d", EntityCount);
+
+	ImGui::Spacing();
+
 	ImGui::Combo("Framework", &SelectedFrameworkItem, FrameworkItems, IM_ARRAYSIZE(FrameworkItems));
 	ImGui::Combo("Rendering", &SelectedRenderingItem, RenderingItems, IM_ARRAYSIZE(RenderingItems));
+
+	ImGui::Spacing();
+	
+	ImGui::InputFloat("Spawn Location X", &SpawnX, 100.f);
+	ImGui::InputFloat("Spawn Location Y", &SpawnY, 100.f);
+	ImGui::InputFloat("Spawn Location Z", &SpawnZ, 100.f);
+
+	ImGui::Spacing();
+	
 	ImGui::BeginGroup();
-	ImGui::SliderInt("Number of Units##slider", &NumUnits, 1, 10000);
+	ImGui::SliderInt("Number of Units X##slider", &NumUnitsX, 1, 10000);
 	ImGui::SameLine();
-	ImGui::InputInt("Number of Units##input", &NumUnits, 1);
+	ImGui::InputInt("Number of Units X##input", &NumUnitsX, 1);
 	ImGui::EndGroup();
 	ImGui::BeginGroup();
-	ImGui::SliderFloat("Distance between Units##slider", &DistanceBetweenUnits, 0, 10000);
+	ImGui::SliderInt("Number of Units Y##slider", &NumUnitsY, 1, 10000);
 	ImGui::SameLine();
-	ImGui::InputFloat("Distance between Units##value", &DistanceBetweenUnits, .1f);
+	ImGui::InputInt("Number of Units Y##input", &NumUnitsY, 1);
 	ImGui::EndGroup();
+
+	ImGui::Spacing();
+	
+	ImGui::InputFloat("Distance between Units X", &DistanceBetweenUnitsX, 100.f);
+	ImGui::InputFloat("Distance between Units Y", &DistanceBetweenUnitsY, 100.f);
+
+	ImGui::Spacing();
 
 	if(ImGui::Button("Spawn Units"))
 	{
@@ -208,6 +228,9 @@ void UDevGuiSubsystem::Stats(bool& bShow)
 				APlayerController* controller = GetWorld()->GetFirstPlayerController();
 				controller->ConsoleCommand(TEXT("Stat UNITGRAPH"));
 			}
+
+			ImGui::Spacing();
+			
 			// Tick
 			if(ImGui::Button("Stat GAME"))
 			{
@@ -223,11 +246,19 @@ void UDevGuiSubsystem::Stats(bool& bShow)
 	}
 	if(ImGui::CollapsingHeader("Profiling"))
 	{
+		/*if(ImGui::Button("r.RayTracing 0"))
+		{
+			APlayerController* controller = GetWorld()->GetFirstPlayerController();
+			controller->ConsoleCommand(TEXT("r.RayTracing 0"));
+		}*/
+		
 		if(ImGui::Button("MemReport"))
 		{
 			APlayerController* controller = GetWorld()->GetFirstPlayerController();
 			controller->ConsoleCommand(TEXT("MemReport"));
 		}
+
+		ImGui::Spacing();
 
 		ImGui::Text("FPS Chart Timer: %.2f ms", AutoFPSTimer - ElapsedAutoFPSTime);
 		ImGui::InputFloat("FPS Chart Timer", &AutoFPSTimer, .1f);
@@ -262,17 +293,17 @@ void UDevGuiSubsystem::Stats(bool& bShow)
 // todo: Spawning system currently only works for flecs system
 void UDevGuiSubsystem::SpawnUnits()
 {
+	EntityCount += NumUnitsX * NumUnitsY;
+	
 	flecs::world* ecs = GetGameInstance()->GetSubsystem<UUnrealFlecsSubsystem>()->GetECSWorld();
 	flecs::entity unitPrefab = ecs->lookup("Unit Prefab");
 	
-	int sqrtNumUnits = FMath::RoundToInt(FMath::Sqrt(static_cast<float>(NumUnits)));
-
 	// Spawn units in a grid based on values
-	for(float x = 0; x < sqrtNumUnits * DistanceBetweenUnits; x += DistanceBetweenUnits)
+	for(float x = 0; x < NumUnitsX; x++)
 	{
-		for(float y = 0; y < sqrtNumUnits * DistanceBetweenUnits; y += DistanceBetweenUnits)
+		for(float y = 0; y < NumUnitsY; y++)
 		{
-			FTransform unitTransform{FVector{x, y, 0}};
+			FTransform unitTransform{FVector{SpawnX + (x * DistanceBetweenUnitsX), SpawnY + (y * DistanceBetweenUnitsY), SpawnZ}};
 
 			// todo: Separate these out into functions
 			// Separate logic based on different modes of rendering
@@ -342,6 +373,7 @@ void UDevGuiSubsystem::SpawnUnits()
 
 void UDevGuiSubsystem::DespawnUnits()
 {
+	EntityCount = 0;
 	// I would have to generate a query and then add the delete component onto all entities I think?
 
 	// Is a TS_Prefab

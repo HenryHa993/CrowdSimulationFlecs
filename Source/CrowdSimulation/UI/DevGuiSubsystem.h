@@ -42,10 +42,18 @@ public:
 	bool bShowRenderMenu = false;
 	bool bShowAIMenu = false;
 	bool bShowStats = false;
+
+	int EntityCount = 0;
+	
+	float SpawnX = 0.f;
+	float SpawnY = 0.f;
+	float SpawnZ = 0.f;
 	
 	// Spawning parameters
-	int NumUnits = 100;
-	float DistanceBetweenUnits = 1000.0f;
+	int NumUnitsX = 16;
+	int NumUnitsY = 1;
+	float DistanceBetweenUnitsX = 0.f;
+	float DistanceBetweenUnitsY = 0.f;
 
 	// Framework selection
 	const char* FrameworkItems[2];
@@ -73,17 +81,17 @@ public:
 	int RenderThreadTimesOffset = 0;
 
 	// Auto FPS Grapher
-	float AutoFPSTimer = 0.f;
+	float AutoFPSTimer = 60.f;
 	float ElapsedAutoFPSTime = 0.f;
 	bool bAutoFPSStarted = false;
 
 	// Auto Game Thread Profiler
-	float AutoStatCaptureTimer = 0.f;
+	float AutoStatCaptureTimer = 60.f;
 	float ElapsedAutoStatCaptureTime = 0.f;
 	bool bAutoStatCaptureStarted = false;
 
 	// Auto Bookmarker
-	float AutoBookmarkTimer = 0.f;
+	float AutoBookmarkTimer = 60.f;
 	float ElapsedAutoBookmarkTime = 0.f;
 	bool bAutoBookmarkStarted = false;
 };

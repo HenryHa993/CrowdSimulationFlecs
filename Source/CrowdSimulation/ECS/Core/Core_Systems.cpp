@@ -47,7 +47,7 @@ void UCore_Systems::Initialize(flecs::world& ECSWorld)
 	{
 		//cVelocity.Value = FVector(FMath::RandRange(-100, 100), FMath::RandRange(-100, 100), 0);
 		FVector2D randUnitVector = FMath::RandPointInCircle(1);
-		cVelocity.Value = FVector(randUnitVector.X, randUnitVector.Y, 0)  * 400;
+		cVelocity.Value = FVector(randUnitVector.X, randUnitVector.Y, 0)  * 100;
 		it.entity(index).add(FSM_Status::Running);
 	});
 
