@@ -1,5 +1,5 @@
 --- Begin : FPS chart dump for level 'TSTestDemo'
-Dumping FPS chart at 2025.08.24-20.46.18 using build ++UE5+Release-5.5-CL-40574608 in config Development built from changelist 40574608
+Dumping FPS chart at 2025.08.25-15.05.58 using build ++UE5+Release-5.5-CL-40574608 in config Development built from changelist 40574608
 Machine info:
 	OS: Windows 11 (24H2) [10.0.26100.4946] 
 	CPU: AuthenticAMD AMD Ryzen 7 PRO 6850U with Radeon Graphics
@@ -18,26 +18,26 @@ Machine info:
 	Hair Quality: 1
 	Window Mode: WindowedFullscreen
 	Resolution: 1536x937
-1529 frames collected over 59.99 seconds, disregarding 0.00 seconds (0 frames) for a 25.49 FPS average
-Average GPU frametime: 36.17 ms
-Average RenderThread frametime: 38.79 ms
-Average GameThread frametime: 25.24 ms
+1710 frames collected over 59.98 seconds, disregarding 0.00 seconds (0 frames) for a 28.51 FPS average
+Average GPU frametime: 32.28 ms
+Average RenderThread frametime: 34.61 ms
+Average GameThread frametime: 18.06 ms
 Total time spent flushing async loading: 0.00 ms
 Total flushing async loading calls: 0
 Max flush async loading time: 0.00 ms
 Average flush async loading time: 0.00 ms
 Total sync loads: 0
-BoundGameThreadPct: 0.46
-BoundRenderThreadPct: 99.28
-BoundGPUPct: 97.51
+BoundGameThreadPct: 0.06
+BoundRenderThreadPct: 79.65
+BoundGPUPct: 1.46
 ExcludeIdleTime: 0
-  Target 30 FPS: 15.01 % syncs missed
-  Target 60 FPS: 57.52 % syncs missed
-  Target 120 FPS: 78.76 % syncs missed
+  Target 30 FPS: 4.95 % syncs missed
+  Target 60 FPS: 52.47 % syncs missed
+  Target 120 FPS: 76.24 % syncs missed
 --- Begin : Hitch chart dump for level 'TSTestDemo'
 Bucket: 0.00s - 0.03s  Count: 0  Time: 0.00 s
 Bucket: 0.03s - 0.06s  Count: 0  Time: 0.00 s
-Bucket: 0.06s - 0.10s  Count: 4  Time: 0.33 s
+Bucket: 0.06s - 0.10s  Count: 0  Time: 0.00 s
 Bucket: 0.10s - 0.15s  Count: 0  Time: 0.00 s
 Bucket: 0.15s - 0.20s  Count: 0  Time: 0.00 s
 Bucket: 0.20s - 0.30s  Count: 0  Time: 0.00 s
@@ -49,14 +49,13 @@ Bucket: 1.50s - 2.00s  Count: 0  Time: 0.00 s
 Bucket: 2.00s - 2.50s  Count: 0  Time: 0.00 s
 Bucket: 2.50s - 5.00s  Count: 0  Time: 0.00 s
 Bucket: 5.00s - inf  Count: 0  Time: 0.00 s
-Total hitch count:  4
-Total hitch time:  0.09 s (0.14 %)
+Total hitch count:  0
+Total hitch time:  0.00 s (0.00 %)
 Hitch frames bound by game thread:  0  (0.0 %)
-Hitch frames bound by render thread:  4  (1.0 %)
+Hitch frames bound by render thread:  0  (0.0 %)
 Hitch frames bound by RHI thread:  0  (0.0 %)
 Hitch frames bound by GPU:  0  (0.0 %)
-Hitches / min:  4.00
-Avg. hitch frame length:  0.08 s
+Hitches / min:  0.00
 --- End
 DynamicRes above 0% : 100.00% of frames
 DynamicRes above 60% : 100.00% of frames

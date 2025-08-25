@@ -3,26 +3,23 @@ Config: Development
 Device Name: WindowsEditor
 Device Profile: None
 CommandLine Options: /Game/CrowdSimulation/Maps/Dev/TSTestDemo -game -PIEVIACONSOLE -Multiprocess GameUserSettingsINI=PIEGameUserSettings0 -MultiprocessSaveConfig -forcepassthrough -messaging -SessionName="Play in Standalone Game" -trace=log,counters,cpu,gpu,frame,bookmark,rhicommands,rendercommands,memory -windowed -WinX=0 -WinY=42 SAVEWINPOS=1 -ResX=1912 -ResY=1150
-Time Since Boot: 93.80 Seconds
-Local PlayerController: PlayerController_0 View Location: X=0.000 Y=0.000 Z=1500.000 View Rotation: P=270.274981 Y=57.890549 R=0.000000
+Time Since Boot: 98.89 Seconds
+Local PlayerController: PlayerController_0 View Location: X=0.000 Y=0.000 Z=1500.000 View Rotation: P=270.099998 Y=93.908020 R=0.000000
 
 MemReport: Begin command "Mem FromReport"
 Platform Memory Stats for WindowsEditor
-Process Physical Memory: 3337.47 MB used, 3384.63 MB peak
-Process Virtual Memory: 3315.96 MB used, 3361.84 MB peak
-Physical Memory: 11186.88 MB used,  2913.45 MB free, 14100.32 MB total
-Virtual Memory: 24250.91 MB used,  11353.41 MB free, 35604.32 MB total
+Process Physical Memory: 3141.35 MB used, 3225.88 MB peak
+Process Virtual Memory: 3325.30 MB used, 3337.20 MB peak
+Physical Memory: 11606.61 MB used,  2493.72 MB free, 14100.32 MB total
+Virtual Memory: 16347.98 MB used,  19256.35 MB free, 35604.32 MB total
 
 Allocator Stats for Mimalloc: (not implemented)
 Memory Stats:
 FMemStack (gamethread) current size = 0.00 MB
-FPageAllocator (all threads) allocation size [used/ unused] = [5.12 / 0.00] MB
+FPageAllocator (all threads) allocation size [used/ unused] = [5.25 / 0.00] MB
 Nametable memory usage = 9.79 MB
-AssetRegistry memory usage = 53.33 MB
+AssetRegistry memory usage = 53.32 MB
          0.000MB  -  EXR Reader Pool Memory. - STAT_ExrMediaReaderPoolMem - STATGROUP_ImgMediaPlugin - STATCAT_Advanced
-         0.000MB  -  Oodle State Bytes - STAT_Oodle_StateBytes - STATGROUP_OodleNetwork - STATCAT_Advanced
-         0.000MB  -  Oodle Shared Bytes - STAT_Oodle_SharedBytes - STATGROUP_OodleNetwork - STATCAT_Advanced
-         0.000MB  -  Oodle Dictionary Bytes - STAT_Oodle_DictionaryBytes - STATGROUP_OodleNetwork - STATCAT_Advanced
          0.000MB  -  AllTrailingsIndicesByPhysicsProxy - STAT_AllTrailingsIndicesByPhysicsProxyMemory - STATGROUP_ChaosNiagara - STATCAT_Niagara
          0.000MB  -  AllTrailingsData - STAT_AllTrailingsDataMemory - STATGROUP_ChaosNiagara - STATCAT_Niagara
          0.000MB  -  AllBreakingsIndicesByPhysicsProxy - STAT_AllBreakingsIndicesByPhysicsProxyMemory - STATGROUP_ChaosNiagara - STATCAT_Niagara
@@ -31,15 +28,18 @@ AssetRegistry memory usage = 53.33 MB
          0.000MB  -  AllCollisionsData - STAT_AllCollisionsDataMemory - STATGROUP_ChaosNiagara - STATCAT_Niagara
          0.000MB  -  ParticleIndexReverseMapping - STAT_ParticleIndexReverseMappingMemory - STATGROUP_ChaosNiagara - STATCAT_Niagara
          0.000MB  -  PhysicsProxyReverseMapping - STAT_PhysicsProxyReverseMappingMemory - STATGROUP_ChaosNiagara - STATCAT_Niagara
+         0.000MB  -  Oodle State Bytes - STAT_Oodle_StateBytes - STATGROUP_OodleNetwork - STATCAT_Advanced
+         0.000MB  -  Oodle Shared Bytes - STAT_Oodle_SharedBytes - STATGROUP_OodleNetwork - STATCAT_Advanced
+         0.000MB  -  Oodle Dictionary Bytes - STAT_Oodle_DictionaryBytes - STATGROUP_OodleNetwork - STATCAT_Advanced
          0.221MB  -  UploadPool Memory Alignment Waste - STAT_D3D12UploadPoolAlignmentWaste - STATGROUP_D3D12BufferDetails - STATCAT_Advanced
-        12.560MB  -  UploadPool Memory Free - STAT_D3D12UploadPoolMemoryFree - STATGROUP_D3D12BufferDetails - STATCAT_Advanced
+        12.247MB  -  UploadPool Memory Free - STAT_D3D12UploadPoolMemoryFree - STATGROUP_D3D12BufferDetails - STATCAT_Advanced
          0.000MB  -  Bufferool Fragmentation - STAT_D3D12BufferPoolFragmentation - STATGROUP_D3D12BufferDetails - STATCAT_Advanced
          1.870MB  -  BufferPool Memory Alignment Waste - STAT_D3D12BufferPoolAlignmentWaste - STATGROUP_D3D12BufferDetails - STATCAT_Advanced
         43.774MB  -  BufferPool Memory Free - STAT_D3D12BufferPoolMemoryFree - STATGROUP_D3D12BufferDetails - STATCAT_Advanced
-         0.406MB  -  Sampler DescriptorHeap Memory - STAT_SamplerOnlineDescriptorHeapMemory - STATGROUP_D3D12MemoryDetails - STATCAT_Advanced
+         0.438MB  -  Sampler DescriptorHeap Memory - STAT_SamplerOnlineDescriptorHeapMemory - STATGROUP_D3D12MemoryDetails - STATCAT_Advanced
         15.259MB  -  View DescriptorHeap Memory (SRV, CBV, UAV) - STAT_ViewOnlineDescriptorHeapMemory - STATGROUP_D3D12MemoryDetails - STATCAT_Advanced
         64.000MB  -  Reserved Resource Physical Memory - STAT_D3D12ReservedResourcePhysical - STATGROUP_D3D12MemoryDetails - STATCAT_Advanced
-         3.219MB  -  UploadPool Memory Used - STAT_D3D12UploadPoolMemoryUsed - STATGROUP_D3D12MemoryDetails - STATCAT_Advanced
+         3.531MB  -  UploadPool Memory Used - STAT_D3D12UploadPoolMemoryUsed - STATGROUP_D3D12MemoryDetails - STATCAT_Advanced
         16.000MB  -  UploadPool Memory Allocated - STAT_D3D12UploadPoolMemoryAllocated - STATGROUP_D3D12MemoryDetails - STATCAT_Advanced
         54.357MB  -  BufferPool Memory Used - STAT_D3D12BufferPoolMemoryUsed - STATGROUP_D3D12MemoryDetails - STATCAT_Advanced
        100.000MB  -  BufferPool Memory Allocated - STAT_D3D12BufferPoolMemoryAllocated - STATGROUP_D3D12MemoryDetails - STATCAT_Advanced
@@ -51,13 +51,13 @@ AssetRegistry memory usage = 53.33 MB
        101.500MB  -  UAVTexture StandAlone Allocated - STAT_D3D12UAVTextureStandAloneAllocated - STATGROUP_D3D12MemoryDetails - STATCAT_Advanced
        161.000MB  -  RenderTarget StandAlone Allocated - STAT_D3D12RenderTargetStandAloneAllocated - STATGROUP_D3D12MemoryDetails - STATCAT_Advanced
        128.000MB  -  Transient Heaps - STAT_D3D12TransientHeaps - STATGROUP_D3D12Resources - STATCAT_Advanced
-        16.896MB  -  Buffers - STAT_D3D12Buffer - STATGROUP_D3D12Resources - STATCAT_Advanced
+        16.959MB  -  Buffers - STAT_D3D12Buffer - STATGROUP_D3D12Resources - STATCAT_Advanced
          8.215MB  -  RayTracing Buffers - STAT_D3D12RTBuffers - STATGROUP_D3D12Resources - STATCAT_Advanced
       4124.199MB  -  UAV Buffers - STAT_D3D12UAVBuffers - STATGROUP_D3D12Resources - STATCAT_Advanced
         66.113MB  -  Textures - STAT_D3D12Textures - STATGROUP_D3D12Resources - STATCAT_Advanced
        101.500MB  -  UAV Textures - STAT_D3D12UAVTextures - STATGROUP_D3D12Resources - STATCAT_Advanced
        161.000MB  -  Render Targets - STAT_D3D12RenderTargets - STATGROUP_D3D12Resources - STATCAT_Advanced
-      4606.329MB  -  TOTAL - STAT_D3D12MemoryCurrentTotal - STATGROUP_D3D12Resources - STATCAT_Advanced
+      4606.423MB  -  TOTAL - STAT_D3D12MemoryCurrentTotal - STATGROUP_D3D12Resources - STATCAT_Advanced
          0.000MB  -  Resource Heaps GPU Memory Usage - STAT_D3D12BindlessResourceHeapGPUMemoryUsage - STATGROUP_D3D12Bindless - STATCAT_Advanced
          8.215MB  -  Total Used Video Memory - STAT_D3D12RayTracingUsedVideoMemory - STATGROUP_D3D12RayTracing - STATCAT_Advanced
          0.000MB  -  TL AS Memory - STAT_D3D12RayTracingTLASMemory - STATGROUP_D3D12RayTracing - STATCAT_Advanced
@@ -147,7 +147,7 @@ AssetRegistry memory usage = 53.33 MB
          0.000MB  -  Mesh LOD Bytes Evicted - STAT_StreamingOverview15_EvictedMeshMem - STATGROUP_StreamingOverview - STATCAT_Advanced
          0.000MB  -  Mesh LOD Bytes Resident - STAT_StreamingOverview14_ResidentMeshMem - STATGROUP_StreamingOverview - STATCAT_Advanced
          0.000MB  -  Mesh LOD Bytes Streamable - STAT_StreamingOverview13_StreamedMeshMem - STATGROUP_StreamingOverview - STATCAT_Advanced
-         0.585MB  -  Average Required PoolSize - STAT_StreamingOverview08_AverageRequiredPool - STATGROUP_StreamingOverview - STATCAT_Advanced
+         0.599MB  -  Average Required PoolSize - STAT_StreamingOverview08_AverageRequiredPool - STATGROUP_StreamingOverview - STATCAT_Advanced
          3.406MB  -  UI Group - STAT_StreamingOverview07_UIGroup - STATGROUP_StreamingOverview - STATCAT_Advanced
         24.848MB  -  NeverStream - STAT_StreamingOverview06_NeverStream - STATGROUP_StreamingOverview - STATCAT_Advanced
         65.227MB  -  Unstreambale Render Assets - STAT_StreamingOverview05_UnstreamableRenderAssets - STATGROUP_StreamingOverview - STATCAT_Advanced
@@ -243,7 +243,7 @@ AssetRegistry memory usage = 53.33 MB
          0.000MB  -  Instance memory - STAT_AI_BehaviorTree_InstanceMemory - STATGROUP_AIBehaviorTree - STATCAT_Advanced
          0.000MB  -  Instance Buffers - STAT_FoliageInstanceBuffers - STATGROUP_Foliage - STATCAT_Advanced
          0.000MB  -  Shader Preload Mem - STAT_Shaders_ShaderPreloadMemory - STATGROUP_Shaders - STATCAT_Advanced
-       182.747MB  -  Shader Resource Mem - STAT_Shaders_ShaderResourceMemory - STATGROUP_Shaders - STATCAT_Advanced
+       182.643MB  -  Shader Resource Mem - STAT_Shaders_ShaderResourceMemory - STATGROUP_Shaders - STATCAT_Advanced
          5.234MB  -  Shader Memory - STAT_Shaders_ShaderMemory - STATGROUP_Shaders - STATCAT_Advanced
          1.055MB  -  Builder Watermark - STAT_RDG_MemoryWatermark - STATGROUP_RDG - STATCAT_Advanced
         96.449MB  -  Pool Used - STAT_RenderTargetPoolUsed - STATGROUP_RenderTargetPool - STATCAT_Advanced
@@ -253,17 +253,17 @@ AssetRegistry memory usage = 53.33 MB
          0.000MB  -  Light interaction memory - STAT_LightInteractionMemory - STATGROUP_SceneMemory - STATCAT_Advanced
          0.012MB  -  ViewState memory - STAT_ViewStateMemory - STATGROUP_SceneMemory - STATCAT_Advanced
          0.023MB  -  Scene memory - STAT_RenderingSceneMemory - STATGROUP_SceneMemory - STATCAT_Advanced
-        -2.106MB  -  Primitive memory - STAT_PrimitiveInfoMemory - STATGROUP_SceneMemory - STATCAT_Advanced
+        -1.976MB  -  Primitive memory - STAT_PrimitiveInfoMemory - STATGROUP_SceneMemory - STATCAT_Advanced
          0.000MB  -  Demoted System Memory - STAT_D3DDemotedSystemMemory - STATGROUP_D3DMemory - STATCAT_Advanced
          0.000MB  -  Demoted Video Memory - STAT_D3DDemotedVideoMemory - STATGROUP_D3DMemory - STATCAT_Advanced
          0.000MB  -  Available System Memory - STAT_D3DAvailableSystemMemory - STATGROUP_D3DMemory - STATCAT_Advanced
-      7461.599MB  -  Available Video Memory - STAT_D3DAvailableVideoMemory - STATGROUP_D3DMemory - STATCAT_Advanced
+      7455.130MB  -  Available Video Memory - STAT_D3DAvailableVideoMemory - STATGROUP_D3DMemory - STATCAT_Advanced
          0.000MB  -  Used System Memory - STAT_D3DUsedSystemMemory - STATGROUP_D3DMemory - STATCAT_Advanced
-       898.547MB  -  Used Video Memory - STAT_D3DUsedVideoMemory - STATGROUP_D3DMemory - STATCAT_Advanced
+       905.016MB  -  Used Video Memory - STAT_D3DUsedVideoMemory - STATGROUP_D3DMemory - STATCAT_Advanced
          0.000MB  -  Total System Memory (Budget) - STAT_D3DTotalSystemMemory - STATGROUP_D3DMemory - STATCAT_Advanced
       8360.146MB  -  Total Video Memory (Budget) - STAT_D3DTotalVideoMemory - STATGROUP_D3DMemory - STATCAT_Advanced
         31.580MB  -  Bindless Resource Heap - STAT_BindlessResourceHeapMemory - STATGROUP_RHI - STATCAT_Advanced
-         0.439MB  -  Bindless Sampler Heap - STAT_BindlessSamplerHeapMemory - STATGROUP_RHI - STATCAT_Advanced
+         0.471MB  -  Bindless Sampler Heap - STAT_BindlessSamplerHeapMemory - STATGROUP_RHI - STATCAT_Advanced
         64.000MB  -  Reserved Texture Memory (Committed) - STAT_ReservedCommittedTextureMemory - STATGROUP_RHI - STATCAT_Advanced
          0.000MB  -  Reserved Texture Memory (Uncommitted) - STAT_ReservedUncommittedTextureMemory - STATGROUP_RHI - STATCAT_Advanced
          0.000MB  -  Reserved Buffer Memory (Committed) - STAT_ReservedCommittedBufferMemory - STATGROUP_RHI - STATCAT_Advanced
@@ -273,9 +273,9 @@ AssetRegistry memory usage = 53.33 MB
          3.131MB  -  Byte Address Buffer Memory - STAT_ByteAddressBufferMemory - STATGROUP_RHI - STATCAT_Advanced
         15.945MB  -  Structured Buffer Memory - STAT_StructuredBufferMemory - STATGROUP_RHI - STATCAT_Advanced
          8.215MB  -  RayTracing Acceleration Structure Memory - STAT_RTAccelerationStructureMemory - STATGROUP_RHI - STATCAT_Advanced
-        23.076MB  -  Vertex Buffer Memory - STAT_VertexBufferMemory - STATGROUP_RHI - STATCAT_Advanced
+        23.138MB  -  Vertex Buffer Memory - STAT_VertexBufferMemory - STATGROUP_RHI - STATCAT_Advanced
          3.942MB  -  Index Buffer Memory - STAT_IndexBufferMemory - STATGROUP_RHI - STATCAT_Advanced
-         0.128MB  -  Uniform Buffer Memory - STAT_UniformBufferMemory - STATGROUP_RHI - STATCAT_Advanced
+         0.127MB  -  Uniform Buffer Memory - STAT_UniformBufferMemory - STATGROUP_RHI - STATCAT_Advanced
         16.211MB  -  Texture Cube Memory - STAT_TextureMemoryCube - STATGROUP_RHI - STATCAT_Advanced
          9.570MB  -  Texture 3D Memory - STAT_TextureMemory3D - STATGROUP_RHI - STATCAT_Advanced
         40.332MB  -  Texture 2D Memory - STAT_TextureMemory2D - STATGROUP_RHI - STATCAT_Advanced
@@ -306,11 +306,11 @@ AssetRegistry memory usage = 53.33 MB
          0.000MB  -  Font BulkData Memory - STAT_SlateBulkFontDataMemory - STATGROUP_SlateMemory - STATCAT_Advanced
          4.690MB  -  Resident Font Memory (TTF/OTF) - STAT_SlateRawFontDataMemory - STATGROUP_SlateMemory - STATCAT_Advanced
          9.788MB  -  NameTable Memory Size - STAT_NameTableMemorySize - STATGROUP_Object - STATCAT_Advanced
-         0.201MB  -  Stat Messages - STAT_StatMessagesMemory - STATGROUP_StatSystem - STATCAT_Advanced
-         0.322MB  -  Stats Descriptions - STAT_StatDescMemory - STATGROUP_StatSystem - STATCAT_Advanced
+         0.200MB  -  Stat Messages - STAT_StatMessagesMemory - STATGROUP_StatSystem - STATCAT_Advanced
+         0.323MB  -  Stats Descriptions - STAT_StatDescMemory - STATGROUP_StatSystem - STATCAT_Advanced
          0.000MB  -  Sent - STAT_TraceSent - STATGROUP_Trace - STATCAT_Advanced
          0.009MB  -  Important event cache waste - STAT_TraceCacheWaste - STATGROUP_Trace - STATCAT_Advanced
-         0.724MB  -  Important event cache used - STAT_TraceCacheUsed - STATGROUP_Trace - STATCAT_Advanced
+         0.734MB  -  Important event cache used - STAT_TraceCacheUsed - STATGROUP_Trace - STATCAT_Advanced
          0.751MB  -  Important event cache - STAT_TraceCacheAllocated - STATGROUP_Trace - STATCAT_Advanced
         43.753MB  -  Memory used - STAT_TraceMemoryUsed - STATGROUP_Trace - STATCAT_Advanced
          0.000MB  -  Binned Slack Current - STAT_Binned_SlackCurrent - STATGROUP_MemoryAllocator - STATCAT_Advanced
@@ -320,14 +320,14 @@ AssetRegistry memory usage = 53.33 MB
          0.000MB  -  Binned Waste Current - STAT_Binned_WasteCurrent - STATGROUP_MemoryAllocator - STATCAT_Advanced
          0.000MB  -  Binned Os Peak - STAT_Binned_OsPeak - STATGROUP_MemoryAllocator - STATCAT_Advanced
          0.000MB  -  Binned Os Current - STAT_Binned_OsCurrent - STATGROUP_MemoryAllocator - STATCAT_Advanced
-       203.840MB  -  LLM Overhead - STAT_LLMOverheadTotal - STATGROUP_LLMOverhead - STATCAT_Advanced
+       203.867MB  -  LLM Overhead - STAT_LLMOverheadTotal - STATGROUP_LLMOverhead - STATCAT_Advanced
          0.000MB  -  Windows Specific Memory Stat - STAT_WindowsSpecificMemoryStat - STATGROUP_MemoryPlatform - STATCAT_Advanced
-      3361.844MB  -  Peak Used Virtual - STAT_PeakUsedVirtual - STATGROUP_MemoryPlatform - STATCAT_Advanced
-      3314.953MB  -  Used Virtual - STAT_UsedVirtual - STATGROUP_MemoryPlatform - STATCAT_Advanced
-      3384.633MB  -  Peak Used Physical - STAT_PeakUsedPhysical - STATGROUP_MemoryPlatform - STATCAT_Advanced
-      3337.391MB  -  Used Physical - STAT_UsedPhysical - STATGROUP_MemoryPlatform - STATCAT_Advanced
-     11354.375MB  -  Available Virtual - STAT_AvailableVirtual - STATGROUP_MemoryPlatform - STATCAT_Advanced
-      2912.547MB  -  Available Physical - STAT_AvailablePhysical - STATGROUP_MemoryPlatform - STATCAT_Advanced
+      3337.203MB  -  Peak Used Virtual - STAT_PeakUsedVirtual - STATGROUP_MemoryPlatform - STATCAT_Advanced
+      3325.289MB  -  Used Virtual - STAT_UsedVirtual - STATGROUP_MemoryPlatform - STATCAT_Advanced
+      3225.879MB  -  Peak Used Physical - STAT_PeakUsedPhysical - STATGROUP_MemoryPlatform - STATCAT_Advanced
+      3141.332MB  -  Used Physical - STAT_UsedPhysical - STATGROUP_MemoryPlatform - STATCAT_Advanced
+     19245.914MB  -  Available Virtual - STAT_AvailableVirtual - STATGROUP_MemoryPlatform - STATCAT_Advanced
+      2490.672MB  -  Available Physical - STAT_AvailablePhysical - STATGROUP_MemoryPlatform - STATCAT_Advanced
          0.000MB  -  Total Physical GB - STAT_TotalPhysicalGB - STATGROUP_MemoryPlatform - STATCAT_Advanced
          0.004MB  -  Page Size - STAT_PageSize - STATGROUP_MemoryPlatform - STATCAT_Advanced
      35604.324MB  -  Total Virtual - STAT_TotalVirtual - STATGROUP_MemoryPlatform - STATCAT_Advanced
@@ -337,8 +337,8 @@ AssetRegistry memory usage = 53.33 MB
          0.000MB  -  Persistent Uber Graph Frame memory - STAT_PersistentUberGraphFrameMemory - STATGROUP_Memory - STATCAT_Advanced
          0.000MB  -  FAsyncArchive Buffers - STAT_FAsyncArchiveMem - STATGROUP_Memory - STATCAT_Advanced
          0.000MB  -  Streaming Memory Used - STAT_StreamingAllocSize - STATGROUP_Memory - STATCAT_Advanced
-         8.062MB  -  PageAllocator Used - STAT_PageAllocatorUsed - STATGROUP_Memory - STATCAT_Advanced
-         0.375MB  -  PageAllocator Free - STAT_PageAllocatorFree - STATGROUP_Memory - STATCAT_Advanced
+         8.375MB  -  PageAllocator Used - STAT_PageAllocatorUsed - STATGROUP_Memory - STATCAT_Advanced
+         0.188MB  -  PageAllocator Free - STAT_PageAllocatorFree - STATGROUP_Memory - STATCAT_Advanced
          0.375MB  -  MemStack Large Block - STAT_MemStackLargeBLock - STATGROUP_Memory - STATCAT_Advanced
          0.000MB  -  Reflection Capture Memory - STAT_ReflectionCaptureMemory - STATGROUP_Memory - STATCAT_Advanced
          0.000MB  -  Reflection Capture Texture Memory - STAT_ReflectionCaptureTextureMemory - STATGROUP_Memory - STATCAT_Advanced
@@ -369,43 +369,43 @@ AssetRegistry memory usage = 53.33 MB
          3.609MB  -  GenericPlatformMallocCrash - STAT_GenericPlatformMallocCrashPlatformLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
         32.000MB  -  OOM Backup Pool - STAT_OOMBackupPoolPlatformLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
          0.000MB  -  Program Size - STAT_ProgramSizePlatformLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
-        35.750MB  -  ThreadStackPlatform - STAT_ThreadStackPlatformLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
-      1775.523MB  -  FMalloc - STAT_FMallocLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
-      2913.457MB  -  OS Available - STAT_PlatformOSAvailableLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
-       203.840MB  -  Overhead - STAT_PlatformOverheadLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
-       683.085MB  -  Untracked - STAT_PlatformUntrackedLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
+        36.750MB  -  ThreadStackPlatform - STAT_ThreadStackPlatformLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
+      1777.156MB  -  FMalloc - STAT_FMallocLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
+      2493.797MB  -  OS Available - STAT_PlatformOSAvailableLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
+       203.867MB  -  Overhead - STAT_PlatformOverheadLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
+       690.764MB  -  Untracked - STAT_PlatformUntrackedLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
          0.000MB  -  Untagged - STAT_PlatformUntaggedTotalLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
-      2631.868MB  -  Tracked Total - STAT_PlatformTrackedTotalLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
-      3314.953MB  -  Total - STAT_PlatformTotalLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
+      2634.529MB  -  Tracked Total - STAT_PlatformTrackedTotalLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
+      3325.293MB  -  Total - STAT_PlatformTotalLLM - STATGROUP_LLMPlatform - STATCAT_Advanced
         24.499MB  -  Nanite - STAT_NaniteSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
         13.559MB  -  AssetCompilation - STAT_AssetCompilationSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
          0.000MB  -  SceneCulling - STAT_SceneCullingSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
          0.001MB  -  Lumen - STAT_LumenSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
-         0.168MB  -  GPUScene - STAT_GPUSceneSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
-         0.048MB  -  DistanceFields - STAT_DistanceFieldsSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
+         0.044MB  -  GPUScene - STAT_GPUSceneSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
+         0.046MB  -  DistanceFields - STAT_DistanceFieldsSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
          0.000MB  -  Project - STAT_ProjectSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
          0.000MB  -  MediaStreaming - STAT_MediaStreamingSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
-         0.023MB  -  Chaos - STAT_ChaosSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
+         0.022MB  -  Chaos - STAT_ChaosSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
          0.000MB  -  PhysX - STAT_PhysXSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
-        12.381MB  -  Physics - STAT_PhysicsSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
+        12.392MB  -  Physics - STAT_PhysicsSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
          0.141MB  -  Navigation - STAT_NavigationSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
          1.290MB  -  UI - STAT_UISummaryLLM - STATGROUP_LLM - STATCAT_Advanced
          2.242MB  -  Niagara - STAT_NiagaraSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
          0.250MB  -  Particles - STAT_ParticlesSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
-        46.883MB  -  Materials - STAT_MaterialsSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
-         0.345MB  -  StaticMesh - STAT_StaticMeshSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
+        46.824MB  -  Materials - STAT_MaterialsSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
+         0.198MB  -  StaticMesh - STAT_StaticMeshSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
          0.276MB  -  Animation - STAT_AnimationSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
-       225.076MB  -  UObject - STAT_UObjectSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
+       224.749MB  -  UObject - STAT_UObjectSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
          0.092MB  -  Textures - STAT_TexturesSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
-        31.269MB  -  Meshes - STAT_MeshesSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
+        31.122MB  -  Meshes - STAT_MeshesSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
          0.008MB  -  Networking - STAT_NetworkingSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
          0.373MB  -  Audio - STAT_AudioSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
          3.609MB  -  Engine - STAT_EngineSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
-      3314.953MB  -  Total - STAT_TrackedTotalSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
+      3325.293MB  -  Total - STAT_TrackedTotalSummaryLLM - STATGROUP_LLM - STATCAT_Advanced
         28.449MB  -  MetaSound - STAT_MetaSoundLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  AudioAnalysis - STAT_AudioAnalysisLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.250MB  -  D3D12AllocatorWasted - STAT_D3D12AllocatorWastedLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-       124.345MB  -  D3D12AllocatorUnused - STAT_D3D12AllocatorUnusedLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+       124.283MB  -  D3D12AllocatorUnused - STAT_D3D12AllocatorUnusedLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.007MB  -  RHI Transient Resources - STAT_RHITransientResourcesLLM - STATGROUP_LLMFULL - STATCAT_Advanced
         24.499MB  -  Nanite - STAT_NaniteLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  GuidCache - STAT_GuidCacheLLM - STATGROUP_LLMFULL - STATCAT_Advanced
@@ -416,8 +416,8 @@ AssetRegistry memory usage = 53.33 MB
         13.559MB  -  AssetCompilation - STAT_AssetCompilationLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.047MB  -  SceneCulling - STAT_SceneCullingLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.001MB  -  Lumen - STAT_LumenLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         0.168MB  -  GPUScene - STAT_GPUSceneLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         0.048MB  -  DistanceFields - STAT_DistanceFieldsLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         0.044MB  -  GPUScene - STAT_GPUSceneLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         0.046MB  -  DistanceFields - STAT_DistanceFieldsLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  IrisConnection - STAT_IrisConnectionLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  IrisInitialization - STAT_IrisInitializationLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  IrisState - STAT_IrisStateLLM - STATGROUP_LLMFULL - STATCAT_Advanced
@@ -427,7 +427,7 @@ AssetRegistry memory usage = 53.33 MB
          1.000MB  -  UI_Texture - STAT_UI_TextureLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.178MB  -  UI_Text - STAT_UI_TextLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  UI_UMG - STAT_UI_UMGLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         1.970MB  -  UI_Slate - STAT_UI_SlateLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         1.951MB  -  UI_Slate - STAT_UI_SlateLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  CustomName - STAT_CustomName - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  WMFPlayer - STAT_WMFPlayerLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  ElectraPlayer - STAT_ElectraPlayerLLM - STATGROUP_LLMFULL - STATCAT_Advanced
@@ -440,26 +440,26 @@ AssetRegistry memory usage = 53.33 MB
          0.000MB  -  Replays - STAT_ReplaysLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  VideoRecording - STAT_VideoRecordingLLM - STATGROUP_LLMFULL - STATCAT_Advanced
        195.859MB  -  InitUObject - STAT_InitUObjectLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-        56.798MB  -  ConfigSystem - STAT_ConfigSystemLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-        60.022MB  -  AssetRegistry - STAT_AssetRegistryLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+        56.723MB  -  ConfigSystem - STAT_ConfigSystemLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+        60.021MB  -  AssetRegistry - STAT_AssetRegistryLLM - STATGROUP_LLMFULL - STATCAT_Advanced
         61.747MB  -  Localization - STAT_LocalizationLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.001MB  -  FileSystem - STAT_FileSystemLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.042MB  -  StreamingManager - STAT_StreamingManagerLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         0.141MB  -  LoadMap Misc - STAT_LoadMapMiscLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         0.142MB  -  LoadMap Misc - STAT_LoadMapMiscLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  Rendering Thread - STAT_RenderingThreadLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         5.731MB  -  EngineInit - STAT_EngineInitLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         5.727MB  -  EngineInit - STAT_EngineInitLLM - STATGROUP_LLMFULL - STATCAT_Advanced
         80.432MB  -  EnginePreInit - STAT_EnginePreInitLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  ChaosMaterial - STAT_ChaosMaterialLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  ChaosConstraint - STAT_ChaosConstraintLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         0.020MB  -  ChaosBody - STAT_ChaosBodyLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         0.027MB  -  ChaosBody - STAT_ChaosBodyLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.009MB  -  ChaosActor - STAT_ChaosActorLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         0.023MB  -  ChaosUpdate - STAT_ChaosUpdateLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         0.017MB  -  ChaosScene - STAT_ChaosSceneLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         0.022MB  -  ChaosUpdate - STAT_ChaosUpdateLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         0.022MB  -  ChaosScene - STAT_ChaosSceneLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.017MB  -  ChaosConvex - STAT_ChaosConvexLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          9.507MB  -  ChaosTrimesh - STAT_ChaosTrimeshLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  ChaosLandscape - STAT_ChaosLandscapeLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  ChaosParticles - STAT_ChaosParticlesLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         0.083MB  -  ChaosAcceleration - STAT_ChaosAccelerationLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         0.084MB  -  ChaosAcceleration - STAT_ChaosAccelerationLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.008MB  -  ChaosGeometry - STAT_ChaosGeometryLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.388MB  -  Chaos - STAT_ChaosLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  PhysXLandscape - STAT_PhysXLandscapeLLM - STATGROUP_LLMFULL - STATCAT_Advanced
@@ -468,28 +468,28 @@ AssetRegistry memory usage = 53.33 MB
          0.000MB  -  PhysXTrimesh - STAT_PhysXTrimeshLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  PhysXGeometry - STAT_PhysXGeometryLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  PhysX - STAT_PhysXLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-        12.381MB  -  Physics - STAT_PhysicsLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+        12.392MB  -  Physics - STAT_PhysicsLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.141MB  -  NavigationRecast - STAT_NavigationRecastLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         4.440MB  -  UI - STAT_UILLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         0.762MB  -  GC - STAT_GCLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         4.421MB  -  UI - STAT_UILLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         0.767MB  -  GC - STAT_GCLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  GPUSort - STAT_GPUSortLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          2.242MB  -  Niagara - STAT_NiagaraLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.250MB  -  Particles - STAT_ParticlesLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-        46.883MB  -  Materials - STAT_MaterialsLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         0.345MB  -  StaticMesh - STAT_StaticMeshLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+        46.824MB  -  Materials - STAT_MaterialsLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         0.198MB  -  StaticMesh - STAT_StaticMeshLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.276MB  -  Animation - STAT_AnimationLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-       225.076MB  -  UObject - STAT_UObjectLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-        35.755MB  -  AsyncLoading - STAT_AsyncLoadingLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         8.414MB  -  RHIMisc - STAT_RHIMiscLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         4.157MB  -  SceneRender - STAT_SceneRenderLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+       224.749MB  -  UObject - STAT_UObjectLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+        35.837MB  -  AsyncLoading - STAT_AsyncLoadingLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         8.688MB  -  RHIMisc - STAT_RHIMiscLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         3.985MB  -  SceneRender - STAT_SceneRenderLLM - STATGROUP_LLMFULL - STATCAT_Advanced
        161.062MB  -  Render Targets - STAT_RenderTargetsLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  VirtualTextureSystem - STAT_VirtualTextureSystemLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.092MB  -  TextureMetaData - STAT_TextureMetaDataLLM - STATGROUP_LLMFULL - STATCAT_Advanced
        168.355MB  -  Textures - STAT_TexturesLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         0.742MB  -  PSO - STAT_PSOLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-        94.243MB  -  Shaders - STAT_ShadersLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         3.248MB  -  Stats - STAT_StatsLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-        31.269MB  -  Meshes - STAT_MeshesLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         0.681MB  -  PSO - STAT_PSOLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+        94.365MB  -  Shaders - STAT_ShadersLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         3.455MB  -  Stats - STAT_StatsLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+        31.122MB  -  Meshes - STAT_MeshesLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.008MB  -  Networking - STAT_NetworkingLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          9.526MB  -  FName - STAT_FNameLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.412MB  -  RealTimeCommunications - STAT_RealTimeCommunicationsLLM - STATGROUP_LLMFULL - STATCAT_Advanced
@@ -506,21 +506,21 @@ AssetRegistry memory usage = 53.33 MB
          0.028MB  -  AudioSoundWaves - STAT_AudioSoundWavesLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.056MB  -  AudioMisc - STAT_AudioMiscLLM - STATGROUP_LLMFULL - STATCAT_Advanced
         38.336MB  -  Audio - STAT_AudioLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         0.000MB  -  Linear Allocator - STAT_LinearAllocatorLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         0.001MB  -  Linear Allocator - STAT_LinearAllocatorLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  TaskGraph Misc Tasks - STAT_TaskGraphTasksMiscLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         5.466MB  -  Engine Misc - STAT_EngineMiscLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         5.441MB  -  Engine Misc - STAT_EngineMiscLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          3.609MB  -  GenericPlatformMallocCrash - STAT_GenericPlatformMallocCrashLLM - STATGROUP_LLMFULL - STATCAT_Advanced
         32.000MB  -  OOM Backup Pool - STAT_OOMBackupPoolLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  Program Size - STAT_ProgramSizeLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-        35.750MB  -  ThreadStack - STAT_ThreadStackLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+        36.750MB  -  ThreadStack - STAT_ThreadStackLLM - STATGROUP_LLMFULL - STATCAT_Advanced
          0.000MB  -  RHI Unused - STAT_RHIUnusedLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-       596.171MB  -  FMalloc Unused - STAT_FMallocUnusedLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-      3314.953MB  -  PagefileUsed - STAT_PagefileUsedLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-      3337.391MB  -  WorkingSetSize - STAT_WorkingSetSizeLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-         0.985MB  -  Untagged - STAT_UntaggedTotalLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-      2219.257MB  -  Tracked Total - STAT_TrackedTotalLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-       891.945MB  -  Untracked - STAT_UntrackedLLM - STATGROUP_LLMFULL - STATCAT_Advanced
-      3111.113MB  -  Total - STAT_TotalLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+       600.012MB  -  FMalloc Unused - STAT_FMallocUnusedLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+      3325.293MB  -  PagefileUsed - STAT_PagefileUsedLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+      3141.273MB  -  WorkingSetSize - STAT_WorkingSetSizeLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+         0.925MB  -  Untagged - STAT_UntaggedTotalLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+      2221.892MB  -  Tracked Total - STAT_TrackedTotalLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+       899.563MB  -  Untracked - STAT_UntrackedLLM - STATGROUP_LLMFULL - STATCAT_Advanced
+      3121.426MB  -  Total - STAT_TotalLLM - STATGROUP_LLMFULL - STATCAT_Advanced
 MemReport: End command "Mem FromReport"
 
 MemReport: Begin command "LogCountedInstances"
@@ -596,9 +596,9 @@ Objects:
                                                                                                  Font        5      17.38      17.48       0.00            0.00            0.00            0.00
                                                                 MaterialExpressionFontSampleParameter        1       0.48       1.01       0.00            0.00            0.00            0.00
                                                                         MaterialExpressionVertexColor       11       4.04      10.40       0.00            0.00            0.00            0.00
-                                                                                            Blueprint        9      15.00      15.00       0.00            0.00            0.00            0.00
-                                                                              BlueprintGeneratedClass       20      34.20      37.37       0.00            0.00            0.00            0.00
-                                                                                              EdGraph       54      12.69      13.45       0.00            0.00            0.00            0.00
+                                                                                            Blueprint       10      16.64      16.64       0.00            0.00            0.00            0.00
+                                                                              BlueprintGeneratedClass       22      37.90      41.87       0.00            0.00            0.00            0.00
+                                                                                              EdGraph       56      13.09      13.86       0.00            0.00            0.00            0.00
                                                                            InterchangeAssetImportData       33    1743.89    1743.89       0.00            0.00            0.00            0.00
                                                                                 MaterialExpressionAbs       30       8.78      13.00       0.00            0.00            0.00            0.00
                                                                MaterialExpressionCloudSampleAttribute        3       1.01       1.15       0.00            0.00            0.00            0.00
@@ -609,7 +609,7 @@ Objects:
                                                                                 MaterialExpressionMin        8       2.78       3.91       0.00            0.00            0.00            0.00
                                                                        MaterialExpressionStaticSwitch       56      21.88      29.75       0.00            0.00            0.00            0.00
                                                                                     SequencerSettings        3       2.04       2.15       0.00            0.00            0.00            0.00
-                                                                                         K2Node_Event       21      11.31      11.31       0.00            0.00            0.00            0.00
+                                                                                         K2Node_Event       24      12.99      12.99       0.00            0.00            0.00            0.00
                                                                            MaterialExpressionSaturate       29       8.38      12.46       0.00            0.00            0.00            0.00
                                                                     MaterialExpressionScalarParameter      234      75.59     108.49       0.00            0.00            0.00            0.00
                                                                                MaterialExpressionSine        3       0.99       1.41       0.00            0.00            0.00            0.00
@@ -650,7 +650,7 @@ Objects:
                                                                   MaterialExpressionConstantBiasScale        4       1.19       1.75       0.00            0.00            0.00            0.00
                                                                              MaterialExpressionPanner        1       0.40       0.54       0.00            0.00            0.00            0.00
                                                                     ViewportInteractionAssetContainer        1       0.23       0.23       0.00            0.00            0.00            0.00
-                                                                                             Function    12330    3478.75    4318.50       0.00            0.00            0.00            0.00
+                                                                                             Function    12334    3479.79    4319.53       0.00            0.00            0.00            0.00
                                                                               AssetDefinitionRegistry        1       0.20       0.20       0.00            0.00            0.00            0.00
                                                                         MovieSceneCompiledDataManager        3       1.66       1.66       0.00            0.00            0.00            0.00
                                                                                      DelegateFunction      762     210.48     232.70       0.00            0.00            0.00            0.00
@@ -675,17 +675,13 @@ Objects:
                                                                         AnimCurveCompressionCodec_ACL        1       0.06       0.06       0.00            0.00            0.00            0.00
                                                                             MaterialExpressionReroute      198      57.58      85.43       0.00            0.00            0.00            0.00
                                                                                  EnhancedInputLibrary        1       0.05       0.05       0.00            0.00            0.00            0.00
-                                                                      MaterialExpressionEyeAdaptation        1       0.24       0.38       0.00            0.00            0.00            0.00
-                                                                               ControlRigShapeLibrary        1       9.64       9.64       0.00            0.00            0.00            0.00
-                                                                                         PyTestObject        1       1.84       2.58       0.00            0.00            0.00            0.00
-                                                               MaterialExpressionSpriteTextureSampler        1       0.85       1.38       0.00            0.00            0.00            0.00
-                                                                                          PaperSprite        1       0.95       0.95       0.00            0.00            0.00            0.00
-                                                                                 PaperTerrainMaterial        1       0.16       0.16       0.00            0.00            0.00            0.00
                                                                                       UserDefinedEnum       18       5.60       5.60       0.00            0.00            0.00            0.00
                                                                        NiagaraPythonScriptModuleInput        1       0.05       0.05       0.00            0.00            0.00            0.00
                                                                             NiagaraAssetBrowserConfig        1       0.16       0.16       0.00            0.00            0.00            0.00
                                                                                             ToolMenus        1       0.88       0.88       0.00            0.00            0.00            0.00
                                                                                              ToolMenu        8      26.19      48.75       0.00            0.00            0.00            0.00
+                                                                      MaterialExpressionEyeAdaptation        1       0.24       0.38       0.00            0.00            0.00            0.00
+                                                                               ControlRigShapeLibrary        1       9.64       9.64       0.00            0.00            0.00            0.00
                                                                           InterchangeResultsContainer        1       0.10       0.10       0.00            0.00            0.00            0.00
                                                                      MaterialExpressionVertexNormalWS        5       1.29       1.91       0.00            0.00            0.00            0.00
                                                                     MaterialExpressionVertexTangentWS        6       1.55       2.30       0.00            0.00            0.00            0.00
@@ -700,20 +696,24 @@ Objects:
                                                              MaterialExpressionMakeMaterialAttributes        3       4.52       4.95       0.00            0.00            0.00            0.00
                                                            MaterialExpressionPathTracingQualitySwitch        1       0.34       0.48       0.00            0.00            0.00            0.00
                                                               MaterialExpressionSetMaterialAttributes        4       1.91       2.47       0.00            0.00            0.00            0.00
+                                                               MaterialExpressionSpriteTextureSampler        1       0.85       1.38       0.00            0.00            0.00            0.00
+                                                                                          PaperSprite        1       0.95       0.95       0.00            0.00            0.00            0.00
+                                                                                 PaperTerrainMaterial        1       0.16       0.16       0.00            0.00            0.00            0.00
+                                                                                         PyTestObject        1       1.84       2.58       0.00            0.00            0.00            0.00
                                                                                      NNERuntimeORTDml        1       0.10       0.10       0.00            0.00            0.00            0.00
                                                                                      NNERuntimeORTCpu        1       0.08       0.08       0.00            0.00            0.00            0.00
                                                                          MaterialExpressionSmoothStep       35      14.49      18.87       0.00            0.00            0.00            0.00
                                                                              MaterialExpressionCosine        1       0.39       0.54       0.00            0.00            0.00            0.00
                                                                     MaterialExpressionArctangent2Fast        1       0.34       0.48       0.00            0.00            0.00            0.00
-                                                           ResonanceAudioSpatializationSourceSettings        1       0.09       0.09       0.00            0.00            0.00            0.00
                                                                                        RigVMBuildData        1      78.24     153.57       0.00            0.00            0.00            0.00
+                                                           ResonanceAudioSpatializationSourceSettings        1       0.09       0.09       0.00            0.00            0.00            0.00
                                                                                           InputAction        3       0.56       0.56       0.00            0.00            0.00            0.00
                                                                                   InputMappingContext        1       2.01       2.01       0.00            0.00            0.00            0.00
                                                                                                  Enum     2205     550.69    1373.62       0.00            0.00            0.00            0.00
                                                                                   InputModifierNegate        5       0.27       0.27       0.00            0.00            0.00            0.00
                                                                                   InputModifierScalar        1       0.07       0.07       0.00            0.00            0.00            0.00
                                                                              InputModifierSwizzleAxis        4       0.22       0.22       0.00            0.00            0.00            0.00
-                                                                                       StateTreeState       21      14.18      14.18       0.00            0.00            0.00            0.00
+                                                                                       StateTreeState       28      18.78      18.78       0.00            0.00            0.00            0.00
                                                                                         K2Node_Tunnel       52      22.43      22.43       0.00            0.00            0.00            0.00
                                                                                     K2Node_IfThenElse       24       5.10       5.10       0.00            0.00            0.00            0.00
                                                                                   K2Node_CallFunction       80      29.51      29.51       0.00            0.00            0.00            0.00
@@ -730,9 +730,7 @@ Objects:
                                                                                   EdGraphNode_Comment      170      70.71      70.71       0.00            0.00            0.00            0.00
                                                                              K2Node_CallArrayFunction        3       1.01       1.01       0.00            0.00            0.00            0.00
                                                                                   K2Node_GetArrayItem        3       0.61       0.61       0.00            0.00            0.00            0.00
-                                                                             StateTreeComponentSchema        6       0.98       0.98       0.00            0.00            0.00            0.00
                                                                                      EdGraphSchema_K2        1       0.34       0.34       0.00            0.00            0.00            0.00
-                                                                                  StateTreeEditorData        3       1.07       1.07       0.00            0.00            0.00            0.00
                                                                                              Skeleton        2      83.52      83.60       0.00            0.00            0.00            0.00
                                                                                          BlendProfile        5       8.40       8.40       0.00            0.00            0.00            0.00
                                                                                    SkeletalMeshSocket        4       0.72       0.72       0.00            0.00            0.00            0.00
@@ -743,27 +741,29 @@ Objects:
                                                                         EnhancedInputPlatformSettings        7       0.82       0.82       0.00            0.00            0.00            0.00
                                                                           AnimationSequencerDataModel       12       5.72       5.72       0.00            0.00            0.00            0.00
                                                                                            MovieScene       12      11.81      11.81       0.00            0.00            0.00            0.00
-                                                                                             MetaData      817   14720.02   14720.02       0.00            0.00            0.00            0.00
+                                                                   MovieSceneControlRigParameterTrack       12       8.62       8.62       0.00            0.00            0.00            0.00
                                                                                          FKControlRig       12      70.46      70.89       0.00            0.00            0.00            0.00
                                                                  MovieSceneControlRigParameterSection       12    4690.41    4690.41       0.00            0.00            0.00            0.00
-                                                                      MovieSceneBuiltInEasingFunction       24       1.50       1.50       0.00            0.00            0.00            0.00
+                                                                                             MetaData      819   14725.67   14725.67       0.00            0.00            0.00            0.00
                                                                         MovieSceneNodeGroupCollection       12       1.22       1.22       0.00            0.00            0.00            0.00
                                                                      AnimCompress_PerTrackCompression        8       2.14       2.38       0.00            0.00            0.00            0.00
                                                                         AnimCompress_RemoveLinearKeys        1       0.14       0.14       0.00            0.00            0.00            0.00
                                                                             FbxAnimSequenceImportData        1       0.26       0.26       0.00            0.00            0.00            0.00
                                                                                      CurveLinearColor        1       1.03       1.03       0.00            0.00            0.00            0.00
                                                                                          ScriptStruct     5618    9164.26   12597.78       0.00            0.00            0.00            0.00
-                                                                            MaterialExpressionRotator        1       0.35       0.49       0.00            0.00            0.00            0.00
+                                                             MaterialExpressionCurveAtlasRowParameter        1       0.49       1.07       0.00            0.00            0.00            0.00
                                                                          MaterialExpressionBumpOffset        3       1.20       1.62       0.00            0.00            0.00            0.00
-                                                                  MaterialExpressionShadingPathSwitch       15       6.45       8.55       0.00            0.00            0.00            0.00
+                                                                            MaterialExpressionRotator        1       0.35       0.49       0.00            0.00            0.00            0.00
                                                         MaterialExpressionClearCoatNormalCustomOutput        1       0.26       0.43       0.00            0.00            0.00            0.00
                                                                                    GCObjectReferencer        1       0.09       0.09       0.00            0.00            0.00            0.00
                                                                                     AnimCurveMetaData        5       0.86       0.86       0.00            0.00            0.00            0.00
                                                                             FbxSkeletalMeshImportData        1       0.30       0.30       0.00            0.00            0.00            0.00
                                                                                SkeletalMeshEditorData        1       0.20       0.20       0.00            0.00            0.00            0.00
-                                                                       MaterialExpressionSceneTexture       31      11.14      13.56       0.00            0.00            0.00            0.00
+                                                                             SimpleConstructionScript        8       1.88       1.88       0.00            0.00            0.00            0.00
                                                                           AnimBlueprintGeneratedClass        2      17.71      26.02       0.00            0.00            0.00            0.00
-                                                                                            StateTree        3      15.82      15.82       0.00            0.00            0.00            0.00
+                                                                       MaterialExpressionSceneTexture       31      11.14      13.56       0.00            0.00            0.00            0.00
+                                                                                  StateTreeEditorData        4       1.42       1.42       0.00            0.00            0.00            0.00
+                                                                                            StateTree        4      19.97      20.14       0.00            0.00            0.00            0.00
                                                                                         AnimBlueprint        1       5.17       5.44       0.00            0.00            0.00            0.00
                                                                                        AnimationGraph        2       0.61       0.69       0.00            0.00            0.00            0.00
                                                                           AnimBlueprintExtension_Base        1       0.34       0.34       0.00            0.00            0.00            0.00
@@ -791,9 +791,9 @@ Objects:
                                                                             AnimGraphNodeBinding_Base      120      15.00      15.00       0.00            0.00            0.00            0.00
                                                                          MaterialExpressionDotProduct       36      12.66      17.16       0.00            0.00            0.00            0.00
                                                                                    K2Node_VariableSet        5       2.23       2.23       0.00            0.00            0.00            0.00
-                                                                                 K2Node_FunctionEntry       16       8.72       8.72       0.00            0.00            0.00            0.00
-                                                                                       SceneComponent       12       7.50       7.50       0.00            0.00            0.00            0.00
-                                                                                             SCS_Node       12       3.57       3.57       0.00            0.00            0.00            0.00
+                                                                                 K2Node_FunctionEntry       17       9.25       9.25       0.00            0.00            0.00            0.00
+                                                                                       SceneComponent       45      28.44      29.38       0.00            0.00            0.00            0.00
+                                                                                             SCS_Node       15       4.46       4.46       0.00            0.00            0.00            0.00
                                                                                 K2Node_FunctionResult        2       0.58       0.58       0.00            0.00            0.00            0.00
                                                                             MaterialExpressionComment      248      85.25     120.12       0.00            0.00            0.00            0.00
                                                                                K2Node_StructMemberGet        4       7.16      10.91       0.00            0.00            0.00            0.00
@@ -821,9 +821,9 @@ Objects:
                                                                     MaterialInstanceThumbnailRenderer        2       0.16       0.16       0.00            0.00            0.00            0.00
                                                                     MaterialFunctionThumbnailRenderer        1       0.06       0.06       0.00            0.00            0.00            0.00
                                                                       ParticleSystemThumbnailRenderer        1       0.07       0.07       0.00            0.00            0.00            0.00
-                                                                                              Package      820    1943.55    1997.39       0.00            0.00            0.00            0.00
+                                                                PhysicalMaterialMaskThumbnailRenderer        1       0.05       0.05       0.00            0.00            0.00            0.00
                                                                           StaticMeshThumbnailRenderer        1       0.06       0.06       0.00            0.00            0.00            0.00
-                                                                        SkeletalMeshThumbnailRenderer        1       0.13       0.13       0.00            0.00            0.00            0.00
+                                                                                              Package      822    1951.04    2004.91       0.00            0.00            0.00            0.00
                                                                             SkeletonThumbnailRenderer        1       0.13       0.13       0.00            0.00            0.00            0.00
                                                                         AnimSequenceThumbnailRenderer        1       0.06       0.06       0.00            0.00            0.00            0.00
                                                                           BlendSpaceThumbnailRenderer        1       0.06       0.06       0.00            0.00            0.00            0.00
@@ -842,7 +842,7 @@ Objects:
                                                                        GeometryCacheThumbnailRenderer        1       0.06       0.06       0.00            0.00            0.00            0.00
                                                                             OnlineEngineInterfaceImpl        1       0.41       0.41       0.00            0.00            0.00            0.00
                                                                     MaterialExpressionConstant4Vector        1       0.40       0.96       0.00            0.00            0.00            0.00
-                                                                                   StateTreeComponent        3       1.34       1.34       0.00            0.00            0.00            0.00
+                                                                                   StateTreeComponent       20       9.66      14.41       0.00            0.00            0.00            0.00
                                                                                            GameEngine        1      12.11      14.04       0.00            0.00            0.00            0.00
                                                                                  TypedElementRegistry        1       2.35       2.35       0.00            0.00            0.00            0.00
                                                                       ObjectElementAssetDataInterface        1       0.05       0.05       0.00            0.00            0.00            0.00
@@ -889,7 +889,7 @@ Objects:
                                                                         MaterialExpressionLightmapUVs        1       0.24       0.38       0.00            0.00            0.00            0.00
                                                     MaterialExpressionMeshPaintTextureCoordinateIndex        1       0.24       0.38       0.00            0.00            0.00            0.00
                                                              MaterialExpressionMeshPaintTextureObject        1       0.24       0.38       0.00            0.00            0.00            0.00
-                                                                   MovieSceneControlRigParameterTrack       12       8.62       8.62       0.00            0.00            0.00            0.00
+                                                                      MovieSceneBuiltInEasingFunction       24       1.50       1.50       0.00            0.00            0.00            0.00
                                                                                      PhysicalMaterial        2       0.31       0.31       0.00            0.00            0.00            0.00
                                                                            SystemTimeTimecodeProvider        1       0.07       0.07       0.00            0.00            0.00            0.00
                                                                                          AssetManager        1       1.45       1.45       0.00            0.00            0.00            0.00
@@ -908,7 +908,7 @@ Objects:
                                                                                       ReplaySubsystem        1       0.07       0.07       0.00            0.00            0.00            0.00
                                                                         MassTestGameInstanceSubsystem        1       0.05       0.05       0.00            0.00            0.00            0.00
                                                                                  UnrealFlecsSubsystem        1       0.10       0.10       0.00            0.00            0.00            0.00
-                                                                                      DevGuiSubsystem        1       2.09       2.09       0.00            0.00            0.00            0.00
+                                                                                      DevGuiSubsystem        1       2.10       2.10       0.00            0.00            0.00            0.00
                                                                                    GameViewportClient        1       1.10       1.10       0.00            0.00            0.00            0.00
                                                                                               Console        1       0.48       0.48       0.00            0.00            0.00            0.00
                                                                                           LocalPlayer        1       0.71       0.71       0.00            0.00            0.00            0.00
@@ -939,6 +939,7 @@ Objects:
                                                               OptimusCustomComputeKernelDataInterface        2       0.26       0.26       0.00            0.00            0.00            0.00
                                                                          OptimusHalfEdgeDataInterface        1       0.05       0.05       0.00            0.00            0.00            0.00
                                                                   OptimusTransientBufferDataInterface        1       0.20       0.20       0.00            0.00            0.00            0.00
+                                                                                 FloatingPawnMovement       18       8.02       8.02       0.00            0.00            0.00            0.00
                                                                                     NiagaraEffectType        1       0.55       0.55       0.00            0.00            0.00            0.00
                                                                           NiagaraParameterDefinitions        4       0.83       0.83       0.00            0.00            0.00            0.00
                                                                                 NiagaraScriptVariable      588     372.19     372.19       0.00            0.00            0.00            0.00
@@ -958,9 +959,8 @@ Objects:
                                                                                 NiagaraNodeCustomHlsl        5      10.53      10.54       0.00            0.00            0.00            0.00
                                                                               NiagaraNodeFunctionCall      108     145.02     145.02       0.00            0.00            0.00            0.00
                                                                                     NiagaraNodeSelect       19      10.33      10.33       0.00            0.00            0.00            0.00
-                                                             MaterialExpressionCurveAtlasRowParameter        1       0.49       1.07       0.00            0.00            0.00            0.00
+                                                                  MaterialExpressionShadingPathSwitch       15       6.45       8.55       0.00            0.00            0.00            0.00
                                                                           TurboSequence_GlobalData_Lf        1       0.31       0.31       0.00            0.00            0.00            0.00
-                                                                                 FloatingPawnMovement        1       0.45       0.45       0.00            0.00            0.00            0.00
                                                                                 SkeletalMeshComponent        1       4.39       4.86       0.00            0.00            0.00            0.00
                                                                   MaterialExpressionTransformPosition        3       1.05       1.48       0.00            0.00            0.00            0.00
                                                                               MaterialExpressionRound        1       0.29       0.43       0.00            0.00            0.00            0.00
@@ -977,7 +977,7 @@ Objects:
                                                                             NiagaraDataInterfaceCurve        2       1.87       1.87       0.00            0.00            0.00            0.00
                                                                              NiagaraNodeUsageSelector        6       2.44       2.44       0.00            0.00            0.00            0.00
                                                                                  NiagaraNodeOutputTag        2       0.53       0.53       0.00            0.00            0.00            0.00
-                                                                             SimpleConstructionScript        7       1.62       1.62       0.00            0.00            0.00            0.00
+                                                                             StateTreeComponentSchema        8       1.31       1.31       0.00            0.00            0.00            0.00
                                                                               NiagaraSystemEditorData        1       0.88       0.88       0.00            0.00            0.00            0.00
                                                                             NiagaraSystemEditorFolder        1       0.09       0.09       0.00            0.00            0.00            0.00
                                                                                NiagaraStackEditorData        2     111.38     111.38       0.00            0.00            0.00            0.00
@@ -997,9 +997,9 @@ Objects:
                                                                                    NiagaraNodeEmitter        2       0.67       0.67       0.00            0.00            0.00            0.00
                                                                                   NiagaraOverviewNode        2       0.44       0.44       0.00            0.00            0.00            0.00
                                                                            TurboSequence_MeshAsset_Lf        1     179.01     179.01       0.00            0.00            0.00            0.00
-                                                                                           UnitConfig        1       0.18       0.18       0.00            0.00            0.00            0.00
+                                                                                           UnitConfig        1       0.19       0.19       0.00            0.00            0.00            0.00
                                                                                                 World        1       3.47       3.67       0.00            0.00            0.00            0.00
-                                                                                                Level        1       3.08       3.12       0.00            0.00            0.00            0.00
+                                                                                                Level        1       3.33       3.62       0.00            0.00            0.00            0.00
                                                                                  LevelScriptBlueprint        1       1.57       1.59       0.00            0.00            0.00            0.00
                                                                                         WorldSettings        1       3.08       3.10       0.00            0.00            0.00            0.00
                                                                                              BookMark        1       0.11       0.11       0.00            0.00            0.00            0.00
@@ -1046,7 +1046,7 @@ Objects:
                                                                                   SignificanceManager        1       0.33       0.33       0.00            0.00            0.00            0.00
                                                                                  NiagaraComponentPool        1       0.17       0.17       0.00            0.00            0.00            0.00
                                                                                       ChaosEventRelay        1       0.14       0.14       0.00            0.00            0.00            0.00
-                                                                                   NavigationSystemV1        1       5.96       6.41       0.00            0.00            0.00            0.00
+                                                                                   NavigationSystemV1        1       6.27       6.84       0.00            0.00            0.00            0.00
                                                                                              AISystem        1       0.46       0.46       0.00            0.00            0.00            0.00
                                                                                   BehaviorTreeManager        1       0.09       0.09       0.00            0.00            0.00            0.00
                                                                                   NavLocalGridManager        1       0.09       0.09       0.00            0.00            0.00            0.00
@@ -1082,7 +1082,7 @@ Objects:
                                                                               SkeletalMeshDescription       13   12053.69   12063.40       0.00            0.00            0.00            0.00
                                                                                 SpectatorPawnMovement        1       0.45       0.45       0.00            0.00            0.00            0.00
                                                                                         ISMController        1       1.11       1.11       0.00            0.00            0.00            0.00
-                                                                PhysicalMaterialMaskThumbnailRenderer        1       0.05       0.05       0.00            0.00            0.00            0.00
+                                                                        SkeletalMeshThumbnailRenderer        1       0.13       0.13       0.00            0.00            0.00            0.00
                                                                    GameplayDebuggerCategoryReplicator        1       1.67       1.67       0.00            0.00            0.00            0.00
                                                                    GameplayDebuggerRenderingComponent        1       1.61       1.61       0.00            0.00            0.00            0.00
                                                                       GameplayDebuggerLocalController        1       0.33       0.33       0.00            0.00            0.00            0.00
@@ -1111,14 +1111,19 @@ Objects:
                                                                               set_bone_reference_pose        1       0.21       0.21       0.00            0.00            0.00            0.00
                                                                                 import_ik_rig_options        1       0.06       0.06       0.00            0.00            0.00            0.00
                                                             RigVMUserWorkflowProvider__PythonCallable        8       0.50       0.50       0.00            0.00            0.00            0.00
+                                                                                         BP_ISMUnit_C       16      20.19      21.38       0.00            0.00            0.00            0.00
+                                                                                         AIController       16      22.38      22.75       0.00            0.00            0.00            0.00
+                                                                               PathFollowingComponent       16      13.50      13.50       0.00            0.00            0.00            0.00
+                                                                                 PawnActionsComponent       16       4.88       4.88       0.00            0.00            0.00            0.00
+                                                                               GameplayTasksComponent       16       5.69       6.62       0.00            0.00            0.00            0.00
 
-40737 Objects (Total: 117.801M / Max: 128.412M / Res: 161.654M | ResDedSys: 24.003M / ResDedVid: 38.770M / ResUnknown: 98.882M)
+40916 Objects (Total: 117.935M / Max: 128.555M / Res: 161.654M | ResDedSys: 24.003M / ResDedVid: 38.770M / ResUnknown: 98.882M)
 MemReport: End command "obj list -resourcesizesort"
 
 MemReport: Begin command "rhi.DumpMemory"
 RHI resource memory (not tracked by our allocator)
         31.580MB  -  Bindless Resource Heap - STAT_BindlessResourceHeapMemory - STATGROUP_RHI - STATCAT_Advanced
-         0.439MB  -  Bindless Sampler Heap - STAT_BindlessSamplerHeapMemory - STATGROUP_RHI - STATCAT_Advanced
+         0.471MB  -  Bindless Sampler Heap - STAT_BindlessSamplerHeapMemory - STATGROUP_RHI - STATCAT_Advanced
         64.000MB  -  Reserved Texture Memory (Committed) - STAT_ReservedCommittedTextureMemory - STATGROUP_RHI - STATCAT_Advanced
          0.000MB  -  Reserved Texture Memory (Uncommitted) - STAT_ReservedUncommittedTextureMemory - STATGROUP_RHI - STATCAT_Advanced
          0.000MB  -  Reserved Buffer Memory (Committed) - STAT_ReservedCommittedBufferMemory - STATGROUP_RHI - STATCAT_Advanced
@@ -1128,9 +1133,9 @@ RHI resource memory (not tracked by our allocator)
          3.131MB  -  Byte Address Buffer Memory - STAT_ByteAddressBufferMemory - STATGROUP_RHI - STATCAT_Advanced
         15.945MB  -  Structured Buffer Memory - STAT_StructuredBufferMemory - STATGROUP_RHI - STATCAT_Advanced
          8.215MB  -  RayTracing Acceleration Structure Memory - STAT_RTAccelerationStructureMemory - STATGROUP_RHI - STATCAT_Advanced
-        23.076MB  -  Vertex Buffer Memory - STAT_VertexBufferMemory - STATGROUP_RHI - STATCAT_Advanced
+        23.138MB  -  Vertex Buffer Memory - STAT_VertexBufferMemory - STATGROUP_RHI - STATCAT_Advanced
          3.942MB  -  Index Buffer Memory - STAT_IndexBufferMemory - STATGROUP_RHI - STATCAT_Advanced
-         0.128MB  -  Uniform Buffer Memory - STAT_UniformBufferMemory - STATGROUP_RHI - STATCAT_Advanced
+         0.127MB  -  Uniform Buffer Memory - STAT_UniformBufferMemory - STATGROUP_RHI - STATCAT_Advanced
         16.211MB  -  Texture Cube Memory - STAT_TextureMemoryCube - STATGROUP_RHI - STATCAT_Advanced
          9.570MB  -  Texture 3D Memory - STAT_TextureMemory3D - STATGROUP_RHI - STATCAT_Advanced
         40.332MB  -  Texture 2D Memory - STAT_TextureMemory2D - STATGROUP_RHI - STATCAT_Advanced
@@ -1138,19 +1143,19 @@ RHI resource memory (not tracked by our allocator)
          0.000MB  -  Render Target Cube Memory - STAT_RenderTargetMemoryCube - STATGROUP_RHI - STATCAT_Advanced
          0.188MB  -  Render Target 3D Memory - STAT_RenderTargetMemory3D - STATGROUP_RHI - STATCAT_Advanced
        160.812MB  -  Render Target 2D Memory - STAT_RenderTargetMemory2D - STATGROUP_RHI - STATCAT_Advanced
-4510.070MB total
+4510.164MB total
 MemReport: End command "rhi.DumpMemory"
 
 MemReport: Begin command "rhi.DumpResourceMemory"
-Tracked RHIResources (1033 total with info, 4381 total tracked)
+Tracked RHIResources (1033 total with info, 4388 total tracked)
 Showing 50 of 904 matched resources
 Name: Nanite.StreamingManager.ClusterPageData - Type: Buffer - Size: 4095.000000000 MB - Flags: Resident | UAV - Owner: None
 Name: Shadow.Virtual.PhysicalPagePool - Type: Texture - Size: 64.000000000 MB - Flags: Resident | UAV - Owner: None
 Name: FTextureRenderTarget2DArrayResource - Type: Texture - Size: 24.125000000 MB - Flags: Resident | RT - Owner: None
 Name: FTextureRenderTarget2DArrayResource - Type: Texture - Size: 18.125000000 MB - Flags: Resident | RT - Owner: None
 Name: FTextureRenderTarget2DArrayResource - Type: Texture - Size: 18.125000000 MB - Flags: Resident | RT - Owner: None
-Name: FParticleStatePosition - Type: Texture - Size: 16.125000000 MB - Flags: Resident | RT - Owner: None
 Name: /Engine/MapTemplates/Sky/DaylightAmbientCubemap.DaylightAmbientCubemap - Type: Texture - Size: 16.125000000 MB - Flags: Resident - Owner: /Engine/MapTemplates/Sky/DaylightAmbientCubemap.DaylightAmbientCubemap
+Name: FParticleStatePosition - Type: Texture - Size: 16.125000000 MB - Flags: Resident | RT - Owner: None
 Name: FParticleStatePosition - Type: Texture - Size: 16.125000000 MB - Flags: Resident | RT - Owner: None
 Name: FTextureRenderTarget2DArrayResource - Type: Texture - Size: 14.062500000 MB - Flags: Resident | RT - Owner: None
 Name: Shadow.Virtual.HZBPhysicalPagePool - Type: Texture - Size: 11.937500000 MB - Flags: Resident | UAV - Owner: None
@@ -1163,8 +1168,8 @@ Name: VT_PerlinWorley_Balanced - Type: Texture - Size: 8.000000000 MB - Flags: R
 Name: SSR.TemporalAA - Type: Texture - Size: 6.187500000 MB - Flags: Resident | UAV - Owner: None
 Name: SSR.TemporalAA - Type: Texture - Size: 6.187500000 MB - Flags: Resident | UAV - Owner: None
 Name: BackBuffer1 - Type: Texture - Size: 6.062500000 MB - Flags: Resident | RT - Owner: None
-Name: BackBuffer2 - Type: Texture - Size: 6.062500000 MB - Flags: Resident | RT - Owner: None
 Name: BackBuffer0 - Type: Texture - Size: 6.062500000 MB - Flags: Resident | RT - Owner: None
+Name: BackBuffer2 - Type: Texture - Size: 6.062500000 MB - Flags: Resident | RT - Owner: None
 Name: SSR.TemporalAA - Type: Texture - Size: 4.500000000 MB - Flags: Resident | UAV - Owner: None
 Name: FParticleAttributesTexture - Type: Texture - Size: 4.062500000 MB - Flags: Resident | RT - Owner: None
 Name: FParticleAttributesTexture - Type: Texture - Size: 4.062500000 MB - Flags: Resident | RT - Owner: None
@@ -1177,107 +1182,107 @@ Name: Ch10_nonPBR_TurboSequence_TurboSequence_Instance_Lod_0 - Type: Buffer - Si
 Name: PostDOFTranslucency.SceneColor - Type: Texture - Size: 2.562500000 MB - Flags: Resident | RT - Owner: None
 Name: T_TS_Romero_MeshData_Texture - Type: Texture - Size: 2.500000000 MB - Flags: Resident - Owner: /Game/CrowdSimulation/Characters/TurboSequence/Romero/T_TS_Romero_MeshData_Texture.T_TS_Romero_MeshData_Texture
 Name: Shadow.Virtual.ProjectionData - Type: Buffer - Size: 2.312500000 MB - Flags: Resident | UAV - Owner: None
+Name: Shadow.Virtual.AllocatedPageRectBounds - Type: Buffer - Size: 2.000000000 MB - Flags: Resident | UAV - Owner: None
 Name: Shadow.Virtual.PageTable - Type: Buffer - Size: 2.000000000 MB - Flags: Resident | UAV - Owner: None
 Name: Shadow.Virtual.PageFlags - Type: Buffer - Size: 2.000000000 MB - Flags: Resident | UAV - Owner: None
-Name: Shadow.Virtual.PageRequestFlags - Type: Buffer - Size: 2.000000000 MB - Flags: Resident | UAV - Owner: None
 Name: Shadow.Virtual.PageRectBounds - Type: Buffer - Size: 2.000000000 MB - Flags: Resident | UAV - Owner: None
-Name: Shadow.Virtual.AllocatedPageRectBounds - Type: Buffer - Size: 2.000000000 MB - Flags: Resident | UAV - Owner: None
+Name: Shadow.Virtual.PageRequestFlags - Type: Buffer - Size: 2.000000000 MB - Flags: Resident | UAV - Owner: None
 Name: TransformGizmoFreeRotation - Type: Buffer - Size: 1.789085388 MB - Flags: Resident | RTAS - Owner: /Engine/VREditor/TransformGizmo/TransformGizmoFreeRotation.TransformGizmoFreeRotation [LOD0]
 Name: VT_Lightning - Type: Texture - Size: 1.500000000 MB - Flags: Resident | Streaming - Owner: /Engine/EngineSky/VolumetricClouds/VT_Lightning.VT_Lightning
 Name: FNullMorphVertexBuffer - Type: Buffer - Size: 1.499984741 MB - Flags: Resident - Owner: None
 Name: T_UE_Logo_M - Type: Texture - Size: 1.375000000 MB - Flags: Resident | Streaming - Owner: /Game/FirstPersonArms/Character/Textures/Shared/T_UE_Logo_M.T_UE_Logo_M
 Name: ParticleCurveTexture - Type: Texture - Size: 1.062500000 MB - Flags: Resident | RT - Owner: None
-Name: FSlateFontTextureRHIResource - Type: Texture - Size: 1.000000000 MB - Flags: Resident - Owner: None
-Name: FSlateTexture2DRHIRef - Type: Texture - Size: 1.000000000 MB - Flags: Resident - Owner: None
-Name: Final Luminance - Type: Texture - Size: 1.000000000 MB - Flags: Resident | RT - Owner: None
-Name: Final Luminance - Type: Texture - Size: 1.000000000 MB - Flags: Resident | RT - Owner: None
-Name: FastBlueNoise_scalar_128x128x64 - Type: Texture - Size: 1.000000000 MB - Flags: Resident - Owner: /Engine/EngineMaterials/FastBlueNoise_scalar_128x128x64.FastBlueNoise_scalar_128x128x64
 Name: PostProcessing.SceneColor.HalfRes - Type: Texture - Size: 1.000000000 MB - Flags: Resident | RT - Owner: None
-Name: Final Luminance - Type: Texture - Size: 0.812500000 MB - Flags: Resident | RT - Owner: None
-Shown 50 entries. Size: 4442.02/4477.92 MB (99.20% of total non-transient)
-Total tracked resource size: 4602.356456757 MB
-    Non-Transient: 4477.923198700 MB
+Name: FastBlueNoise_scalar_128x128x64 - Type: Texture - Size: 1.000000000 MB - Flags: Resident - Owner: /Engine/EngineMaterials/FastBlueNoise_scalar_128x128x64.FastBlueNoise_scalar_128x128x64
+Name: Final Luminance - Type: Texture - Size: 1.000000000 MB - Flags: Resident | RT - Owner: None
+Name: Final Luminance - Type: Texture - Size: 1.000000000 MB - Flags: Resident | RT - Owner: None
+Name: FSlateTexture2DRHIRef - Type: Texture - Size: 1.000000000 MB - Flags: Resident - Owner: None
+Name: FSlateFontTextureRHIResource - Type: Texture - Size: 1.000000000 MB - Flags: Resident - Owner: None
+Name: PostProcessing.SceneColor.HalfRes - Type: Texture - Size: 0.812500000 MB - Flags: Resident | RT - Owner: None
+Shown 50 entries. Size: 4442.02/4477.99 MB (99.20% of total non-transient)
+Total tracked resource size: 4602.418937683 MB
+    Non-Transient: 4477.985679626 MB
     Transient: 124.433258057 MB
 MemReport: End command "rhi.DumpResourceMemory"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=Lumen"
-Shown 0 entries with name Lumen. Size: 0.00/4477.92 MB (0.00% of total non-transient)
+Shown 0 entries with name Lumen. Size: 0.00/4477.99 MB (0.00% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=Lumen"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=Nanite"
-Shown 13 entries with name Nanite. Size: 4095.75/4477.92 MB (91.47% of total non-transient)
+Shown 13 entries with name Nanite. Size: 4095.75/4477.99 MB (91.46% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=Nanite"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=Shadow"
-Shown 27 entries with name Shadow. Size: 89.32/4477.92 MB (1.99% of total non-transient)
+Shown 27 entries with name Shadow. Size: 89.32/4477.99 MB (1.99% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=Shadow"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=DistanceFields"
-Shown 15 entries with name DistanceFields. Size: 8.27/4477.92 MB (0.18% of total non-transient)
+Shown 15 entries with name DistanceFields. Size: 8.27/4477.99 MB (0.18% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=DistanceFields"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=GPUScene"
-Shown 5 entries with name GPUScene. Size: 0.44/4477.92 MB (0.01% of total non-transient)
+Shown 5 entries with name GPUScene. Size: 0.44/4477.99 MB (0.01% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=GPUScene"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=SkinCache"
-Shown 0 entries with name SkinCache. Size: 0.00/4477.92 MB (0.00% of total non-transient)
+Shown 0 entries with name SkinCache. Size: 0.00/4477.99 MB (0.00% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=SkinCache"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=TangentsRHIBuffer"
-Shown 15 entries with name TangentsRHIBuffer. Size: 0.94/4477.92 MB (0.02% of total non-transient)
+Shown 15 entries with name TangentsRHIBuffer. Size: 0.94/4477.99 MB (0.02% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=TangentsRHIBuffer"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=IndexBuffer"
-Shown 89 entries with name IndexBuffer. Size: 2.84/4477.92 MB (0.06% of total non-transient)
+Shown 89 entries with name IndexBuffer. Size: 2.84/4477.99 MB (0.06% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=IndexBuffer"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=VertexBuffer"
-Shown 76 entries with name VertexBuffer. Size: 5.47/4477.92 MB (0.12% of total non-transient)
+Shown 76 entries with name VertexBuffer. Size: 5.54/4477.99 MB (0.12% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=VertexBuffer"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=TexCoordRHIBuffer"
-Shown 15 entries with name TexCoordRHIBuffer. Size: 0.47/4477.92 MB (0.01% of total non-transient)
+Shown 15 entries with name TexCoordRHIBuffer. Size: 0.47/4477.99 MB (0.01% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=TexCoordRHIBuffer"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=None"
-Shown 0 entries with name None. Size: 0.00/4477.92 MB (0.00% of total non-transient)
+Shown 0 entries with name None. Size: 0.00/4477.99 MB (0.00% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=None"
 
 MemReport: Begin command "rhi.dumpresourcememory summary Type=TextureCube"
-Shown 0 entries. Size: 0.00/4477.92 MB (0.00% of total non-transient)
+Shown 0 entries. Size: 0.00/4477.99 MB (0.00% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary Type=TextureCube"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=CaptureCube"
-Shown 0 entries with name CaptureCube. Size: 0.00/4477.92 MB (0.00% of total non-transient)
+Shown 0 entries with name CaptureCube. Size: 0.00/4477.99 MB (0.00% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=CaptureCube"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=MorphDeltasVB"
-Shown 0 entries with name MorphDeltasVB. Size: 0.00/4477.92 MB (0.00% of total non-transient)
+Shown 0 entries with name MorphDeltasVB. Size: 0.00/4477.99 MB (0.00% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=MorphDeltasVB"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=VertexIndicesVB"
-Shown 0 entries with name VertexIndicesVB. Size: 0.00/4477.92 MB (0.00% of total non-transient)
+Shown 0 entries with name VertexIndicesVB. Size: 0.00/4477.99 MB (0.00% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=VertexIndicesVB"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=VirtualTexture"
-Shown 0 entries with name VirtualTexture. Size: 0.00/4477.92 MB (0.00% of total non-transient)
+Shown 0 entries with name VirtualTexture. Size: 0.00/4477.99 MB (0.00% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=VirtualTexture"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=VirtualPhysicalTexture"
-Shown 0 entries with name VirtualPhysicalTexture. Size: 0.00/4477.92 MB (0.00% of total non-transient)
+Shown 0 entries with name VirtualPhysicalTexture. Size: 0.00/4477.99 MB (0.00% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=VirtualPhysicalTexture"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=VolumetricFog"
-Shown 0 entries with name VolumetricFog. Size: 0.00/4477.92 MB (0.00% of total non-transient)
+Shown 0 entries with name VolumetricFog. Size: 0.00/4477.99 MB (0.00% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=VolumetricFog"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=Hair"
-Shown 5 entries with name Hair. Size: 0.63/4477.92 MB (0.01% of total non-transient)
+Shown 5 entries with name Hair. Size: 0.63/4477.99 MB (0.01% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=Hair"
 
 MemReport: Begin command "rhi.dumpresourcememory summary name=Subsurface"
-Shown 0 entries with name Subsurface. Size: 0.00/4477.92 MB (0.00% of total non-transient)
+Shown 0 entries with name Subsurface. Size: 0.00/4477.99 MB (0.00% of total non-transient)
 MemReport: End command "rhi.dumpresourcememory summary name=Subsurface"
 
 MemReport: Begin command "obj list class=SkeletalMesh -resourcesizesort"
@@ -1541,21 +1546,53 @@ MemReport: End command "LogOutStatLevels"
 
 MemReport: Begin command "ListSpawnedActors"
 Listing spawned actors in persistent level:
-Total: 22
+Total: 54
 TimeUnseen,TimeAlive,Distance,Class,Name,Owner
- 78.94, 78.94,    1500,AbstractNavData,AbstractNavData-Default,None
- 78.94, 78.94,    1500,BP_FirstPersonGameMode_C,BP_FirstPersonGameMode_C_0,None
- 78.94, 78.94,    1500,GameNetworkManager,GameNetworkManager_0,None
- 78.94, 78.94,    1500,GameplayDebuggerCategoryReplicator,GameplayDebuggerCategoryReplicator_0,None
- 78.94, 78.94,    1500,GameSession,GameSession_0,None
- 78.94, 78.94,    1500,GameStateBase,GameStateBase_0,None
- 78.94, 78.94,    1500,HUD,HUD_0,PlayerController_0
-  0.00, 78.94,    1500,ISMController,ISMController_0,None
- 78.94, 78.94,    1500,ParticleEventManager,ParticleEventManager_0,WorldSettings_1
- 78.94, 78.94,       0,PlayerCameraManager,PlayerCameraManager_0,PlayerController_0
- 78.94, 78.94,       0,PlayerController,PlayerController_0,None
- 78.94, 78.94,    1500,PlayerState,PlayerState_0,PlayerController_0
- 78.94, 78.94,       0,SpectatorPawn,SpectatorPawn_1,PlayerController_0
+ 82.48, 82.48,    1500,AbstractNavData,AbstractNavData-Default,None
+ 82.48, 66.55,    1500,AIController,AIController_0,None
+ 82.48, 66.55,    1500,AIController,AIController_1,None
+ 82.48, 66.55,    1500,AIController,AIController_10,None
+ 82.48, 66.55,    1500,AIController,AIController_11,None
+ 82.48, 66.55,    1500,AIController,AIController_12,None
+ 82.48, 66.55,    1500,AIController,AIController_13,None
+ 82.48, 66.55,    1500,AIController,AIController_14,None
+ 82.48, 66.55,    1500,AIController,AIController_15,None
+ 82.48, 66.55,    1500,AIController,AIController_2,None
+ 82.48, 66.55,    1500,AIController,AIController_3,None
+ 82.48, 66.55,    1500,AIController,AIController_4,None
+ 82.48, 66.55,    1500,AIController,AIController_5,None
+ 82.48, 66.55,    1500,AIController,AIController_6,None
+ 82.48, 66.55,    1500,AIController,AIController_7,None
+ 82.48, 66.55,    1500,AIController,AIController_8,None
+ 82.48, 66.55,    1500,AIController,AIController_9,None
+ 82.48, 82.48,    1500,BP_FirstPersonGameMode_C,BP_FirstPersonGameMode_C_0,None
+ 82.48, 66.55,    1560,BP_ISMUnit_C,BP_ISMUnit_C_0,AIController_0
+ 82.48, 66.55,    1520,BP_ISMUnit_C,BP_ISMUnit_C_1,AIController_1
+ 82.48, 66.55,    1509,BP_ISMUnit_C,BP_ISMUnit_C_10,AIController_10
+ 82.48, 66.55,    1577,BP_ISMUnit_C,BP_ISMUnit_C_11,AIController_11
+ 82.48, 66.55,    1509,BP_ISMUnit_C,BP_ISMUnit_C_12,AIController_12
+ 82.48, 66.55,    1565,BP_ISMUnit_C,BP_ISMUnit_C_13,AIController_13
+ 82.48, 66.55,    1508,BP_ISMUnit_C,BP_ISMUnit_C_14,AIController_14
+ 82.48, 66.55,    1502,BP_ISMUnit_C,BP_ISMUnit_C_15,AIController_15
+ 82.48, 66.55,    1532,BP_ISMUnit_C,BP_ISMUnit_C_2,AIController_2
+ 82.48, 66.55,    1532,BP_ISMUnit_C,BP_ISMUnit_C_3,AIController_3
+ 82.48, 66.55,    1517,BP_ISMUnit_C,BP_ISMUnit_C_4,AIController_4
+ 82.48, 66.55,    1511,BP_ISMUnit_C,BP_ISMUnit_C_5,AIController_5
+ 82.48, 66.55,    1558,BP_ISMUnit_C,BP_ISMUnit_C_6,AIController_6
+ 82.48, 66.55,    1634,BP_ISMUnit_C,BP_ISMUnit_C_7,AIController_7
+ 82.48, 66.55,    1500,BP_ISMUnit_C,BP_ISMUnit_C_8,AIController_8
+ 82.48, 66.55,    1505,BP_ISMUnit_C,BP_ISMUnit_C_9,AIController_9
+ 82.48, 82.48,    1500,GameNetworkManager,GameNetworkManager_0,None
+ 82.48, 82.48,    1500,GameplayDebuggerCategoryReplicator,GameplayDebuggerCategoryReplicator_0,None
+ 82.48, 82.48,    1500,GameSession,GameSession_0,None
+ 82.48, 82.48,    1500,GameStateBase,GameStateBase_0,None
+ 82.48, 82.48,    1500,HUD,HUD_0,PlayerController_0
+  0.00, 82.48,    1500,ISMController,ISMController_0,None
+ 82.48, 82.48,    1500,ParticleEventManager,ParticleEventManager_0,WorldSettings_1
+ 82.48, 82.48,       0,PlayerCameraManager,PlayerCameraManager_0,PlayerController_0
+ 82.48, 82.48,       0,PlayerController,PlayerController_0,None
+ 82.48, 82.48,    1500,PlayerState,PlayerState_0,PlayerController_0
+ 82.48, 82.48,       0,SpectatorPawn,SpectatorPawn_1,PlayerController_0
 MemReport: End command "ListSpawnedActors"
 
 MemReport: Begin command "wp.DumpDataLayers"

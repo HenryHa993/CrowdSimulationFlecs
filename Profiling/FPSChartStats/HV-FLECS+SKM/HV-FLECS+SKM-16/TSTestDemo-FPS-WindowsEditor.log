@@ -1,5 +1,5 @@
 --- Begin : FPS chart dump for level 'TSTestDemo'
-Dumping FPS chart at 2025.08.24-20.43.28 using build ++UE5+Release-5.5-CL-40574608 in config Development built from changelist 40574608
+Dumping FPS chart at 2025.08.25-15.02.55 using build ++UE5+Release-5.5-CL-40574608 in config Development built from changelist 40574608
 Machine info:
 	OS: Windows 11 (24H2) [10.0.26100.4946] 
 	CPU: AuthenticAMD AMD Ryzen 7 PRO 6850U with Radeon Graphics
@@ -18,10 +18,10 @@ Machine info:
 	Hair Quality: 1
 	Window Mode: WindowedFullscreen
 	Resolution: 1536x937
-5926 frames collected over 60.00 seconds, disregarding 0.00 seconds (0 frames) for a 98.77 FPS average
-Average GPU frametime: 7.19 ms
-Average RenderThread frametime: 9.79 ms
-Average GameThread frametime: 5.85 ms
+5825 frames collected over 59.99 seconds, disregarding 0.00 seconds (0 frames) for a 97.10 FPS average
+Average GPU frametime: 7.07 ms
+Average RenderThread frametime: 9.94 ms
+Average GameThread frametime: 5.48 ms
 Total time spent flushing async loading: 0.00 ms
 Total flushing async loading calls: 0
 Max flush async loading time: 0.00 ms
@@ -33,7 +33,7 @@ BoundGPUPct: 0.00
 ExcludeIdleTime: 0
   Target 30 FPS: 0.00 % syncs missed
   Target 60 FPS: 0.00 % syncs missed
-  Target 120 FPS: 17.69 % syncs missed
+  Target 120 FPS: 19.07 % syncs missed
 --- Begin : Hitch chart dump for level 'TSTestDemo'
 Bucket: 0.00s - 0.03s  Count: 0  Time: 0.00 s
 Bucket: 0.03s - 0.06s  Count: 0  Time: 0.00 s
