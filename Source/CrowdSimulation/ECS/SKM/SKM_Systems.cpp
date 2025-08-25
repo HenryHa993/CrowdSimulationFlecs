@@ -51,7 +51,7 @@ void USKM_Systems::Initialize(flecs::world& ECSWorld)
 	ECSWorld.system<const SKM_ActorRef, const Transform>("System Copy SKM Transforms")
 	.each([](const SKM_ActorRef& cActor, const Transform& cTransform)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Running?"));
+		//UE_LOG(LogTemp, Warning, TEXT("Running?"));
 
 		cActor.Value->SetActorTransform(cTransform.Value);
 	});

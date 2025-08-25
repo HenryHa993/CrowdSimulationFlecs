@@ -90,7 +90,7 @@ void AISMController::ClearInstances()
 // Since custom data indexes 2 and 3 are reserved for BeginFrame and EndFrame, we could simply change it on each instance to animate them
 void AISMController::SetAnimation(int32 InstanceIndex, float StartFrame, float EndFrame)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Switching animation!"));
+	//UE_LOG(LogTemp, Warning, TEXT("Switching animation!"));
 	InstancedStaticMeshComponent->SetCustomDataValue(InstanceIndex, 0, StartFrame, true);
 	InstancedStaticMeshComponent->SetCustomDataValue(InstanceIndex, 1, EndFrame, true);
 }
