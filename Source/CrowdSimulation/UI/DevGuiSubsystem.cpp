@@ -71,12 +71,12 @@ void UDevGuiSubsystem::SpawnMenu(bool& bShow)
 	ImGui::Spacing();
 	
 	ImGui::BeginGroup();
-	ImGui::SliderInt("Number of Units X##slider", &NumUnitsX, 1, 10000);
+	ImGui::SliderInt("Number of Units X##slider", &NumUnitsX, 1, 16000);
 	ImGui::SameLine();
 	ImGui::InputInt("Number of Units X##input", &NumUnitsX, 1);
 	ImGui::EndGroup();
 	ImGui::BeginGroup();
-	ImGui::SliderInt("Number of Units Y##slider", &NumUnitsY, 1, 10000);
+	ImGui::SliderInt("Number of Units Y##slider", &NumUnitsY, 1, 16000);
 	ImGui::SameLine();
 	ImGui::InputInt("Number of Units Y##input", &NumUnitsY, 1);
 	ImGui::EndGroup();
