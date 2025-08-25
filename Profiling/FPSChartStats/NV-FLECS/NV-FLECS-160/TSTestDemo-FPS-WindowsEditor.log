@@ -1,0 +1,69 @@
+--- Begin : FPS chart dump for level 'TSTestDemo'
+Dumping FPS chart at 2025.08.25-09.09.05 using build ++UE5+Release-5.5-CL-40574608 in config Development built from changelist 40574608
+Machine info:
+	OS: Windows 11 (24H2) [10.0.26100.4946] 
+	CPU: AuthenticAMD AMD Ryzen 7 PRO 6850U with Radeon Graphics
+	DeviceProfile: WindowsEditor
+	GPU: AMD Radeon(TM) Graphics
+	Resolution Quality: 71.00
+	View Distance Quality: 1
+	Anti-Aliasing Quality: 1
+	Shadow Quality: 1
+	Global Illumination Quality: 1
+	Reflection Quality: 1
+	Post-Process Quality: 1
+	Texture Quality: 1
+	Effects Quality: 1
+	Foliage Quality: 1
+	Hair Quality: 1
+	Window Mode: WindowedFullscreen
+	Resolution: 1536x937
+7210 frames collected over 60.00 seconds, disregarding 0.00 seconds (0 frames) for a 120.17 FPS average
+Average GPU frametime: 4.74 ms
+Average RenderThread frametime: 8.01 ms
+Average GameThread frametime: 3.95 ms
+Total time spent flushing async loading: 0.00 ms
+Total flushing async loading calls: 0
+Max flush async loading time: 0.00 ms
+Average flush async loading time: 0.00 ms
+Total sync loads: 0
+BoundGameThreadPct: 0.00
+BoundRenderThreadPct: 0.00
+BoundGPUPct: 0.00
+ExcludeIdleTime: 0
+  Target 30 FPS: 0.00 % syncs missed
+  Target 60 FPS: 0.00 % syncs missed
+  Target 120 FPS: 0.00 % syncs missed
+--- Begin : Hitch chart dump for level 'TSTestDemo'
+Bucket: 0.00s - 0.03s  Count: 0  Time: 0.00 s
+Bucket: 0.03s - 0.06s  Count: 0  Time: 0.00 s
+Bucket: 0.06s - 0.10s  Count: 0  Time: 0.00 s
+Bucket: 0.10s - 0.15s  Count: 0  Time: 0.00 s
+Bucket: 0.15s - 0.20s  Count: 0  Time: 0.00 s
+Bucket: 0.20s - 0.30s  Count: 0  Time: 0.00 s
+Bucket: 0.30s - 0.50s  Count: 0  Time: 0.00 s
+Bucket: 0.50s - 0.75s  Count: 0  Time: 0.00 s
+Bucket: 0.75s - 1.00s  Count: 0  Time: 0.00 s
+Bucket: 1.00s - 1.50s  Count: 0  Time: 0.00 s
+Bucket: 1.50s - 2.00s  Count: 0  Time: 0.00 s
+Bucket: 2.00s - 2.50s  Count: 0  Time: 0.00 s
+Bucket: 2.50s - 5.00s  Count: 0  Time: 0.00 s
+Bucket: 5.00s - inf  Count: 0  Time: 0.00 s
+Total hitch count:  0
+Total hitch time:  0.00 s (0.00 %)
+Hitch frames bound by game thread:  0  (0.0 %)
+Hitch frames bound by render thread:  0  (0.0 %)
+Hitch frames bound by RHI thread:  0  (0.0 %)
+Hitch frames bound by GPU:  0  (0.0 %)
+Hitches / min:  0.00
+--- End
+DynamicRes above 0% : 100.00% of frames
+DynamicRes above 60% : 100.00% of frames
+DynamicRes above 70% : 100.00% of frames
+DynamicRes above 80% : 100.00% of frames
+DynamicRes above 90% : 100.00% of frames
+DynamicRes above 100% : 100.00% of frames
+
+
+
+
